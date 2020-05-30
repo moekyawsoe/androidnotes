@@ -84,7 +84,7 @@ a:focus {
 
 #sidebar .sidebar-header {
   padding: 15px;
-  background: #1e7e34;
+  background: #19692c;
   text-align: center;
   height: 65px;
 }
@@ -183,6 +183,12 @@ a.article:hover {
 #code{
   padding: 0px 10px;
 }
+.masthead{
+  height: 700px;
+}
+/* #main{
+  height: 100px;
+} */
 
 #xml {
   background: rgb(255, 255, 214) url(img/xml_file_20px.png) no-repeat 10px
