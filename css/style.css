@@ -184,7 +184,8 @@ a.article:hover {
   padding: 0px 10px;
 }
 .masthead{
-  /* height: 800px; */
+  height: 800px;
+  position: fixed;
 }
 /* #main{
   height: 100px;
