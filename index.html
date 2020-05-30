@@ -74,11 +74,11 @@
 
                             <li>
                                 <a href="#androidwidgets" data-toggle="collapse" aria-expanded="false"
-                                    class="dropdown-toggle"><i class="fas fa-anchor"></i> Android Widgets</a>
+                                    class="dropdown-toggle"><i class="fa fa-fw fa-anchor"></i> Android Widgets</a>
                                 <ul class="collapse list-unstyled" id="androidwidgets">
-                                    <li><a href="#" onclick="switchView('views/textview.html')">TextView</a></li>
-                                    <li><a href="#">EditText</a></li>
-                                    <li><a href="#">Button</a></li>
+                                    <li><a href="#" onclick="switchView('views/Widgets/TextView/textview.html')">TextView</a></li>
+                                    <li><a href="#" >EditText</a></li>
+                                    <li><a href="#" onclick="switchView('views/Widgets/Button/button.html')">Button</a></li>
                                     <li><a href="#">RadioButton</a></li>
                                     <li><a href="#">Checkbox</a></li>
                                     <li><a href="#">RatingBar</a></li>
@@ -92,7 +92,7 @@
 
                             <li>
                                 <a href="#androidmedia" data-toggle="collapse" aria-expanded="false"
-                                    class="dropdown-toggle"><i class="fas fa-photo-video"></i> Android Media</a>
+                                    class="dropdown-toggle"><i class="fa fa-fw fa-photo-video"></i> Android Media</a>
                                 <ul class="collapse list-unstyled" id="androidmedia">
                                     <li><a href="#" onclick="switchView('views/textview.html')">ImageButton</a></li>
                                     <li><a href="#">ImageView</a></li>
@@ -102,7 +102,7 @@
 
                             <li>
                                 <a href="#androiddatetime" data-toggle="collapse" aria-expanded="false"
-                                    class="dropdown-toggle"><i class="fas fa-calendar-day"></i> Android Date & Time</a>
+                                    class="dropdown-toggle"><i class="fa fa-fw fa-calendar-day"></i> Android Date & Time</a>
                                 <ul class="collapse list-unstyled" id="androiddatetime">
                                     <li><a href="#" onclick="switchView('views/textview.html')">TextClock</a></li>
                                     <li><a href="#">DatePicker</a></li>
@@ -113,7 +113,7 @@
 
                             <li>
                                 <a href="#androidimplicitIntent" data-toggle="collapse" aria-expanded="false"
-                                    class="dropdown-toggle"><i class="fas fa-indent"></i> Android Implicit
+                                    class="dropdown-toggle"><i class="fa fa-fw fa-indent"></i> Android Implicit
                                     Intent</a>
                                 <ul class="collapse list-unstyled" id="androidimplicitIntent">
                                     <li><a href="#" onclick="switchView('views/textview.html')">Email</a></li>
@@ -126,7 +126,7 @@
 
                             <li>
                                 <a href="#androidexplicitintent" data-toggle="collapse" aria-expanded="false"
-                                    class="dropdown-toggle"><i class="fas fa-indent"></i> Android Explicit
+                                    class="dropdown-toggle"><i class="fa fa-fw fa-indent"></i> Android Explicit
                                     Intent</a>
                                 <ul class="collapse list-unstyled" id="androidexplicitintent">
                                     <li><a href="#" onclick="switchView('views/textview.html')">Activity Transition</a>
@@ -141,7 +141,7 @@
                             </li>
                             <li>
                                 <a href="#androidtoast" data-toggle="collapse" aria-expanded="false"
-                                    class="dropdown-toggle"><i class="fas fa-exclamation"></i> Android Toast</a>
+                                    class="dropdown-toggle"><i class="fa fa-fw fa-exclamation"></i> Android Toast</a>
                                 <ul class="collapse list-unstyled" id="androidtoast">
                                     <li><a href="#" onclick="switchView('views/textview.html')">Simple Toast</a></li>
                                     <li><a href="#">Toast Message Position</a></li>
@@ -149,6 +149,161 @@
                                     <li><a href="#">AndLibraryNote</a></li>
                                 </ul>
                             </li>
+                            <li>
+                                <a href="#androidcontainers" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i
+                                        class="fa fw fa-cube"></i> Android Containers</a>
+                                <ul class="collapse list-unstyled" id="androidcontainers">
+                                    <li><a href="#" onclick="switchView('views/textview.html')">ListView</a></li>
+                                    <li><a href="#">Custom ListView</a></li>
+                                    <li><a href="#">Expandable ListView</a></li>
+                                    <li><a href="#">GridView</a></li>
+                                    <li><a href="#">WebView</a></li>
+                                    <li><a href="#">SearchView</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#androidmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i
+                                        class="fa fa-fw fa-bars"></i> Android Menu</a>
+                                <ul class="collapse list-unstyled" id="androidmenu">
+                                    <li><a href="#" onclick="switchView('views/textview.html')">Context Menu</a></li>
+                                    <li><a href="#">Option Menu</a></li>
+                                    <li><a href="#">PopUp Menu</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#androidactivityandfragment" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i
+                                        class="fa fa-fw fa-clone"></i> Android Activity And Fragment</a>
+                                <ul class="collapse list-unstyled" id="androidactivityandfragment">
+                                    <li><a href="#" onclick="switchView('views/textview.html')">Context Menu</a></li>
+                                    <li><a href="#">Option Menu</a></li>
+                                    <li><a href="#">PopUp Menu</a></li>
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a href="#androidservice" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i
+                                        class="fa fa-fw fa-wrench"></i> Android Service</a>
+                                <ul class="collapse list-unstyled" id="androidservice">
+                                    <li><a href="#" onclick="switchView('views/textview.html')">Service Lifecycle</a></li>
+                                    <li><a href="#" onclick="switchView('views/textview.html')">Service Example</a></li>
+                
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#androidtelephonemanager" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i
+                                        class="fa fa-fw fa-phone-square"></i> Android Telephony Manager</a>
+                                <ul class="collapse list-unstyled" id="androidtelephonemanager">
+                                    <li><a href="#" onclick="switchView('views/textview.html')">Phone Details</a></li>
+                                    <li><a href="#" onclick="switchView('views/textview.html')">Read Contacts</a></li>
+                            
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#androidwifimanager" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i
+                                        class="fa fa-fw fa-wifi"></i> Android Wifi Manager</a>
+                                <ul class="collapse list-unstyled" id="androidwifimanager">
+                                    <li><a href="#" onclick="switchView('views/textview.html')">Change Wifi State</a></li>
+                                    <li><a href="#" onclick="switchView('views/textview.html')">Get Wifi Info</a></li>
+                                    <li><a href="#" onclick="switchView('views/textview.html')">Get Wifi List</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#androidtweenanim" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i
+                                        class="fa fa-fw fa-puzzle-piece"></i> Android Tween Animations</a>
+                                <ul class="collapse list-unstyled" id="androidtweenanim">
+                                    <li><a href="#" onclick="switchView('views/textview.html')">Fade</a></li>
+                                    <li><a href="#" onclick="switchView('views/textview.html')">Zoom</a></li>
+                                    <li><a href="#" onclick="switchView('views/textview.html')">Rotate</a></li>
+                                    <li><a href="#" onclick="switchView('views/textview.html')">Move</a></li>
+                                    <li><a href="#" onclick="switchView('views/textview.html')">Slide</a></li>
+                                    <li><a href="#" onclick="switchView('views/textview.html')">Bounce</a></li>
+                                    <li><a href="#" onclick="switchView('views/textview.html')">Blink</a></li>
+                                    <li><a href="#" onclick="switchView('views/textview.html')">Sequential</a></li>
+                                    <li><a href="#" onclick="switchView('views/textview.html')">Together</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#androiddatastorage" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i
+                                        class="fa fa-fw fa-file"></i> Android DataStorage</a>
+                                <ul class="collapse list-unstyled" id="androiddatastorage">
+                                    <li><a href="#" onclick="switchView('views/textview.html')">SharedPreference</a></li>
+                                    <li><a href="#" onclick="switchView('views/textview.html')">Internal Storage</a></li>
+                                    <li><a href="#" onclick="switchView('views/textview.html')">External Storage</a></li>
+                                    <li><a href="#" onclick="switchView('views/textview.html')">External Storage Public Directory</a></li>
+                                    <li><a href="#" onclick="switchView('views/textview.html')">Cache Storage</a></li>
+                    
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a href="#androidsqllite" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i
+                                        class="fa fa-fw fa-database"></i> Android SQLite</a>
+                                <ul class="collapse list-unstyled" id="androidsqllite">
+                                    <li><a href="#" onclick="switchView('views/textview.html')">SQlite Insert</a></li>
+                                    <li><a href="#" onclick="switchView('views/textview.html')">SQlite Read</a></li>
+                                    <li><a href="#" onclick="switchView('views/textview.html')">SQLite Update</a></li>
+                                    <li><a href="#" onclick="switchView('views/textview.html')">SQLite Delete</a></li>
+                                    
+                            
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#androidnotification" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i
+                                        class="fa fa-fw fa-bell"></i> Android Notification</a>
+                                <ul class="collapse list-unstyled" id="androidnotification">
+                                    <li><a href="#" onclick="switchView('views/textview.html')">Notification</a></li>
+                                    <li><a href="#" onclick="switchView('views/textview.html')">InboxStyle Notification</a></li>
+                                    <li><a href="#" onclick="switchView('views/textview.html')">BigTextStyle Notification</a></li>
+                                    <li><a href="#" onclick="switchView('views/textview.html')">BigPictureStyle Notification</a></li>
+                            
+                            
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#androidxmlandjsonparsing" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i
+                                        class="fa fa-fw fa-server"></i> Android XML And JSON Parsing</a>
+                                <ul class="collapse list-unstyled" id="androidxmlandjsonparsing">
+                                    <li><a href="#" onclick="switchView('views/textview.html')">JSON Parsing</a></li>
+                                    <li><a href="#" onclick="switchView('views/textview.html')">XML Parsing</a></li>
+                            
+                            
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#androidmaterialdesign" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i
+                                        class="fa fa-fw fa-window-maximize"></i> Android Material Design</a>
+                                <ul class="collapse list-unstyled" id="androidmaterialdesign">
+                                    <li><a href="#" onclick="switchView('views/textview.html')">TextInputEditText</a></li>
+                                    <li><a href="#" onclick="switchView('views/textview.html')">FloatingActionButton</a></li>
+                                    <li><a href="#" onclick="switchView('views/textview.html')">SnackBars</a></li>
+                                    <li><a href="#" onclick="switchView('views/textview.html')">Bottom Navigation</a></li>
+                                    <li><a href="#" onclick="switchView('views/textview.html')">Bottom Sheets</a></li>
+                                    <li><a href="#" onclick="switchView('views/textview.html')">Navigation Drawer</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#androidbluetoothcon" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i
+                                        class="fa fa-fw fa-podcast"></i> Android Bluetooth Connection</a>
+                                <ul class="collapse list-unstyled" id="androidbluetoothcon">
+                                    <li><a href="#" onclick="switchView('views/textview.html')">Enable/Disable BT</a></li>
+                                    <li><a href="#" onclick="switchView('views/textview.html')">Detect BT Current State</a></li>
+                                    <li><a href="#" onclick="switchView('views/textview.html')">Discover Nearby BT Devices</a></li>
+                                    <li><a href="#" onclick="switchView('views/textview.html')">Turn ON Device Discover</a></li>
+                                    <li><a href="#" onclick="switchView('views/textview.html')">Pair BT Devices</a></li>
+                                    <li><a href="#" onclick="switchView('views/textview.html')">Get Paired BT Devices</a></li>
+                                    <li><a href="#" onclick="switchView('views/textview.html')">Connect BT Devices</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#androidwifidirect" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i
+                                        class="fa fa-fw fa-wifi"></i> Android WifiDirect Connection</a>
+                                <ul class="collapse list-unstyled" id="androidwifidirect">
+                                    <li><a href="#" onclick="switchView('views/textview.html')">Discover Nearby Devices</a></li>
+                                    <li><a href="#" onclick="switchView('views/textview.html')">Connect Nearby Devices</a></li>
+                                
+                                </ul>
+                            </li>
+
 
                         </ul>
                     </div>

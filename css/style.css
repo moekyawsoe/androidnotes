@@ -59,8 +59,8 @@ a:focus {
 }
 
 #sidebar {
-  min-width: 250px;
-  max-width: 250px;
+  min-width: 300px;
+  max-width: 300px;
   background: #fafafa;
   color: #000000;
   transition: all 0.3s;
@@ -71,10 +71,10 @@ a:focus {
 }
 
 #sidebar.active {
-  margin-left: -250px;
+  margin-left: -300px;
 }
 #nav-scroll {
-  min-width: 250px;
+  min-width: 300px;
   position: fixed;
   overflow-y: scroll;
   top: 125px;
@@ -176,16 +176,22 @@ a.article:hover {
 #container {
   width: 100%;
   padding: 0px 0px;
-  min-height: 100vh;
   transition: all 0.3s;
 }
 
 #code{
   padding: 0px 10px;
 }
-.masthead{
-  height: 800px;
-  position: fixed;
+
+#masthead {
+    /* position: relative; */
+    width: 100%;
+    height: 880px;
+    padding-top: 150px;
+    padding-bottom: 100px;
+    color: #fff;
+    background: #7b4397;
+    background: linear-gradient(270deg,#7b4397,#dc2430);
 }
 /* #main{
   height: 100px;
@@ -221,7 +227,7 @@ a.article:hover {
 ----------------------------------------------------- */
 @media (max-width: 768px) {
   #sidebar {
-    margin-left: -250px;
+    margin-left: -300px;
   }
 
   #sidebar.active {
