@@ -185,7 +185,7 @@ a.article:hover {
 }
 
 #xml {
-  background: rgb(255, 255, 214) url(/img/xml_file_20px.png) no-repeat 10px
+  background: rgb(255, 255, 214) url(img/xml_file_20px.png) no-repeat 10px
     center;
   border: 2px solid #dda;
   padding: 10px 10px 10px 50px;
@@ -193,7 +193,7 @@ a.article:hover {
   margin-bottom: 10px;
 }
 #java {
-  background: rgb(255, 255, 214) url(/img/java_20px.png) no-repeat 10px
+  background: rgb(255, 255, 214) url(img/java_20px.png) no-repeat 10px
     center;
   border: 2px solid #dda;
   padding: 10px 10px 10px 50px;
@@ -201,7 +201,7 @@ a.article:hover {
   margin-bottom: 10px;
 }
 #json {
-  background: rgb(255, 255, 214) url(/img/json_20px.png) no-repeat 10px
+  background: rgb(255, 255, 214) url(img/json_20px.png) no-repeat 10px
     center;
   border: 2px solid #dda;
   padding: 10px 10px 10px 50px;
