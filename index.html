@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Android Syntax</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Android Syntax </title>
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <script src="js/all.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/all.css">
+
+    
+
+
+
+</head>
+
+<body>
+    <!DOCTYPE html>
+    <html>
+
+    <body>
+        <div class="wrapper">
+
+            <div id="navbar">
+                <nav class="navbar navbar-expand-lg navbar-light ">
+                    <div class="container-fluid">
+
+                        <button type="button" id="sidebarCollapse" class="btn text-success bg-light">
+                            <i class="fas fa-align-left"></i>
+                            <span></span>
+                        </button>
+                        <!-- <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse"
+                            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                            <i class="fas fa-align-justify"></i>
+                        </button> -->
+
+
+                        <a class="nav-link align-content-center text-success" href="#"><i
+                                class="fab fa-android fa-2x align-middle"></i></a>
+
+
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="nav navbar-nav ml-auto">
+                                <li class="nav-item">
+                                    <a class="nav-link text-success" href="https://moekyawsoe.github.io"><i
+                                            class="fab fa-dev fa-2x align-middle"></i>
+                                        ရေးသားသူ</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+
+            <div id="warp">
+
+
+                <nav id="sidebar">
+                    <div class="sidebar-header text-white">
+                        <h4>နမူနာများ</h4>
+                    </div>
+                    <div id="nav-scroll">
+                        <ul class="list-unstyled components">
+
+                            <li>
+                                <a href="#androidwidgets" data-toggle="collapse" aria-expanded="false"
+                                    class="dropdown-toggle"><i class="fas fa-anchor"></i> Android Widgets</a>
+                                <ul class="collapse list-unstyled" id="androidwidgets">
+                                    <li><a href="#" onclick="switchView('views/textview.html')">TextView</a></li>
+                                    <li><a href="#">EditText</a></li>
+                                    <li><a href="#">Button</a></li>
+                                    <li><a href="#">RadioButton</a></li>
+                                    <li><a href="#">Checkbox</a></li>
+                                    <li><a href="#">RatingBar</a></li>
+                                    <li><a href="#">ProgressBar</a></li>
+                                    <li><a href="#">SeekBar</a></li>
+                                    <li><a href="#">Switch</a></li>
+                                    <li><a href="#">ToogleButton</a></li>
+                                </ul>
+                            </li>
+
+
+                            <li>
+                                <a href="#androidmedia" data-toggle="collapse" aria-expanded="false"
+                                    class="dropdown-toggle"><i class="fas fa-photo-video"></i> Android Media</a>
+                                <ul class="collapse list-unstyled" id="androidmedia">
+                                    <li><a href="#" onclick="switchView('views/textview.html')">ImageButton</a></li>
+                                    <li><a href="#">ImageView</a></li>
+                                    <li><a href="#">VideoView</a></li>
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a href="#androiddatetime" data-toggle="collapse" aria-expanded="false"
+                                    class="dropdown-toggle"><i class="fas fa-photo-video"></i> Android Date & Time</a>
+                                <ul class="collapse list-unstyled" id="androiddatetime">
+                                    <li><a href="#" onclick="switchView('views/textview.html')">TextClock</a></li>
+                                    <li><a href="#">DatePicker</a></li>
+                                    <li><a href="#">TimePicker</a></li>
+                                    <li><a href="#">Chronometer</a></li>
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a href="#androidimplicitIntent" data-toggle="collapse" aria-expanded="false"
+                                    class="dropdown-toggle"><i class="fas fa-photo-video"></i> Android Implicit
+                                    Intent</a>
+                                <ul class="collapse list-unstyled" id="androidimplicitIntent">
+                                    <li><a href="#" onclick="switchView('views/textview.html')">Email</a></li>
+                                    <li><a href="#">Maps</a></li>
+                                    <li><a href="#">Phone Call</a></li>
+                                    <li><a href="#">PhoneDial</a></li>
+                                    <li><a href="#">Camera</a></li>
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a href="#androidexplicitintent" data-toggle="collapse" aria-expanded="false"
+                                    class="dropdown-toggle"><i class="fas fa-photo-video"></i> Android Explicit
+                                    Intent</a>
+                                <ul class="collapse list-unstyled" id="androidexplicitintent">
+                                    <li><a href="#" onclick="switchView('views/textview.html')">Activity Transition</a>
+                                    </li>
+                                    <li><a href="#">Passing Value</a></li>
+                                    <li><a href="#">ActivityForResult</a></li>
+                                    <li><a href="#">Facebook</a></li>
+                                    <li><a href="#">Instagram</a></li>
+                                    <li><a href="#">Twitter</a></li>
+                                    <li><a href="#">Whatsapp</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#androidtoast" data-toggle="collapse" aria-expanded="false"
+                                    class="dropdown-toggle"><i class="fas fa-photo-video"></i> Android Toast</a>
+                                <ul class="collapse list-unstyled" id="androidtoast">
+                                    <li><a href="#" onclick="switchView('views/textview.html')">Simple Toast</a></li>
+                                    <li><a href="#">Toast Message Position</a></li>
+                                    <li><a href="#">CustomToast</a></li>
+                                    <li><a href="#">AndLibraryNote</a></li>
+                                </ul>
+                            </li>
+
+                        </ul>
+                    </div>
+                </nav>
+
+                <div id="content">
+                    <div class="container-fluid" id="container">
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+
+        <script type="text/javascript" src="js/app.js"></script>
+    </body>
+
+    </html>

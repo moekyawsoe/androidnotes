@@ -1,0 +1,66 @@
+<script
+  src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?lang=java&amp;skin=default"></script>
+
+
+  <div class="p-3 mb-2 bg-success text-white text-center">Android TextView</div>
+  
+<div id="code">
+  <div class="row">
+    <div class="col-md-6">
+      <div id="xml">
+        <span><strong> Xml</strong></span>
+      </div>
+      <p>activity_main.xml</p>
+      <pre class="prettyprint">
+
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;RelativeLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+xmlns:tools=&quot;http://schemas.android.com/tools&quot;
+android:layout_width=&quot;match_parent&quot;
+android:layout_height=&quot;match_parent&quot;
+android:paddingBottom=&quot;@dimen/activity_vertical_margin&quot;
+android:paddingLeft=&quot;@dimen/activity_horizontal_margin&quot;
+android:paddingRight=&quot;@dimen/activity_horizontal_margin&quot;
+android:paddingTop=&quot;@dimen/activity_vertical_margin&quot;
+tools:context=&quot;tutorials.android.com.textview.MainActivity&quot;&gt;
+
+&lt;TextView
+android:layout_width=&quot;wrap_content&quot;
+android:layout_height=&quot;wrap_content&quot;
+android:text=&quot;Hello World!&quot; /&gt;
+android:id=&quot;@+id/idtxt&quot;
+&lt;/RelativeLayout&gt;
+                </pre>
+    </div>
+    <div class="col-md-6">
+      <div id="java">
+        <span><strong>Java</strong></span>
+      </div>
+      <p>MainActivity.java</p>
+      <pre class="prettyprint">
+
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.widget.TextView;
+
+public class MainActivity extends AppCompatActivity {
+TextView textView;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+            textView = (TextView) findViewById(R.id.idtxt);
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String myvar = textView.getText().toString();
+                Toast.makeText(getActivity(),myvar,Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+}
+                        </pre>
+    </div>
+  </div>
+
+</div>
