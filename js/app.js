@@ -9,6 +9,12 @@
      $("#sidebar").toggleClass("active");
    });
  });
+ $(document).ready(function () {
+   $("#navitem").on("click", function () {
+     $("#sidebar").toggleClass("active");
+   });
+ });
+ 
 
  $(document).ready(function () {
    $("#container").load("views/main.html");

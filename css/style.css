@@ -233,7 +233,7 @@ a.article:hover {
 /* ---------------------------------------------------
     MEDIAQUERIES
 ----------------------------------------------------- */
-@media (max-width: 768px) {
+@media (max-width: 760px) {
   #sidebar {
     margin-left: -300px;
   }
