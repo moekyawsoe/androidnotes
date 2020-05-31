@@ -1,0 +1,111 @@
+<script
+  src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?lang=java&amp;skin=default"></script>
+
+<!-- Start: 2 Rows 1+2 Columns -->
+<div>
+  <div class="container-fluid">
+    <div class="row text-center">
+      <div class="col-md-12 text-center" style="background-color: rgb(20,255,0);">
+        <h1 class="text-center text-dark" style="padding-top: 5px;"><strong id="cstitle">Android Activity Lifecycle</strong></h1>
+      </div>
+    </div>
+    <div class="row" style="padding-top: 5px;">
+      <div class="col-md-6">
+        <div class="alert alert-warning" role="alert"><i class="fas fa-code"></i><span><strong> xml</strong></span>
+        </div>
+        <p style="padding-left: 20px;">main_activity.xml</p>
+        <pre class="prettyprint">
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot;
+    android:orientation=&quot;vertical&quot;
+    android:padding=&quot;2dp&quot;&gt;
+
+    &lt;TextView
+        android:layout_margin=&quot;4dp&quot;
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:textSize=&quot;25sp&quot;
+        android:text=&quot;This is Activity Life Cycle&quot;
+        /&gt;
+&lt;/LinearLayout&gt;
+
+
+        </pre>
+      </div>
+      <div class="col-md-6">
+        <div class="alert alert-warning" role="alert"><i
+            class="fab fa-java"></i><span><strong> Java</strong>.</span></div>
+        <p style="padding-left: 20px;">MainActivity.java</p>
+        <pre class="prettyprint">
+import android.os.Bundle;
+import android.os.PersistableBundle;
+import android.support.v7.app.AppCompatActivity;
+import android.widget.Toast;
+
+
+public class MainActivity extends AppCompatActivity {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        Toast.makeText(getApplicationContext(),"onCreate was Called",Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Toast.makeText(getApplicationContext(),"onStart was Called",Toast.LENGTH_SHORT).show();
+
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Toast.makeText(getApplicationContext(),"onPause was Called",Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Toast.makeText(getApplicationContext(),"onStop was Called",Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Toast.makeText(getApplicationContext(),"onDestroy was Called",Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Toast.makeText(getApplicationContext(),"onRestart was Called",Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Toast.makeText(getApplicationContext(),"onResume was Called",Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        Toast.makeText(getApplicationContext(),"onSaveInstanceState was Called",Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        Toast.makeText(getApplicationContext(),"onRestoreInstanceState was Called",Toast.LENGTH_SHORT).show();
+    }
+}
+
+        </pre>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End: 2 Rows 1+2 Columns -->

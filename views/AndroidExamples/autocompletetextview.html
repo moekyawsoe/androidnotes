@@ -1,0 +1,72 @@
+<script
+  src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?lang=java&amp;skin=default"></script>
+
+<!-- Start: 2 Rows 1+2 Columns -->
+<div>
+  <div class="container-fluid">
+    <div class="row text-center">
+      <div class="col-md-12 text-center" style="background-color: rgb(20,255,0);">
+        <h1 class="text-center text-dark" style="padding-top: 5px;"><strong id="cstitle">Android AutoComplete TextView</strong></h1>
+      </div>
+    </div>
+    <div class="row" style="padding-top: 5px;">
+      <div class="col-md-6">
+        <div class="alert alert-warning" role="alert"><i class="fas fa-code"></i><span><strong> xml</strong></span>
+        </div>
+        <p style="padding-left: 20px;">main_activity.xml</p>
+        <pre class="prettyprint">
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot;
+    android:paddingBottom=&quot;@dimen/activity_vertical_margin&quot;
+    android:paddingLeft=&quot;@dimen/activity_horizontal_margin&quot;
+    android:paddingRight=&quot;@dimen/activity_horizontal_margin&quot;
+    android:paddingTop=&quot;@dimen/activity_vertical_margin&quot;
+    android:layout_marginTop=&quot;?attr/actionBarSize&quot;
+    android:orientation=&quot;vertical&quot;
+    &gt;
+    &lt;AutoCompleteTextView
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:id=&quot;@+id/idAutoCompTextView&quot;
+        android:completionThreshold=&quot;1&quot;
+        /&gt;
+    &lt;TextView
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:text=&quot;Input Text:  \n Mg Mg , Ko Ko , Bo Bo , Mg Hla , Ma Mya , Kyaw Kyaw , Ni Ni , Aye Aye , Lin Lin , Tun Tun , Nyi Nyi , NayToe , Kyaw Kyaw Bo , PyiTeeOo , Sai Sai , Java , Kotlin ,Python , Dart , Flutter , html , css , javascript , bootstrap , jquery , nodejs , ajax , php , laravel , .net , C , C++ , C# , Visual Basic , MySQL&quot;/&gt;
+&lt;/LinearLayout&gt;
+        </pre>
+      </div>
+      <div class="col-md-6">
+        <div class="alert alert-warning" role="alert"><i
+            class="fab fa-java"></i><span><strong> Java</strong>.</span></div>
+        <p style="padding-left: 20px;">MainActivity.java</p>
+        <pre class="prettyprint">
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
+
+public class MainActivity extends AppCompatActivity {
+AutoCompleteTextView autoCompleteTextView;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        String [] texts={&quot;Mg Mg&quot;,&quot;Ko Ko&quot;,&quot;Bo Bo&quot;,&quot;Mg Hla&quot;,&quot;Ma Mya&quot;,&quot;Kyaw Kyaw&quot;,&quot;Ni Ni&quot;,&quot;Aye Aye&quot;,&quot;Lin Lin&quot;,
+        &quot;Tun Tun&quot;,&quot;Nyi Nyi&quot;,&quot;NayToe&quot;,&quot;Kyaw Kyaw Bo&quot;,&quot;PyiTeeOo&quot;,&quot;Sai Sai&quot;,&quot;Java&quot;,&quot;Kotlin&quot;,&quot;Python&quot;,&quot;Dart&quot;,&quot;Flutter&quot;,&quot;html&quot;,&quot;css&quot;,
+        &quot;javascript&quot;,&quot;jquery&quot;,&quot;nodejs&quot;,&quot;ajax&quot;,&quot;bootstrap&quot;,&quot;php&quot;,&quot;laravel&quot;,&quot;.net&quot;,&quot;C&quot;,&quot;C++&quot;,&quot;C#&quot;,&quot;Visual Basic&quot;,&quot;MySQL&quot;};
+        autoCompleteTextView= (AutoCompleteTextView) findViewById(R.id.idAutoCompTextView);
+        ArrayAdapter&lt;String&gt; adapter = new ArrayAdapter&lt;String&gt;(this,android.R.layout.simple_list_item_1,texts);
+        autoCompleteTextView.setAdapter(adapter);
+    }
+}
+        </pre>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End: 2 Rows 1+2 Columns -->

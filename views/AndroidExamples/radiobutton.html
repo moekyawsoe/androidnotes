@@ -1,0 +1,107 @@
+<script
+  src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?lang=java&amp;skin=default"></script>
+
+<!-- Start: 2 Rows 1+2 Columns -->
+<div>
+  <div class="container-fluid">
+    <div class="row text-center">
+      <div class="col-md-12 text-center" style="background-color: rgb(20,255,0);">
+        <h1 class="text-center text-dark" style="padding-top: 5px;"><strong id="cstitle">Android RadioButton</strong></h1>
+      </div>
+    </div>
+    <div class="row" style="padding-top: 5px;">
+      <div class="col-md-6">
+        <div class="alert alert-warning" role="alert"><i class="fas fa-code"></i><span><strong> xml</strong></span>
+        </div>
+        <p style="padding-left: 20px;">main_activity.xml</p>
+        <pre class="prettyprint">
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;RelativeLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    xmlns:tools=&quot;http://schemas.android.com/tools&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot;
+    android:paddingBottom=&quot;@dimen/activity_vertical_margin&quot;
+    android:paddingLeft=&quot;@dimen/activity_horizontal_margin&quot;
+    android:paddingRight=&quot;@dimen/activity_horizontal_margin&quot;
+    android:paddingTop=&quot;@dimen/activity_vertical_margin&quot;
+    tools:context=&quot;tutorials.android.com.radiobutton.MainActivity&quot;&gt;
+
+
+    &lt;RadioGroup
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:id=&quot;@+id/radioGroup&quot;&gt;
+
+        &lt;RadioButton
+            android:layout_width=&quot;wrap_content&quot;
+            android:layout_height=&quot;wrap_content&quot;
+            android:text=&quot;Red&quot;
+            android:id=&quot;@+id/radioButton1Id&quot;
+            /&gt;
+
+        &lt;RadioButton
+            android:layout_width=&quot;wrap_content&quot;
+            android:layout_height=&quot;wrap_content&quot;
+            android:text=&quot;Yellow&quot;
+            android:id=&quot;@+id/radioButton2Id&quot; /&gt;
+
+        &lt;RadioButton
+            android:layout_width=&quot;wrap_content&quot;
+            android:layout_height=&quot;wrap_content&quot;
+            android:text=&quot;Magenta&quot;
+            android:id=&quot;@+id/radioButton3Id&quot; /&gt;
+
+        &lt;RadioButton
+            android:layout_width=&quot;wrap_content&quot;
+            android:layout_height=&quot;wrap_content&quot;
+            android:text=&quot;Cyan&quot;
+            android:id=&quot;@+id/radioButton4Id&quot; /&gt;
+    &lt;/RadioGroup&gt;
+
+&lt;/RelativeLayout&gt;
+        </pre>
+      </div>
+      <div class="col-md-6">
+        <div class="alert alert-warning" role="alert"><i
+            class="fab fa-java"></i><span><strong> Java</strong>.</span></div>
+        <p style="padding-left: 20px;">MainActivity.java</p>
+        <pre class="prettyprint">
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+
+public class MainActivity extends AppCompatActivity {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+     radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                switch (i){
+                    case R.id.radioButton1Id:
+                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FF0000"));
+                        break;
+                    case R.id.radioButton2Id:
+                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFFF00"));
+                        break;
+                    case R.id.radioButton3Id:
+                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FF00FF"));
+                        break;
+                    case R.id.radioButton4Id:
+                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#00FFFF"));
+                        break;
+                }
+            }
+    }
+
+
+}
+        </pre>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End: 2 Rows 1+2 Columns -->
