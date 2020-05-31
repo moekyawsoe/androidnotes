@@ -76,7 +76,7 @@ a:focus {
 #sidebar.active {
   margin-left: -300px;
 }
-#nav-scroll {
+.sidemain {
   min-width: 300px;
   position: fixed;
   overflow-y: scroll;

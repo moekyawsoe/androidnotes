@@ -10,7 +10,7 @@
    });
  });
  $(document).ready(function () {
-   $("#navitem").on("click", function () {
+   $("li.navitem").on("click", function () {
      $("#sidebar").toggleClass("active");
    });
  });
