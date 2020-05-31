@@ -1,38 +1,68 @@
-<script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?lang=java&amp;skin=default"></script>
+<script
+  src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?lang=java&amp;skin=default"></script>
 
-<div class="p-3 mb-2 bg-success text-white text-center">Android TextView</div>
-
-<div id="code">
-  <div class="row">
-    <div class="col-md-6">
-      <div class="alert alert-warning" role="alert">
-          
-        <span><strong><i class="fas fa-code fa-1x"></i> xml</strong></span>
+<!-- Start: 2 Rows 1+2 Columns -->
+<div>
+  <div class="container-fluid">
+    <div class="row text-center">
+      <div class="col-md-12 text-center" style="background-color: rgb(20,255,0);">
+        <h1 class="text-center text-dark" style="padding-top: 5px;"><strong>Android TextView</strong></h1>
       </div>
-
-
-      <p>activity_main.xml</p>
-      <pre class="prettyprint">
-
-
-
-
-      </pre>
     </div>
-    <div class="col-md-6">
-      <div class="alert alert-warning" role="alert">
+    <div class="row" style="padding-top: 5px;">
+      <div class="col-md-6">
+        <div class="alert alert-warning" role="alert"><i class="fas fa-code"></i><span>&nbsp;<strong>xml</strong></span>
+        </div>
+        <p style="padding-left: 20px;">main_activity.xml</p>
+        <pre class="prettyprint">
 
-        <span><strong><i class="fab fa-java fa-1x"></i> Java</strong></span>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;RelativeLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+xmlns:tools=&quot;http://schemas.android.com/tools&quot;
+android:layout_width=&quot;match_parent&quot;
+android:layout_height=&quot;match_parent&quot;
+android:paddingBottom=&quot;@dimen/activity_vertical_margin&quot;
+android:paddingLeft=&quot;@dimen/activity_horizontal_margin&quot;
+android:paddingRight=&quot;@dimen/activity_horizontal_margin&quot;
+android:paddingTop=&quot;@dimen/activity_vertical_margin&quot;
+tools:context=&quot;tutorials.android.com.textview.MainActivity&quot;&gt;
+
+&lt;TextView
+android:layout_width=&quot;wrap_content&quot;
+android:layout_height=&quot;wrap_content&quot;
+android:text=&quot;Hello World!&quot; /&gt;
+android:id=&quot;@+id/idtxt&quot;
+&lt;/RelativeLayout&gt;
+
+        </pre>
       </div>
+      <div class="col-md-6">
+        <div class="alert alert-warning" role="alert"><i
+            class="fab fa-java"></i><span><strong>&nbsp;Java</strong>.</span></div>
+        <p style="padding-left: 20px;">MainActivity.java</p>
+        <pre class="prettyprint">
+
+public class MainActivity extends AppCompatActivity {
+TextView textView;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+            textView = (TextView) findViewById(R.id.idtxt);
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String myvar = textView.getText().toString();
+                Toast.makeText(getActivity(),myvar,Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+}
 
 
-      <p>MainActivity.java</p>
-      <pre class="prettyprint">
-
-
-
-
-      </pre>
+        </pre>
+      </div>
     </div>
   </div>
 </div>
+<!-- End: 2 Rows 1+2 Columns -->
