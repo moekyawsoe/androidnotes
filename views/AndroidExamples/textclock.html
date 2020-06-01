@@ -6,7 +6,7 @@
   <div class="container-fluid">
     <div class="row text-center">
       <div class="col-md-12 text-center" style="background-color: rgb(20,255,0);">
-        <h1 class="text-center text-dark" style="padding-top: 5px;"><strong id="cstitle">Android TextView</strong></h1>
+        <h1 class="text-center text-dark" style="padding-top: 5px;"><strong id="cstitle">Android TextClock</strong></h1>
       </div>
     </div>
     <div class="row" style="padding-top: 5px;">
@@ -15,9 +15,25 @@
         </div>
         <p style="padding-left: 20px;">main_activity.xml</p>
         <pre class="prettyprint">
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;RelativeLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+xmlns:tools=&quot;http://schemas.android.com/tools&quot;
+android:layout_width=&quot;match_parent&quot;
+android:layout_height=&quot;match_parent&quot;
+android:paddingBottom=&quot;@dimen/activity_vertical_margin&quot;
+android:paddingLeft=&quot;@dimen/activity_horizontal_margin&quot;
+android:paddingRight=&quot;@dimen/activity_horizontal_margin&quot;
+android:paddingTop=&quot;@dimen/activity_vertical_margin&quot;
+tools:context=&quot;tutorials.android.com.autocompletetextview.MainActivity&quot;&gt;
 
+&lt;TextClock
+    android:layout_width=&quot;wrap_content&quot;
+    android:layout_height=&quot;wrap_content&quot;
+    android:id=&quot;@+id/idTextClock&quot;
+    android:format12Hour=&quot;hh:mm:ss a&quot;
+    android:layout_centerHorizontal=&quot;true&quot; /&gt;
 
-
+&lt;/RelativeLayout&gt;
         </pre>
       </div>
       <div class="col-md-6">
@@ -25,10 +41,17 @@
             class="fab fa-java"></i><span><strong> Java</strong>.</span></div>
         <p style="padding-left: 20px;">MainActivity.java</p>
         <pre class="prettyprint">
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 
+public class MainActivity extends AppCompatActivity {
 
-
-
+   @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+    }
+}
         </pre>
       </div>
     </div>

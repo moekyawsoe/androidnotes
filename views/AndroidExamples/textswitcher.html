@@ -6,7 +6,7 @@
   <div class="container-fluid">
     <div class="row text-center">
       <div class="col-md-12 text-center" style="background-color: rgb(20,255,0);">
-        <h1 class="text-center text-dark" style="padding-top: 5px;"><strong id="cstitle">Android TextView</strong></h1>
+        <h1 class="text-center text-dark" style="padding-top: 5px;"><strong id="cstitle">Android TextSwitcher</strong></h1>
       </div>
     </div>
     <div class="row" style="padding-top: 5px;">
@@ -15,9 +15,54 @@
         </div>
         <p style="padding-left: 20px;">main_activity.xml</p>
         <pre class="prettyprint">
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;RelativeLayout
+    xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    xmlns:tools=&quot;http://schemas.android.com/tools&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot;
+    tools:context=&quot;.MainActivity&quot;&gt;
 
+    &lt;TextView
+        android:layout_width=&quot;wrap_content&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:text=&quot;TextSwitcher Example&quot;
+        android:id=&quot;@+id/textView&quot;
+        android:layout_centerHorizontal=&quot;true&quot;
+        android:textColor=&quot;#0000ff&quot;
+        android:textSize=&quot;35dp&quot; /&gt;
 
+    &lt;TextSwitcher
+        android:layout_width=&quot;wrap_content&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:id=&quot;@+id/idTextSwitcher&quot;
+        android:layout_below=&quot;@+id/textView&quot;
+        android:layout_centerHorizontal=&quot;true&quot;
+        android:layout_marginTop=&quot;16dp&quot;
+        /&gt;
 
+    &lt;LinearLayout
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:layout_alignParentBottom=&quot;true&quot;
+        android:orientation=&quot;horizontal&quot;&gt;
+    &lt;Button
+        android:layout_width=&quot;0dp&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:text=&quot;Previous&quot;
+        android:layout_weight=&quot;1&quot;
+        android:id=&quot;@+id/idBtnPrevious&quot;
+         /&gt;
+
+    &lt;Button
+        android:layout_width=&quot;0dp&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:text=&quot;Next&quot;
+        android:layout_weight=&quot;1&quot;
+        android:id=&quot;@+id/idBtnNext&quot;
+         /&gt;
+    &lt;/LinearLayout&gt;
+&lt;/RelativeLayout&gt;
         </pre>
       </div>
       <div class="col-md-6">
@@ -25,10 +70,61 @@
             class="fab fa-java"></i><span><strong> Java</strong>.</span></div>
         <p style="padding-left: 20px;">MainActivity.java</p>
         <pre class="prettyprint">
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextSwitcher;
+import android.widget.TextView;
+import android.widget.ViewSwitcher;
 
+public class MainActivity extends AppCompatActivity {
+    private TextSwitcher switcher;
+    private Button btnPrevious,btnNext;
+    private static final String[] TEXT = { "When in Rome, do as the Romans",
+            "The squeaky wheel gets the grease","Two wrongs don't make a right",
+    "Hope for the best, but prepare for the worst","A picture is worth a thousand words"};
+    private int mPosition = -1;
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        btnPrevious = (Button) findViewById(R.id.idBtnPrevious);
+        btnNext = (Button) findViewById(R.id.idBtnNext);
 
+        switcher = (TextSwitcher) findViewById(R.id.idTextSwitcher);
+        switcher.setFactory(new ViewSwitcher.ViewFactory() {
+            @Override
+            public View makeView() {
+                TextView textView = new TextView(getApplicationContext());
+                textView.setTextSize(18);
+                return textView;
+            }
+        });
 
+        btnNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(mPosition<TEXT.length-1){
+                    mPosition = mPosition+1;
+                    switcher.setText(TEXT[mPosition]);
+                }
+
+            }
+        });
+
+        btnPrevious.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(mPosition>0){
+                    mPosition = mPosition-1;
+                    switcher.setText(TEXT[mPosition]);
+                }
+            }
+        });
+    }
+}
         </pre>
       </div>
     </div>
