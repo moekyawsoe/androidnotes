@@ -9,7 +9,7 @@
 
 body {
   font-family: verdana, sans-serif;
-  background: #000000;
+  background: #333333;
   color: white;
 }
 
@@ -37,7 +37,7 @@ a:focus {
   box-shadow: none;
   outline: none !important;
   border: none;
-  background: #000000;
+  background: #19171c;
   color: #fafafa;
 }
 
@@ -57,7 +57,7 @@ a:focus {
 #sidebar {
   min-width: 300px;
   max-width: 300px;
-  background: #000000;
+  background: #333333;
   color: #ffffff;
   transition: all 0.3s;
   margin-top: 60px;
@@ -75,7 +75,7 @@ a:focus {
   overflow-y: scroll;
   top: 125px;
   bottom: 0;
-  background: #000000;
+  background: #333333;
   color: #fafafa;
 }
 
@@ -139,7 +139,7 @@ a[data-toggle="collapse"] {
 ul ul a {
   font-size: 0.8em !important;
   padding-left: 30px !important;
-  background: #0e0e13;
+  background: #333333;
 }
 
 ul.CTAs {

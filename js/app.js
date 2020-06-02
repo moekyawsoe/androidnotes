@@ -9,9 +9,15 @@
      if (this.checked) {
        // the checkbox is now checked
        $("#css").attr("href", "css/darkcss.css");
+       $("#theme").attr(
+         "href",
+         "css/code-prettify-dark/code-prettify-theme.css");
      } else {
        // the checkbox is now no longer checked
        $("#css").attr("href", "css/style.css");
+       $("#theme").attr(
+         "href",
+         "css/code-prettify-light/code-prettify-theme.css");
      }
    });
 
@@ -22,6 +28,7 @@
     $("#sidebarCollapse").on("click", function () {
       $("#sidebar").toggleClass("active");
     });
+
 
  });
 
