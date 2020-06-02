@@ -214,14 +214,9 @@ a.article:hover {
     font-size: 0.6em;
   }
   #masthead {
-    /* position: relative; */
     width: 100%;
     height: 1000px;
-    /* padding-top: 150px;
-    padding-bottom: 100px;
-    color: #fff;
-    background: #7b4397; */
-    background: linear-gradient(270deg,#7b4397,#dc2430);
+    background: linear-gradient(270deg,#473152,#382d2d);
 }
 
 }
