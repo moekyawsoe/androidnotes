@@ -6,7 +6,7 @@
   <div class="container-fluid">
     <div class="row text-center">
       <div class="col-md-12 text-center" style="background-color: rgb(20,255,0);">
-        <h1 class="text-center text-dark" style="padding-top: 5px;"><strong id="cstitle">Android TextView</strong></h1>
+        <h1 class="text-center text-dark" style="padding-top: 5px;"><strong id="cstitle">Android AndLibraryNote</strong></h1>
       </div>
     </div>
     <div class="row" style="padding-top: 5px;">
@@ -15,8 +15,89 @@
         </div>
         <p style="padding-left: 20px;">main_activity.xml</p>
         <pre class="prettyprint">
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.gallery.GalleryFragment"&gt;
 
 
+    &lt;Button
+        android:id="@+id/btn_default"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/btn_default"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" /&gt;
+
+    &lt;Button
+        android:id="@+id/btn_success"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_success"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_default" /&gt;
+
+    &lt;Button
+        android:id="@+id/btn_error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_error"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_success" /&gt;
+
+    &lt;Button
+        android:id="@+id/btn_warning"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_warning"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_error" /&gt;
+
+    &lt;Button
+        android:id="@+id/btn_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_info"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_warning" /&gt;
+
+    &lt;Button
+        android:id="@+id/btn_csone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_CustomOne"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_info" /&gt;
+
+    &lt;Button
+        android:id="@+id/btn_cstwo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_CustomTwo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_csone" /&gt;
+
+    &lt;Button
+        android:id="@+id/btn_csthree"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_CustomThree"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_cstwo" /&gt;
+
+&lt;/androidx.constraintlayout.widget.ConstraintLayout&gt;
 
         </pre>
       </div>
@@ -25,12 +106,106 @@
             class="fab fa-java"></i><span><strong> Java</strong>.</span></div>
         <p style="padding-left: 20px;">MainActivity.java</p>
         <pre class="prettyprint">
+package mks.dev.librarytest.ui;
 
+import androidx.appcompat.app.AppCompatActivity;
 
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
+import mks.dev.andlibrarynote.MksToast;
+import mks.dev.librarytest.R;
 
+public class AndLibraryNote extends AppCompatActivity implements View.OnClickListener {
+
+    Button btn_success,btn_info,btn_error,btn_warning,btn_csone,btn_cstwo,btn_csthree,btn_default;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_and_library_note);
+        btn_success = findViewById(R.id.btn_success);
+        btn_info = findViewById(R.id.btn_info);
+        btn_error = findViewById(R.id.btn_error);
+        btn_warning = findViewById(R.id.btn_warning);
+        btn_csone = findViewById(R.id.btn_csone);
+        btn_cstwo = findViewById(R.id.btn_cstwo);
+        btn_csthree = findViewById(R.id.btn_csthree);
+        btn_default = findViewById(R.id.btn_default);
+
+        btn_success.setOnClickListener(this);
+        btn_info.setOnClickListener(this);
+        btn_error.setOnClickListener(this);
+        btn_warning.setOnClickListener(this);
+        btn_csone.setOnClickListener(this);
+        btn_cstwo.setOnClickListener(this);
+        btn_csthree.setOnClickListener(this);
+        btn_default.setOnClickListener(this);
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.btn_csone:
+                MksToast.makeText(getApplicationContext(),"This is Toast Without Badge", Toast.LENGTH_LONG,MksToast.Default,false).show();
+                break;
+            case R.id.btn_csthree:
+                MksToast.makeText(getApplicationContext(),"This is Custom Badge & Corner icon Toast", Toast.LENGTH_LONG, MksToast.INFO,R.drawable.logopng,R.drawable.logopng).show();
+                break;
+            case R.id.btn_cstwo:
+                MksToast.makeText(getApplicationContext(),"This is Custom Badge Toast", Toast.LENGTH_LONG, MksToast.INFO,R.drawable.logopng,true).show();
+                break;
+            case R.id.btn_default:
+                MksToast.makeText(getApplicationContext(),"This is Default Toast", Toast.LENGTH_LONG,MksToast.Default,true).show();
+                break;
+            case R.id.btn_error:
+                MksToast.makeText(getApplicationContext(),"This is Error Toast", Toast.LENGTH_LONG,MksToast.ERROR,true).show();
+                break;
+            case R.id.btn_info:
+                MksToast.makeText(getApplicationContext(),"This is Info Toast", Toast.LENGTH_LONG,MksToast.INFO,true).show();
+                break;
+            case R.id.btn_success:
+                MksToast.makeText(getApplicationContext(),"This is Success Toast", Toast.LENGTH_LONG,MksToast.SUCCESS,true).show();
+                break;
+            case R.id.btn_warning:
+                MksToast.makeText(getApplicationContext(),"This is Warning Toast", Toast.LENGTH_LONG,MksToast.WARNING,true).show();
+                break;
+        }
+    }
+}
         </pre>
       </div>
+    </div>
+    <div class="row" style="padding-top: 5px;">
+      <div class="col-md-6">
+        <div class="alert alert-warning" role="alert"><i class="fas fa-code"></i><span><strong> gradle</strong></span>
+        </div>
+        <p style="padding-left: 20px;">build.gradle</p>
+        <pre class="prettyprint">
+    dependencies {
+      implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+      implementation 'com.github.moekyawsoe:AndLibraryNote:0.1.5'
+    
+
+      implementation 'androidx.appcompat:appcompat:1.1.0'
+      implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+      implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+      implementation 'com.google.android.material:material:1.1.0'
+      implementation 'androidx.navigation:navigation-fragment:2.2.2'
+      implementation 'androidx.navigation:navigation-ui:2.2.2'
+      implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+      testImplementation 'junit:junit:4.13'
+      androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+      androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+}
+    
+            </pre>
+      </div>
+
     </div>
   </div>
 </div>
