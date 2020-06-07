@@ -6,7 +6,7 @@
   <div class="container-fluid">
     <div class="row text-center">
       <div class="col-md-12 text-center" style="background-color: rgb(20,255,0);">
-        <h1 class="text-center text-dark" style="padding-top: 5px;"><strong id="cstitle">Android TextView</strong></h1>
+        <h1 class="text-center text-dark" style="padding-top: 5px;"><strong id="cstitle">Android GridView</strong></h1>
       </div>
     </div>
     <div class="row" style="padding-top: 5px;">
@@ -15,8 +15,19 @@
         </div>
         <p style="padding-left: 20px;">main_activity.xml</p>
         <pre class="prettyprint">
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot;
+    android:orientation=&quot;vertical&quot;
+    android:id=&quot;@+id/idLayout&quot;&gt;
 
-
+    &lt;GridView
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;match_parent&quot;
+        android:numColumns=&quot;2&quot;
+        android:id=&quot;@+id/idGridView&quot;/&gt;
+&lt;/LinearLayout&gt;
 
         </pre>
       </div>
@@ -25,9 +36,23 @@
             class="fab fa-java"></i><span><strong> Java</strong>.</span></div>
         <p style="padding-left: 20px;">MainActivity.java</p>
         <pre class="prettyprint">
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.widget.ArrayAdapter;
+import android.widget.GridView;
 
-
-
+public class MainActivity extends AppCompatActivity {
+    GridView gridView;
+    String [] data={"data1","data2","data3","data4","data5","data6","data7","data8"};
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        gridView = (GridView) findViewById(R.id.idGridView);
+        ArrayAdapter&lt;String&gt; adapter = new ArrayAdapter&lt;String&gt;(this,android.R.layout.simple_list_item_1,data);
+        gridView.setAdapter(adapter);
+    }
+}
 
         </pre>
       </div>

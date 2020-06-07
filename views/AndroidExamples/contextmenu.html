@@ -6,7 +6,7 @@
   <div class="container-fluid">
     <div class="row text-center">
       <div class="col-md-12 text-center" style="background-color: rgb(20,255,0);">
-        <h1 class="text-center text-dark" style="padding-top: 5px;"><strong id="cstitle">Android TextView</strong></h1>
+        <h1 class="text-center text-dark" style="padding-top: 5px;"><strong id="cstitle">Android ContentMenu</strong></h1>
       </div>
     </div>
     <div class="row" style="padding-top: 5px;">
@@ -15,9 +15,29 @@
         </div>
         <p style="padding-left: 20px;">main_activity.xml</p>
         <pre class="prettyprint">
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    xmlns:tools=&quot;http://schemas.android.com/tools&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot;
+    android:orientation=&quot;vertical&quot;
+    android:padding=&quot;2dp&quot;&gt;
 
-
-
+    &lt;ListView
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:id=&quot;@+id/idlistView&quot;
+        android:layout_margin=&quot;2dp&quot;/&gt;
+    
+    &lt;TextView
+        android:layout_marginTop=&quot;4dp&quot;
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:text=&quot;Long Press on any List Item&quot;
+        android:textSize=&quot;25sp&quot;
+        android:id=&quot;@+id/idtxt1&quot;
+        android:gravity=&quot;center_horizontal&quot;/&gt;
+&lt;/LinearLayout&gt;s
         </pre>
       </div>
       <div class="col-md-6">
@@ -25,9 +45,62 @@
             class="fab fa-java"></i><span><strong> Java</strong>.</span></div>
         <p style="padding-left: 20px;">MainActivity.java</p>
         <pre class="prettyprint">
+import android.Manifest;
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.ContextMenu;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.Switch;
+import android.widget.Toast;
 
 
+public class MainActivity extends AppCompatActivity {
+    ListView listView;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        listView = (ListView) findViewById(R.id.idlistView);
+        String[] planets = {"Mercury","Venus","Mars","Earth","Jupitor"};
+        ArrayAdapter&lt;String&gt; adapter = new ArrayAdapter&lt;String&gt;(this,android.R.layout.simple_list_item_1,planets);
+        listView.setAdapter(adapter);
+        registerForContextMenu(listView);
+    }
 
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        menu.setHeaderTitle("Select the Action");
+        menu.add(0,v.getId(),0,"Delete");
+        menu.add(0,v.getId(),0,"UpperCase");
+        menu.add(0,v.getId(),0,"LowerCase");
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+            if(item.getTitle()=="Delete") {
+                Toast.makeText(this, "Delete was pressed", Toast.LENGTH_SHORT).show();
+            }
+            else if(item.getTitle()=="UpperCase") {
+                Toast.makeText(this, "UpperCase was pressed", Toast.LENGTH_SHORT).show();
+            }
+            else if(item.getTitle()=="LowerCase") {
+                Toast.makeText(this, "LowerCase was pressed", Toast.LENGTH_SHORT).show();
+            }
+        return true;
+    }
+}
 
         </pre>
       </div>

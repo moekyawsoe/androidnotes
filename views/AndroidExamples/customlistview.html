@@ -6,7 +6,7 @@
   <div class="container-fluid">
     <div class="row text-center">
       <div class="col-md-12 text-center" style="background-color: rgb(20,255,0);">
-        <h1 class="text-center text-dark" style="padding-top: 5px;"><strong id="cstitle">Android TextView</strong></h1>
+        <h1 class="text-center text-dark" style="padding-top: 5px;"><strong id="cstitle">Android CustomListView</strong></h1>
       </div>
     </div>
     <div class="row" style="padding-top: 5px;">
@@ -16,17 +16,111 @@
         <p style="padding-left: 20px;">main_activity.xml</p>
         <pre class="prettyprint">
 
+&lt;FrameLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+xmlns:tools=&quot;http://schemas.android.com/tools&quot;
+android:layout_width=&quot;match_parent&quot;
+android:layout_height=&quot;match_parent&quot;
+android:layout_marginTop=&quot;?attr/actionBarSize&quot;
+tools:context=&quot;arjuntoshniwal.com.androidtutorials.Example_CustomListview&quot;&gt;
+
+&lt;!-- TODO: Update blank fragment layout --&gt;
+&lt;ListView
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot;
+    android:id=&quot;@+id/idListView&quot;/&gt;
+
+&lt;/FrameLayout&gt;
 
 
         </pre>
       </div>
       <div class="col-md-6">
-        <div class="alert alert-warning" role="alert"><i
-            class="fab fa-java"></i><span><strong> Java</strong>.</span></div>
+        <div class="alert alert-warning" role="alert"><i class="fab fa-java"></i><span><strong> Java</strong>.</span>
+        </div>
         <p style="padding-left: 20px;">MainActivity.java</p>
         <pre class="prettyprint">
+public class MainActivity extends AppCompatActivity {
+    String [] titles={"Title1","Title2","Title3","Title4","Title5"};
+    String [] descriptions={"Description1","Description2","Description3","Description4","Description5"};
+    int [] images={R.drawable.activity_intent,R.drawable.internal_storage_icon,R.drawable.cache_icon,R.drawable.context_menu_icon,R.drawable.fragments_icon1};
+    ListView lv;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        lv = (ListView) findViewById(R.id.idListView);
+        MyAdapter adapter = new MyAdapter(getActivity(),titles,descriptions,images);
+        lv.setAdapter(adapter);
+    }
 
+}
+class MyAdapter extends ArrayAdapter {
+    int[] imageArray;
+    String[] titding Default Constructor off ArratAdapter
+        super(context, R.layout.example_cuslistview_row,R.id.idTitle,titles1);
+        this.imageArray=img1;
+        this.titleArray=titles1;
+        this.descArray=descriptions1;
+    }
 
+    @NonNull
+    @Override
+    public ViewleArray;
+    String[] descArray;
+    public MyAdapter(Context context, String[] titles1, String[] descriptions1, int [] img1) {
+        //Overri getView(int position, View convertView, ViewGroup parent) {
+        //Inflating the layout
+        LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View row = inflater.inflate(R.layout.example_cuslistview_row,parent,false);
+
+        //Get the reference to the view objects
+        ImageView myImage = (ImageView) row.findViewById(R.id.idPic);
+        TextView myTitle = (TextView) row.findViewById(R.id.idTitle);
+        TextView myDescription = (TextView) row.findViewById(R.id.idDescription);
+
+        //Providing the element of an array by specifying its position
+        myImage.setImageResource(imageArray[position]);
+        myTitle.setText(titleArray[position]);
+        myDescription.setText(descArray[position]);
+        return row;
+    }
+}
+        </pre>
+      </div>
+    </div>
+
+    <div class="row" style="padding-top: 5px;">
+      <div class="col-md-6">
+        <div class="alert alert-warning" role="alert"><i class="fas fa-code"></i><span><strong> xml</strong></span>
+        </div>
+        <p style="padding-left: 20px;">example_cuslistview_row.xml</p>
+        <pre class="prettyprint">
+
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;RelativeLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    android:orientation=&quot;vertical&quot; android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot;&gt;
+    &lt;ImageView
+        android:layout_width=&quot;wrap_content&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:id=&quot;@+id/idPic&quot;
+        android:src=&quot;@drawable/activity_intent&quot;/&gt;
+    &lt;TextView
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:id=&quot;@+id/idTitle&quot;
+        android:text=&quot;Title&quot;
+        android:textSize=&quot;20sp&quot;
+        android:layout_toRightOf=&quot;@id/idPic&quot;
+        /&gt;
+    &lt;TextView
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:id=&quot;@+id/idDescription&quot;
+        android:text=&quot;Description Comes Here&quot;
+        android:layout_below=&quot;@id/idTitle&quot;
+        android:layout_toRightOf=&quot;@id/idPic&quot;/&gt;
+&lt;/RelativeLayout&gt;
 
 
         </pre>

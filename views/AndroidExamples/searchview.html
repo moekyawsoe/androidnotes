@@ -6,7 +6,7 @@
   <div class="container-fluid">
     <div class="row text-center">
       <div class="col-md-12 text-center" style="background-color: rgb(20,255,0);">
-        <h1 class="text-center text-dark" style="padding-top: 5px;"><strong id="cstitle">Android TextView</strong></h1>
+        <h1 class="text-center text-dark" style="padding-top: 5px;"><strong id="cstitle">Android SearchView</strong></h1>
       </div>
     </div>
     <div class="row" style="padding-top: 5px;">
@@ -15,9 +15,28 @@
         </div>
         <p style="padding-left: 20px;">main_activity.xml</p>
         <pre class="prettyprint">
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot;
+    android:orientation=&quot;vertical&quot;&gt;
 
+    &lt;SearchView
+        android:id=&quot;@+id/idsearch&quot;
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:iconifiedByDefault=&quot;false&quot;&gt;
 
+        &lt;requestFocus /&gt;
+    &lt;/SearchView&gt;
 
+    &lt;ListView
+        android:id=&quot;@+id/idlistview&quot;
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;match_parent&quot;
+          /&gt;
+
+&lt;/LinearLayout&gt;
         </pre>
       </div>
       <div class="col-md-6">
@@ -25,9 +44,44 @@
             class="fab fa-java"></i><span><strong> Java</strong>.</span></div>
         <p style="padding-left: 20px;">MainActivity.java</p>
         <pre class="prettyprint">
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.SearchView;
+import android.widget.Toast;
 
+public class MainActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
+    ListView lv;
+    SearchView searchView;
+    ArrayAdapter&lt;String&gt; adapter;
+    String[] data = {&quot;Arjun&quot;, &quot;Ankit&quot;, &quot;Arvind&quot;, &quot;Dipesh&quot;, &quot;Dinesh&quot;, &quot;Deven&quot;};
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        lv = (ListView) findViewById(R.id.idlistview);
+        searchView = (SearchView) findViewById(R.id.idsearch);
+        adapter = new ArrayAdapter&lt;String&gt;(this, android.R.layout.simple_list_item_1, data);
+        lv.setAdapter(adapter);
+        searchView.setOnQueryTextListener(this);
 
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        String text = newText;
+        adapter.getFilter().filter(newText);
+        //Toast.makeText(this,&quot;Query is &quot;+ text,Toast.LENGTH_SHORT).show();
+        return false;
+    }
+}
 
         </pre>
       </div>
