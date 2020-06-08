@@ -6,7 +6,7 @@
   <div class="container-fluid">
     <div class="row text-center">
       <div class="col-md-12 text-center" style="background-color: rgb(20,255,0);">
-        <h1 class="text-center text-dark" style="padding-top: 5px;"><strong id="cstitle">Android TextView</strong></h1>
+        <h1 class="text-center text-dark" style="padding-top: 5px;"><strong id="cstitle">Android ServiceExample</strong></h1>
       </div>
     </div>
     <div class="row" style="padding-top: 5px;">
@@ -15,9 +15,31 @@
         </div>
         <p style="padding-left: 20px;">main_activity.xml</p>
         <pre class="prettyprint">
+&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+android:layout_width=&quot;match_parent&quot;
+android:layout_height=&quot;match_parent&quot;
+android:layout_marginTop=&quot;?attr/actionBarSize&quot;
+android:orientation=&quot;vertical&quot;
+android:id=&quot;@+id/idLayout&quot;
+&gt;
+&lt;Button
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;wrap_content&quot;
+    android:text=&quot;Start Service&quot;
+    android:id=&quot;@+id/idbtnStart&quot;
+    android:onClick=&quot;ServiceStart&quot;
+    android:gravity=&quot;center&quot;
+    /&gt;
 
-
-
+&lt;Button
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;wrap_content&quot;
+    android:text=&quot;Stop Service&quot;
+    android:id=&quot;@+id/idbtnStop&quot;
+    android:onClick=&quot;ServiceStop&quot;
+    android:gravity=&quot;center&quot;
+    /&gt;
+&lt;/LinearLayout&gt;
         </pre>
       </div>
       <div class="col-md-6">
@@ -25,10 +47,85 @@
             class="fab fa-java"></i><span><strong> Java</strong>.</span></div>
         <p style="padding-left: 20px;">MainActivity.java</p>
         <pre class="prettyprint">
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 
 
+public class MainActivity extends Activity {
+    Button btnStart,btnStop;
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        btnStart = (Button) findViewById(R.id.idbtnStart);
+        btnStop = (Button) findViewById(R.id.idbtnStop);
+    }
+
+    //Method to Start the Service
+    public void ServiceStart(View v){
+        Intent i = new Intent(this,MyService.class);
+        startService(i);
+    }
+
+    //Method to Stop the Service
+    public void ServiceStop(View v){
+        Intent i = new Intent(this,MyService.class);
+        stopService(i);
+    }
+
+}
+
+        </pre>
+      </div>
+    </div>
+    <div class="row" style="padding-top: 5px;">
+      <div class="col-md-6">
+        <div class="alert alert-warning" role="alert"><i
+            class="fab fa-java"></i><span><strong> Java</strong>.</span></div>
+        <p style="padding-left: 20px;">MyService.java</p>
+        <pre class="prettyprint">
+import android.app.Service;
+import android.content.Intent;
+import android.media.MediaPlayer;
+import android.os.IBinder;
+import android.widget.Toast;
+
+public class MyService extends Service {
+    MediaPlayer myPlayer;
+    public MyService() {
+    }
+
+    @Override
+    public IBinder onBind(Intent intent) {
+        // TODO: Return the communication channel to the service.
+        throw new UnsupportedOperationException("Not yet implemented");
+    }
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        Toast.makeText(this,"onCreate in Service was Called",Toast.LENGTH_SHORT).show();
+        myPlayer = MediaPlayer.create(this,R.raw.arjun);
+    }
+
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        myPlayer.start();
+        return super.onStartCommand(intent, flags, startId);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        myPlayer.stop();
+        Toast.makeText(this,"onDestroy in Service was Called",Toast.LENGTH_SHORT).show();
+    }
+}
         </pre>
       </div>
     </div>
