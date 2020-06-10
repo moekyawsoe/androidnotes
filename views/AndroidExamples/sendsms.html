@@ -1,0 +1,182 @@
+<script
+  src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?lang=java&amp;skin=default"></script>
+
+<!-- Start: 2 Rows 1+2 Columns -->
+<div>
+  <div class="container-fluid">
+    <div class="row text-center">
+      <div class="col-md-12 text-center" style="background-color: rgb(20,255,0);">
+        <h1 class="text-center text-dark" style="padding-top: 5px;"><strong id="cstitle">Android SendSMS</strong></h1>
+      </div>
+    </div>
+    <div class="row" style="padding-top: 5px;">
+      <div class="col-md-6">
+        <div class="alert alert-warning" role="alert"><i class="fas fa-code"></i><span><strong> xml</strong></span>
+        </div>
+        <p style="padding-left: 20px;">main_activity.xml</p>
+        <pre class="prettyprint">
+&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+android:layout_width=&quot;match_parent&quot;
+android:layout_height=&quot;match_parent&quot;
+android:layout_marginTop=&quot;?attr/actionBarSize&quot;
+android:orientation=&quot;vertical&quot;
+android:id=&quot;@+id/idLayout&quot;
+&gt;
+&lt;EditText
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;wrap_content&quot;
+    android:id=&quot;@+id/idTxtPhoneNo&quot;
+    android:gravity=&quot;start&quot;
+    android:textSize=&quot;20sp&quot;
+    android:hint=&quot;PhoneNumber&quot;
+    android:inputType=&quot;phone&quot;
+    /&gt;
+&lt;EditText
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;wrap_content&quot;
+    android:id=&quot;@+id/idTxtMsg&quot;
+    android:gravity=&quot;start&quot;
+    android:textSize=&quot;20sp&quot;
+    android:hint=&quot;Enter Your Message&quot;
+    /&gt;
+&lt;Button
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;wrap_content&quot;
+    android:text=&quot;Send SMS&quot;
+    android:id=&quot;@+id/idbtnStart&quot;
+    android:onClick=&quot;sendSms&quot;
+    android:gravity=&quot;center&quot;
+    /&gt;
+
+&lt;/LinearLayout&gt;     
+        </pre>
+      </div>
+      <div class="col-md-6">
+        <div class="alert alert-warning" role="alert"><i
+            class="fab fa-java"></i><span><strong> Java</strong>.</span></div>
+        <p style="padding-left: 20px;">MainActivity.java</p>
+        <pre class="prettyprint">
+import android.Manifest;
+import android.app.Activity;
+import android.content.pm.PackageManager;
+import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
+import android.telephony.SmsManager;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+
+public class MainActivity extends Activity {
+    Button btnStart;
+    EditText varMsg, varPhoneNo;
+
+    private static final int MY_PERMISSIONS_REQUEST_SEND_SMS = 0;
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        btnStart = (Button) findViewById(R.id.idbtnStart);
+        varMsg = (EditText) findViewById(R.id.idTxtMsg);
+        varPhoneNo = (EditText) findViewById(R.id.idTxtPhoneNo);
+    }
+
+    //Method to Start the Service
+    public void sendSms(View v) {
+        int permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS);
+
+        if (permissionCheck == PackageManager.PERMISSION_GRANTED) {
+            //Name of Method for Calling Message
+            MyMessage();
+        } else {
+            //TODO
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.SEND_SMS},
+                    MY_PERMISSIONS_REQUEST_SEND_SMS);
+        }
+
+    }
+
+    public void MyMessage(){
+        String myNumber = varPhoneNo.getText().toString().trim();
+        String myMsg = varMsg.getText().toString().trim();
+        //Begin Check for PhoneNumber
+        if(myNumber==null || myNumber.equals("") || myMsg==null  || myMsg.equals("") ){
+            Toast.makeText(this,"Field Cant be Empty",Toast.LENGTH_SHORT).show();
+        }else{
+            if(TextUtils.isDigitsOnly(myNumber)){
+                SmsManager smsManager = SmsManager.getDefault();
+                smsManager.sendTextMessage(myNumber, null, myMsg, null, null);
+                Toast.makeText(this,"Message Sent",Toast.LENGTH_SHORT).show();
+            }else{
+                Toast.makeText(this,"Please Enter Integer Only",Toast.LENGTH_SHORT).show();
+            }
+
+        }
+        //End Check for PhoneNumber
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode){
+            case MY_PERMISSIONS_REQUEST_SEND_SMS:
+            {
+                if(grantResults.length>=0 && grantResults[0]==PackageManager.PERMISSION_GRANTED){
+                    //Name of Method for Calling Message
+                    MyMessage();
+                }else{
+                    Toast.makeText(this,"You dont have required permission to make the Action",Toast.LENGTH_SHORT).show();
+                }
+            }
+        }
+    }
+}
+        </pre>
+      </div>
+    </div>
+    <div class="row" style="padding-top: 5px;">
+      <div class="col-md-6">
+        <div class="alert alert-warning" role="alert"><i class="fas fa-code"></i><span><strong> xml</strong></span>
+        </div>
+        <p style="padding-left: 20px;">Manifest.xml</p>
+        <pre class="prettyprint">
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;manifest xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    package=&quot;tutorials.android.com.sendsms&quot;&gt;
+
+    &lt;!--Add these permissions in AndroidManifest.xml file--&gt;
+    &lt;uses-permission android:name=&quot;android.permission.SEND_SMS&quot;/&gt;
+
+    &lt;application
+        android:allowBackup=&quot;true&quot;
+        android:icon=&quot;@mipmap/ic_launcher&quot;
+        android:label=&quot;@string/app_name&quot;
+        android:supportsRtl=&quot;true&quot;
+        android:theme=&quot;@style/AppTheme&quot;&gt;
+        &lt;activity android:name=&quot;.MainActivity&quot;&gt;
+            &lt;intent-filter&gt;
+                &lt;action android:name=&quot;android.intent.action.MAIN&quot; /&gt;
+
+                &lt;category android:name=&quot;android.intent.category.LAUNCHER&quot; /&gt;
+            &lt;/intent-filter&gt;
+        &lt;/activity&gt;
+
+        &lt;service
+            android:name=&quot;.MyService&quot;
+            android:enabled=&quot;true&quot;
+            android:exported=&quot;true&quot;&gt;&lt;/service&gt;
+    &lt;/application&gt;
+
+&lt;/manifest&gt;
+        </pre>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End: 2 Rows 1+2 Columns -->

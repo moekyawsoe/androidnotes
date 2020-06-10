@@ -1,0 +1,159 @@
+<script
+  src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?lang=java&amp;skin=default"></script>
+
+<!-- Start: 2 Rows 1+2 Columns -->
+<div>
+  <div class="container-fluid">
+    <div class="row text-center">
+      <div class="col-md-12 text-center" style="background-color: rgb(20,255,0);">
+        <h1 class="text-center text-dark" style="padding-top: 5px;"><strong id="cstitle">Android ReadSMS</strong></h1>
+      </div>
+    </div>
+    <div class="row" style="padding-top: 5px;">
+      <div class="col-md-6">
+        <div class="alert alert-warning" role="alert"><i class="fas fa-code"></i><span><strong> xml</strong></span>
+        </div>
+        <p style="padding-left: 20px;">main_activity.xml</p>
+        <pre class="prettyprint">
+&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+android:layout_width=&quot;match_parent&quot;
+android:layout_height=&quot;match_parent&quot;
+android:layout_marginTop=&quot;?attr/actionBarSize&quot;
+android:orientation=&quot;vertical&quot;
+android:id=&quot;@+id/idLayout&quot;
+&gt;
+&lt;ListView
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;wrap_content&quot;
+    android:id=&quot;@+id/idList&quot;&gt;
+&lt;/ListView&gt;
+
+&lt;/LinearLayout&gt;
+        </pre>
+      </div>
+      <div class="col-md-6">
+        <div class="alert alert-warning" role="alert"><i
+            class="fab fa-java"></i><span><strong> Java</strong>.</span></div>
+        <p style="padding-left: 20px;">MainActivity.java</p>
+        <pre class="prettyprint">
+import android.Manifest;
+import android.content.ContentResolver;
+import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.net.Uri;
+import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AppCompatActivity;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
+
+
+public class MainActivity extends AppCompatActivity {
+    ListView listView;
+    private static final int PERMISSIONS_REQUEST_READ_CONTACTS = 100;
+    ArrayList&lt;String&gt; smsList;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        listView = (ListView) findViewById(R.id.idList);
+
+        //Method to Start the Service
+        int permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_SMS);
+
+        if (permissionCheck == PackageManager.PERMISSION_GRANTED) {
+            //Name of Method for Calling Message
+            showContacts();
+
+
+        } else {
+            //TODO
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.READ_SMS},
+                    PERMISSIONS_REQUEST_READ_CONTACTS);
+        }
+
+
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                                            int[] grantResults) {
+        if (requestCode == PERMISSIONS_REQUEST_READ_CONTACTS) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // Permission is granted
+                showContacts();
+            } else {
+                Toast.makeText(this, &quot;Until you grant the permission, we canot display the names&quot;, Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    private void showContacts() {
+        // Create Inbox box URI
+        Uri inboxURI = Uri.parse(&quot;content://sms/inbox&quot;);
+        smsList = new ArrayList&lt;String&gt;();
+        // Get Content Resolver object, which will deal with Content Provider
+        ContentResolver cr = getContentResolver();
+
+        // Fetch Inbox SMS Message from Built-in Content Provider
+        Cursor c = cr.query(inboxURI, null, null, null, null);
+        while (c.moveToNext()) {
+            String Number = c.getString(c.getColumnIndexOrThrow(&quot;address&quot;)).toString();
+            String Body = c.getString(c.getColumnIndexOrThrow(&quot;body&quot;)).toString();
+            smsList.add(&quot;Number: &quot;+Number + &quot;\n&quot;+ &quot;Body: &quot; + Body);
+        }
+        c.close();
+        ArrayAdapter&lt;String&gt; adapter = new ArrayAdapter&lt;String&gt;(this, android.R.layout.simple_list_item_1, smsList);
+        listView.setAdapter(adapter);
+    }
+
+}
+        </pre>
+      </div>
+    </div>
+    <div class="row" style="padding-top: 5px;">
+      <div class="col-md-6">
+        <div class="alert alert-warning" role="alert"><i class="fas fa-code"></i><span><strong> xml</strong></span>
+        </div>
+        <p style="padding-left: 20px;">Manifest.xml</p>
+        <pre class="prettyprint">
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;manifest xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    package=&quot;tutorials.android.com.readsms&quot;&gt;
+
+    &lt;!--Add these permissions in AndroidManifest.xml file--&gt;
+    &lt;uses-permission android:name=&quot;android.permission.READ_SMS&quot;&gt;&lt;/uses-permission&gt;
+
+    &lt;application
+        android:allowBackup=&quot;true&quot;
+        android:icon=&quot;@mipmap/ic_launcher&quot;
+        android:label=&quot;@string/app_name&quot;
+        android:supportsRtl=&quot;true&quot;
+        android:theme=&quot;@style/AppTheme&quot;&gt;
+        &lt;activity android:name=&quot;.MainActivity&quot;&gt;
+            &lt;intent-filter&gt;
+                &lt;action android:name=&quot;android.intent.action.MAIN&quot; /&gt;
+
+                &lt;category android:name=&quot;android.intent.category.LAUNCHER&quot; /&gt;
+            &lt;/intent-filter&gt;
+        &lt;/activity&gt;
+
+        &lt;meta-data
+            android:name=&quot;com.google.android.gms.version&quot;
+            android:value=&quot;@integer/google_play_services_version&quot; /&gt;
+    &lt;/application&gt;
+
+&lt;/manifest&gt;
+        </pre>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End: 2 Rows 1+2 Columns -->

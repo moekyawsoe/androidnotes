@@ -6,7 +6,7 @@
   <div class="container-fluid">
     <div class="row text-center">
       <div class="col-md-12 text-center" style="background-color: rgb(20,255,0);">
-        <h1 class="text-center text-dark" style="padding-top: 5px;"><strong id="cstitle">Android TextView</strong></h1>
+        <h1 class="text-center text-dark" style="padding-top: 5px;"><strong id="cstitle">Android GetWifiInfo</strong></h1>
       </div>
     </div>
     <div class="row" style="padding-top: 5px;">
@@ -15,7 +15,31 @@
         </div>
         <p style="padding-left: 20px;">main_activity.xml</p>
         <pre class="prettyprint">
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;ScrollView android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot;
+    xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot; &gt;
+&lt;LinearLayout
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot;
+    android:orientation=&quot;vertical&quot;&gt;
 
+    &lt;Button
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:text=&quot;Click Me!!!&quot;
+        android:id=&quot;@+id/idBtn&quot;
+        android:onClick=&quot;getWifiInformation&quot;
+        android:gravity=&quot;center&quot;/&gt;
+    &lt;TextView
+        android:paddingLeft=&quot;8dp&quot;
+        android:layout_width=&quot;wrap_content&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:text=&quot;Hello World!&quot;
+        android:id=&quot;@+id/idTxt&quot;
+        android:textSize=&quot;20sp&quot;/&gt;
+&lt;/LinearLayout&gt;
+&lt;/ScrollView&gt;
 
 
         </pre>
@@ -25,8 +49,146 @@
             class="fab fa-java"></i><span><strong> Java</strong>.</span></div>
         <p style="padding-left: 20px;">MainActivity.java</p>
         <pre class="prettyprint">
+import android.Manifest;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.pm.PackageManager;
+import android.net.wifi.ScanResult;
+import android.net.wifi.WifiManager;
+import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.List;
+
+import static android.content.Context.WIFI_SERVICE;
+
+    private static final int MY_PERMISSIONS_REQUEST_CHANGE_WIFI_STATE =123 ;
+    TextView varTxt;
+    Button varBtn;
+    WifiManager mWifiManager;
+    List &lt;ScanResult&gt; wifiList;
+    StringBuilder sb = new StringBuilder();
+    public Example_WifiList() {
+        // Required empty public constructor
+    }
 
 
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                              Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View view =  inflater.inflate(R.layout.fragment_example__wifi_list, container, false);
+        varTxt = (TextView) view.findViewById(R.id.idTxt);
+        varBtn = (Button) view.findViewById(R.id.idBtn);
+        varBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION ) != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(getActivity(),
+                            new String[]{Manifest.permission.ACCESS_FINE_LOCATION },
+                            MY_PERMISSIONS_REQUEST_CHANGE_WIFI_STATE);
+                } else {
+                    Toast.makeText(getContext(),"Method Called",Toast.LENGTH_SHORT).show();
+                    MyWifiMethod();
+                }
+            }
+        });
+        return view;
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode) {
+            case MY_PERMISSIONS_REQUEST_CHANGE_WIFI_STATE: {
+                if (grantResults.length >= 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    //Name of Method for Calling Message
+                    MyWifiMethod();
+                } else {
+                    Toast.makeText(getContext(), "You dont have required permission to make the Action", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }
+    }
+
+    private void MyWifiMethod() {
+        mWifiManager = (WifiManager) getActivity().getSystemService(WIFI_SERVICE);
+        getActivity().registerReceiver(mWifiScanReceiver,
+                new IntentFilter(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION));
+        mWifiManager.startScan();
+    }
+
+    private final BroadcastReceiver mWifiScanReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context c, Intent intent) {
+            if (intent.getAction().equals(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION)) {
+
+                wifiList = mWifiManager.getScanResults();
+                sb = new StringBuilder();
+                sb.append("\n" + "Number Of Wifi connections :" + wifiList.size() + "\n");
+                for (int i = 0; i < wifiList.size(); i++) {
+                    sb.append(new Integer(i + 1).toString() + ". ");
+                    sb.append("SSID: "+(wifiList.get(i).SSID).toString() +"\n");
+                    sb.append("BSSID: "+(wifiList.get(i).BSSID).toString() +"\n");
+                    sb.append("capabilities: "+(wifiList.get(i).capabilities).toString() +"\n");
+                    sb.append("level: "+(wifiList.get(i).level) +"\n");
+                    sb.append("frequency: "+(wifiList.get(i).frequency) +"\n");
+                    sb.append("describeContents: "+(wifiList.get(i).describeContents()) +"\n");
+                  //   sb.append("centerFreq0: "+(wifiList.get(i).centerFreq0) +"\n");
+                  //  sb.append("centerFreq1: "+(wifiList.get(i).centerFreq1) +"\n");
+                    sb.append("channelWidth: "+(wifiList.get(i).channelWidth) +"\n");
+                    sb.append("\n\n");
+                }
+                varTxt.setText(sb);
+            }
+        }
+    };
+
+}
+
+        </pre>
+      </div>
+    </div>
+    <div class="row" style="padding-top: 5px;">
+      <div class="col-md-6">
+        <div class="alert alert-warning" role="alert"><i class="fas fa-code"></i><span><strong> xml</strong></span>
+        </div>
+        <p style="padding-left: 20px;">Manifest.xml</p>
+        <pre class="prettyprint">
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;manifest xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    package=&quot;tutorials.android.com.fonts&quot; &gt;
+
+    &lt;uses-permission android:name=&quot;android.permission.ACCESS_WIFI_STATE&quot; /&gt;
+    &lt;uses-permission android:name=&quot;android.permission.CHANGE_WIFI_STATE&quot; /&gt;
+    &lt;uses-permission android:name=&quot;android.permission.ACCESS_FINE_LOCATION&quot; /&gt;
+
+    &lt;application
+        android:allowBackup=&quot;true&quot;
+        android:icon=&quot;@mipmap/ic_launcher&quot;
+        android:label=&quot;@string/app_name&quot;
+        android:supportsRtl=&quot;true&quot;
+        android:theme=&quot;@style/AppTheme&quot; &gt;
+        &lt;activity android:name=&quot;.MainActivity&quot; &gt;
+            &lt;intent-filter&gt;
+                &lt;action android:name=&quot;android.intent.action.MAIN&quot; /&gt;
+
+                &lt;category android:name=&quot;android.intent.category.LAUNCHER&quot; /&gt;
+            &lt;/intent-filter&gt;
+        &lt;/activity&gt;
+    &lt;/application&gt;
+
+&lt;/manifest&gt;
 
 
         </pre>

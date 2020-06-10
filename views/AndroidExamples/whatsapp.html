@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity  {
     public void btnClick(View v){
         Intent sharingIntent = new Intent(Intent.ACTION_SEND);
         sharingIntent.setType("text/plain");
-        sharingIntent.putExtra(Intent.EXTRA_TEXT,"This is the best App for Learning Android"+"\n"+ "https://play.google.com/store/apps/details?id=arjuntoshniwal.androidtutorials.advanced&hl=en");
+        sharingIntent.putExtra(Intent.EXTRA_TEXT,"This is the best App for Learning Android"+"\n"+ "https://play.google.com/store/apps/details?id=mkstoshniwal.androidtutorials.advanced&hl=en");
         sharingIntent.setPackage("com.whatsapp");
         startActivity(sharingIntent);
     }

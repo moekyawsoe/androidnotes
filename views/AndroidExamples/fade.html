@@ -6,7 +6,7 @@
   <div class="container-fluid">
     <div class="row text-center">
       <div class="col-md-12 text-center" style="background-color: rgb(20,255,0);">
-        <h1 class="text-center text-dark" style="padding-top: 5px;"><strong id="cstitle">Android TextView</strong></h1>
+        <h1 class="text-center text-dark" style="padding-top: 5px;"><strong id="cstitle">Android Fade Animation</strong></h1>
       </div>
     </div>
     <div class="row" style="padding-top: 5px;">
@@ -15,9 +15,34 @@
         </div>
         <p style="padding-left: 20px;">main_activity.xml</p>
         <pre class="prettyprint">
+&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+xmlns:tools=&quot;http://schemas.android.com/tools&quot;
+android:layout_width=&quot;match_parent&quot;
+android:layout_height=&quot;match_parent&quot;
+android:orientation=&quot;vertical&quot;
+tools:context=&quot;.MainActivity&quot;&gt;
 
+&lt;!-- TODO: Update blank fragment layout --&gt;
+&lt;ImageView
+    android:layout_weight=&quot;4&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot;
+    android:id=&quot;@+id/idImageView&quot;
+    android:src=&quot;@mipmap/ic_launcher&quot;/&gt;
+&lt;Button
+    android:layout_margin=&quot;4dp&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;wrap_content&quot;
+    android:id=&quot;@+id/idBtnFadeIn&quot;
+    android:text=&quot;FadeIn&quot; /&gt;
+&lt;Button
+    android:layout_margin=&quot;4dp&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;wrap_content&quot;
+    android:id=&quot;@+id/idBtnFadeOut&quot;
+    android:text=&quot;FadeOut&quot; /&gt;
 
-
+&lt;/LinearLayout&gt;
         </pre>
       </div>
       <div class="col-md-6">
@@ -25,12 +50,83 @@
             class="fab fa-java"></i><span><strong> Java</strong>.</span></div>
         <p style="padding-left: 20px;">MainActivity.java</p>
         <pre class="prettyprint">
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.Button;
+import android.widget.ImageView;
 
+public class MainActivity extends AppCompatActivity {
+    Button btnFadeIn,btnFadeOut;
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        btnFadeIn = (Button) findViewById(R.id.idBtnFadeIn);
+        btnFadeIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ImageView image = (ImageView) findViewById(R.id.idImageView);
+                Animation animation = AnimationUtils.loadAnimation(getApplicationContext(),
+                        R.anim.fade_in);
+                image.startAnimation(animation);
+            }
+        });
+        btnFadeOut = (Button) findViewById(R.id.idBtnFadeOut);
+        btnFadeOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ImageView image = (ImageView) findViewById(R.id.idImageView);
+                Animation animation = AnimationUtils.loadAnimation(getApplicationContext(),
+                        R.anim.fade_out);
+                image.startAnimation(animation);
+            }
+        });
 
-
+    }
+}
         </pre>
       </div>
+    </div>
+    <div class="row" style="padding-top: 5px;">
+      <div class="col-md-6">
+        <div class="alert alert-warning" role="alert"><i class="fas fa-code"></i><span><strong> xml</strong></span>
+        </div>
+        <p style="padding-left: 20px;">res/anim/fade_in.xml</p>
+        <pre class="prettyprint">
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;set xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    android:interpolator=&quot;@android:anim/accelerate_interpolator&quot; &gt;
+
+    &lt;alpha
+        android:fromAlpha=&quot;0&quot;
+        android:toAlpha=&quot;1&quot;
+        android:duration=&quot;5000&quot; &gt;
+    &lt;/alpha&gt;
+&lt;/set&gt;
+        </pre>
+      </div>
+      <div class="col-md-6">
+        <div class="alert alert-warning" role="alert"><i class="fas fa-code"></i><span><strong> xml</strong></span>
+        </div>
+        <p style="padding-left: 20px;">res/anim/fade_out.xml</p>
+        <pre class="prettyprint">
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;set xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    android:interpolator=&quot;@android:anim/accelerate_interpolator&quot; &gt;
+
+    &lt;alpha
+        android:fromAlpha=&quot;1&quot;
+        android:toAlpha=&quot;0&quot;
+        android:duration=&quot;5000&quot; &gt;
+    &lt;/alpha&gt;
+&lt;/set&gt;
+        </pre>
+      </div>
+     
     </div>
   </div>
 </div>

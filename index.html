@@ -2,545 +2,640 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>Kuu Rayypar</title>
-    <link rel="icon" type="image/png" sizes="300x300" href="img/copyright_48px.png" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <title>Kuu Rayypar</title>
+        <link rel="icon" type="image/png" sizes="300x300" href="img/copyright_48px.png" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+                integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+                crossorigin="anonymous">
 
-    <script src="js/all.js"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
-        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
-        
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/style.css" id="css">
-    <link rel="stylesheet" href="css/all.css">
-<link rel="stylesheet" type="text/css" href="css/code-prettify-light/code-prettify-theme.css" id="theme"/>
+        <script src="js/all.js"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+                integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+                integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+                crossorigin="anonymous"></script>
+
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/style.css" id="css">
+        <link rel="stylesheet" href="css/all.css">
+        <link rel="stylesheet" type="text/css" href="css/code-prettify-light/code-prettify-theme.css" id="theme" />
 
 </head>
 
 <body onload="PR.prettyPrint()">
-    <!DOCTYPE html>
-    <html>
+        <!DOCTYPE html>
+        <html>
 
-    <body>
-        <div id="wrapper">
+        <body>
+                <div id="wrapper">
 
-            <div>
-                <nav class="navbar navbar-expand navbar-light ">
-                    <div class="container-fluid">
+                        <div>
+                                <nav class="navbar navbar-expand navbar-light ">
+                                        <div class="container-fluid">
 
-                        <button type="button" id="sidebarCollapse" class="btn text-success bg-light">
-                            <i class="fas fa-align-left"></i>
-                            <span></span>
-                        </button>
-                        <!-- <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse"
+                                                <button type="button" id="sidebarCollapse"
+                                                        class="btn text-success bg-light">
+                                                        <i class="fas fa-align-left"></i>
+                                                        <span></span>
+                                                </button>
+                                                <!-- <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse"
                             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">
                             <i class="fas fa-align-justify"></i>
                         </button> -->
 
 
-                        <a class="nav-link align-content-center text-success"
-                            href="https://moekyawsoe.github.io/kuu_rayypar"><i
-                                class="fab fa-android fa-2x align-middle"></i></a>
+                                                <a class="nav-link align-content-center text-success"
+                                                        href="https://moekyawsoe.github.io/kuu_rayypar"><i
+                                                                class="fab fa-android fa-2x align-middle"></i></a>
 
 
-                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                            <ul class="nav navbar-nav ml-auto">
-                                <li class="nav-item">
-                                    <p class="mb-0 text-white">ကူးရေးပါ</p>
-                                </li>
-                            </ul>
-                            <ul class="nav navbar-nav ml-auto">
-                                <li class="nav-item align-middle m-auto mb-0">
-                                    <!-- Default checked -->
-                                    <div class="nav-link custom-control custom-switch">
-                                        <input type="checkbox" class="custom-control-input" id="darkswitch">
-                                        <label class="custom-control-label text-white" for="darkswitch"> dark</label>
-                                    </div>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-success" href="https://moekyawsoe.github.io"><i
-                                            class="fab fa-dev fa-2x align-middle"></i></a>
-                                </li>
-                            </ul>
+                                                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                                                        <ul class="nav navbar-nav ml-auto">
+                                                                <li class="nav-item">
+                                                                        <p class="mb-0 text-white">ကူးရေးပါ</p>
+                                                                </li>
+                                                        </ul>
+                                                        <ul class="nav navbar-nav ml-auto">
+                                                                <li class="nav-item align-middle m-auto mb-0">
+                                                                        <!-- Default checked -->
+                                                                        <div
+                                                                                class="nav-link custom-control custom-switch">
+                                                                                <input type="checkbox"
+                                                                                        class="custom-control-input"
+                                                                                        id="darkswitch">
+                                                                                <label class="custom-control-label text-white"
+                                                                                        for="darkswitch"> dark</label>
+                                                                        </div>
+                                                                </li>
+                                                                <li class="nav-item">
+                                                                        <a class="nav-link text-success"
+                                                                                href="https://moekyawsoe.github.io"><i
+                                                                                        class="fab fa-dev fa-2x align-middle"></i></a>
+                                                                </li>
+                                                        </ul>
+                                                </div>
+                                        </div>
+                                </nav>
                         </div>
-                    </div>
-                </nav>
-            </div>
 
-            <div>
+                        <div>
 
 
-                <nav id="sidebar" class="a active">
-                    <div class="sidebar-header text-white">
-                        <h4>နမူနာများ</h4>
-                    </div>
-                    <div class="sidemain">
-                        <ul class="list-unstyled components">
-                            <li>
-                                <a href="#androidwidgets" data-toggle="collapse" aria-expanded="false"
-                                    class="dropdown-toggle"><i class="fa fa-fw fa-anchor"></i> Android Widgets</a>
-                                <ul class="collapse list-unstyled" id="androidwidgets">
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/textview.html')">TextView</a>
-                                    </li>
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/autocompletetextview.html')">AutoComplete
-                                            TextView</a></li>
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/adapterviewflipper.html')">AdapterViewFlipper</a>
-                                    </li>
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/button.html')">Button</a></li>
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/checkbox.html')">Checkbox</a>
-                                    </li>
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/checkedtextview.html')">CheckedTextView</a>
-                                    </li>
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/edittext.html')">EditText</a>
-                                    </li>
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/multiautocompletetextview.html')">MultiAutoComplete
-                                            TextView</a></li>
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/imageswitcher.html')">ImageSwither</a>
-                                    </li>
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/progressbar.html')">ProgressBar</a>
-                                    </li>
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/radiobutton.html')">RadioButton</a>
-                                    </li>
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/ratingbar.html')">RatingBar</a>
-                                    </li>
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/seekbar.html')">SeekBar</a></li>
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/spinner.html')">Spinner</a></li>
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/switch.html')">Switch</a></li>
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/textswitcher.html')">TextSwither</a>
-                                    </li>
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/togglebutton.html')">ToggleButton</a>
-                                    </li>
-                                </ul>
-                            </li>
+                                <nav id="sidebar" class="a active">
+                                        <div class="sidebar-header text-white">
+                                                <h4>နမူနာများ</h4>
+                                        </div>
+                                        <div class="sidemain">
+                                                <ul class="list-unstyled components">
+                                                        <li>
+                                                                <a href="#androidwidgets" data-toggle="collapse"
+                                                                        aria-expanded="false" class="dropdown-toggle"><i
+                                                                                class="fa fa-fw fa-anchor"></i> Android
+                                                                        Widgets</a>
+                                                                <ul class="collapse list-unstyled" id="androidwidgets">
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/textview.html')">TextView</a>
+                                                                        </li>
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/autocompletetextview.html')">AutoComplete
+                                                                                        TextView</a></li>
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/adapterviewflipper.html')">AdapterViewFlipper</a>
+                                                                        </li>
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/button.html')">Button</a>
+                                                                        </li>
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/checkbox.html')">Checkbox</a>
+                                                                        </li>
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/checkedtextview.html')">CheckedTextView</a>
+                                                                        </li>
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/edittext.html')">EditText</a>
+                                                                        </li>
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/multiautocompletetextview.html')">MultiAutoComplete
+                                                                                        TextView</a></li>
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/imageswitcher.html')">ImageSwither</a>
+                                                                        </li>
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/progressbar.html')">ProgressBar</a>
+                                                                        </li>
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/radiobutton.html')">RadioButton</a>
+                                                                        </li>
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/ratingbar.html')">RatingBar</a>
+                                                                        </li>
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/seekbar.html')">SeekBar</a>
+                                                                        </li>
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/spinner.html')">Spinner</a>
+                                                                        </li>
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/switch.html')">Switch</a>
+                                                                        </li>
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/textswitcher.html')">TextSwither</a>
+                                                                        </li>
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/togglebutton.html')">ToggleButton</a>
+                                                                        </li>
+                                                                </ul>
+                                                        </li>
 
 
-                            <li>
-                                <a href="#androidmedia" data-toggle="collapse" aria-expanded="false"
-                                    class="dropdown-toggle"><i class="fa fa-fw fa-photo-video"></i> Android Media</a>
-                                <ul class="collapse list-unstyled" id="androidmedia">
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/imagebutton.html')">ImageButton</a>
-                                    </li>
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/imageview.html')">ImageView</a>
-                                    </li>
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/videoview.html')">VideoView</a>
-                                    </li>
-                                </ul>
-                            </li>
+                                                        <li>
+                                                                <a href="#androidmedia" data-toggle="collapse"
+                                                                        aria-expanded="false" class="dropdown-toggle"><i
+                                                                                class="fa fa-fw fa-photo-video"></i>
+                                                                        Android Media</a>
+                                                                <ul class="collapse list-unstyled" id="androidmedia">
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/imagebutton.html')">ImageButton</a>
+                                                                        </li>
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/imageview.html')">ImageView</a>
+                                                                        </li>
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/videoview.html')">VideoView</a>
+                                                                        </li>
+                                                                </ul>
+                                                        </li>
 
-                            <li>
-                                <a href="#androiddatetime" data-toggle="collapse" aria-expanded="false"
-                                    class="dropdown-toggle"><i class="fa fa-fw fa-calendar-day"></i> Android Date &
-                                    Time</a>
-                                <ul class="collapse list-unstyled" id="androiddatetime">
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/textclock.html')">TextClock</a>
-                                    </li>
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/datepicker.html')">DatePicker</a>
-                                    </li>
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/timepicker.html')">TimePicker</a>
-                                    </li>
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/chronometer.html')">Chronometer</a>
-                                    </li>
-                                </ul>
-                            </li>
+                                                        <li>
+                                                                <a href="#androiddatetime" data-toggle="collapse"
+                                                                        aria-expanded="false" class="dropdown-toggle"><i
+                                                                                class="fa fa-fw fa-calendar-day"></i>
+                                                                        Android Date &
+                                                                        Time</a>
+                                                                <ul class="collapse list-unstyled" id="androiddatetime">
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/textclock.html')">TextClock</a>
+                                                                        </li>
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/datepicker.html')">DatePicker</a>
+                                                                        </li>
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/timepicker.html')">TimePicker</a>
+                                                                        </li>
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/chronometer.html')">Chronometer</a>
+                                                                        </li>
+                                                                </ul>
+                                                        </li>
 
-                            <li>
-                                <a href="#androidimplicitIntent" data-toggle="collapse" aria-expanded="false"
-                                    class="dropdown-toggle"><i class="fa fa-fw fa-indent"></i> Android Implicit
-                                    Intent</a>
-                                <ul class="collapse list-unstyled" id="androidimplicitIntent">
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/email.html')">Email</a></li>
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/maps.html')">Maps</a></li>
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/phonecall.html')">Phone Call</a>
-                                    </li>
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/phonedial.html')">PhoneDial</a>
-                                    </li>
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/camera.html')">Camera</a></li>
-                                </ul>
-                            </li>
+                                                        <li>
+                                                                <a href="#androidimplicitIntent" data-toggle="collapse"
+                                                                        aria-expanded="false" class="dropdown-toggle"><i
+                                                                                class="fa fa-fw fa-indent"></i> Android
+                                                                        Implicit
+                                                                        Intent</a>
+                                                                <ul class="collapse list-unstyled"
+                                                                        id="androidimplicitIntent">
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/email.html')">Email</a>
+                                                                        </li>
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/maps.html')">Maps</a>
+                                                                        </li>
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/phonecall.html')">Phone
+                                                                                        Call</a>
+                                                                        </li>
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/phonedial.html')">PhoneDial</a>
+                                                                        </li>
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/camera.html')">Camera</a>
+                                                                        </li>
+                                                                </ul>
+                                                        </li>
 
-                            <li>
-                                <a href="#androidexplicitintent" data-toggle="collapse" aria-expanded="false"
-                                    class="dropdown-toggle"><i class="fa fa-fw fa-indent"></i> Android Explicit
-                                    Intent</a>
-                                <ul class="collapse list-unstyled" id="androidexplicitintent">
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/activitytransition.html')">Activity
-                                            Transition</a></li>
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/passingvalue.html')">Passing
-                                            Value</a></li>
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/activityforresult.html')">ActivityForResult</a>
-                                    </li>
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/facebook.html')">Facebook</a>
-                                    </li>
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/instagram.html')">Instagram</a>
-                                    </li>
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/twitter.html')">Twitter</a></li>
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/whatsapp.html')">Whatsapp</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#androidtoast" data-toggle="collapse" aria-expanded="false"
-                                    class="dropdown-toggle"><i class="fa fa-fw fa-exclamation"></i> Android Toast</a>
-                                <ul class="collapse list-unstyled" id="androidtoast">
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/simpletoast.html')">Simple
-                                            Toast</a></li>
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/toastmessageposition.html')">Toast
-                                            Message Position</a></li>
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/customtoast.html')">CustomToast</a>
-                                    </li>
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/andlibrarynote.html')">AndLibraryNote</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#androidcontainers" data-toggle="collapse" aria-expanded="false"
-                                    class="dropdown-toggle"><i class="fa fw fa-cube"></i> Android Containers</a>
-                                <ul class="collapse list-unstyled" id="androidcontainers">
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/listview.html')">ListView</a>
-                                    </li>
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/customlistview.html')">Custom
-                                            ListView</a></li>
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/expandablelistview.html')">Expandable
-                                            ListView</a></li>
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/gridview.html')">GridView</a>
-                                    </li>
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/webview.html')">WebView</a></li>
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/searchview.html')">SearchView</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#androidmenu" data-toggle="collapse" aria-expanded="false"
-                                    class="dropdown-toggle"><i class="fa fa-fw fa-bars"></i> Android Menu</a>
-                                <ul class="collapse list-unstyled" id="androidmenu">
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/contextmenu.html')">Context
-                                            Menu</a></li>
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/optionmenu.html')">Option
-                                            Menu</a></li>
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/popupmenu.html')">PopUp Menu</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#androidactivityandfragment" data-toggle="collapse" aria-expanded="false"
-                                    class="dropdown-toggle"><i class="fa fa-fw fa-clone"></i> Android Activity And
-                                    Fragment</a>
-                                <ul class="collapse list-unstyled" id="androidactivityandfragment">
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/activitylifecycle.html')">Activity
-                                            Lifecycle</a></li>
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/fragmentlifecycle.html')">Fragment
-                                            Lifecycle</a></li>
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/fragmentandactivitylifecyclecombine.html')">Lifecycle
-                                            Combined</a></li>
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/interfragmentcommunication.html')">InterFragment
-                                            Communication</a></li>
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/listfragment.html')">List
-                                            Fragment</a></li>
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/dialogfragment.html')">Dialog
-                                            Fragment</a></li>
-                                </ul>
-                            </li>
+                                                        <li>
+                                                                <a href="#androidexplicitintent" data-toggle="collapse"
+                                                                        aria-expanded="false" class="dropdown-toggle"><i
+                                                                                class="fa fa-fw fa-indent"></i> Android
+                                                                        Explicit
+                                                                        Intent</a>
+                                                                <ul class="collapse list-unstyled"
+                                                                        id="androidexplicitintent">
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/activitytransition.html')">Activity
+                                                                                        Transition</a></li>
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/passingvalue.html')">Passing
+                                                                                        Value</a></li>
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/activityforresult.html')">ActivityForResult</a>
+                                                                        </li>
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/facebook.html')">Facebook</a>
+                                                                        </li>
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/instagram.html')">Instagram</a>
+                                                                        </li>
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/twitter.html')">Twitter</a>
+                                                                        </li>
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/whatsapp.html')">Whatsapp</a>
+                                                                        </li>
+                                                                </ul>
+                                                        </li>
+                                                        <li>
+                                                                <a href="#androidtoast" data-toggle="collapse"
+                                                                        aria-expanded="false" class="dropdown-toggle"><i
+                                                                                class="fa fa-fw fa-exclamation"></i>
+                                                                        Android Toast</a>
+                                                                <ul class="collapse list-unstyled" id="androidtoast">
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/simpletoast.html')">Simple
+                                                                                        Toast</a></li>
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/toastmessageposition.html')">Toast
+                                                                                        Message Position</a></li>
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/customtoast.html')">CustomToast</a>
+                                                                        </li>
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/andlibrarynote.html')">AndLibraryNote</a>
+                                                                        </li>
+                                                                </ul>
+                                                        </li>
+                                                        <li>
+                                                                <a href="#androidcontainers" data-toggle="collapse"
+                                                                        aria-expanded="false" class="dropdown-toggle"><i
+                                                                                class="fa fw fa-cube"></i> Android
+                                                                        Containers</a>
+                                                                <ul class="collapse list-unstyled"
+                                                                        id="androidcontainers">
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/listview.html')">ListView</a>
+                                                                        </li>
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/customlistview.html')">Custom
+                                                                                        ListView</a></li>
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/expandablelistview.html')">Expandable
+                                                                                        ListView</a></li>
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/gridview.html')">GridView</a>
+                                                                        </li>
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/webview.html')">WebView</a>
+                                                                        </li>
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/searchview.html')">SearchView</a>
+                                                                        </li>
+                                                                </ul>
+                                                        </li>
+                                                        <li>
+                                                                <a href="#androidmenu" data-toggle="collapse"
+                                                                        aria-expanded="false" class="dropdown-toggle"><i
+                                                                                class="fa fa-fw fa-bars"></i> Android
+                                                                        Menu</a>
+                                                                <ul class="collapse list-unstyled" id="androidmenu">
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/contextmenu.html')">Context
+                                                                                        Menu</a></li>
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/optionmenu.html')">Option
+                                                                                        Menu</a></li>
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/popupmenu.html')">PopUp
+                                                                                        Menu</a>
+                                                                        </li>
+                                                                </ul>
+                                                        </li>
+                                                        <li>
+                                                                <a href="#androidactivityandfragment"
+                                                                        data-toggle="collapse" aria-expanded="false"
+                                                                        class="dropdown-toggle"><i
+                                                                                class="fa fa-fw fa-clone"></i> Android
+                                                                        Activity And
+                                                                        Fragment</a>
+                                                                <ul class="collapse list-unstyled"
+                                                                        id="androidactivityandfragment">
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/activitylifecycle.html')">Activity
+                                                                                        Lifecycle</a></li>
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/fragmentlifecycle.html')">Fragment
+                                                                                        Lifecycle</a></li>
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/fragmentandactivitylifecyclecombine.html')">Lifecycle
+                                                                                        Combined</a></li>
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/interfragmentcommunication.html')">InterFragment
+                                                                                        Communication</a></li>
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/listfragment.html')">List
+                                                                                        Fragment</a></li>
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/dialogfragment.html')">Dialog
+                                                                                        Fragment</a></li>
+                                                                </ul>
+                                                        </li>
 
-                            <li>
-                                <a href="#androidservice" data-toggle="collapse" aria-expanded="false"
-                                    class="dropdown-toggle"><i class="fa fa-fw fa-wrench"></i> Android Service</a>
-                                <ul class="collapse list-unstyled" id="androidservice">
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/servicelifecycle.html')">Service
-                                            Lifecycle</a></li>
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/serviceexample.html')">Service
-                                            Example</a></li>
+                                                        <li>
+                                                                <a href="#androidservice" data-toggle="collapse"
+                                                                        aria-expanded="false" class="dropdown-toggle"><i
+                                                                                class="fa fa-fw fa-wrench"></i> Android
+                                                                        Service</a>
+                                                                <ul class="collapse list-unstyled" id="androidservice">
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/servicelifecycle.html')">Service
+                                                                                        Lifecycle</a></li>
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/serviceexample.html')">Service
+                                                                                        Example</a></li>
 
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#androidtelephonemanager" data-toggle="collapse" aria-expanded="false"
-                                    class="dropdown-toggle"><i class="fa fa-fw fa-phone-square"></i> Android Telephony
-                                    Manager</a>
-                                <ul class="collapse list-unstyled" id="androidtelephonemanager">
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/phonedetails.html')">Phone
-                                            Details</a></li>
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/readcontacts.html')">Read
-                                            Contacts</a></li>
+                                                                </ul>
+                                                        </li>
+                                                        <li>
+                                                                <a href="#androidtelephonemanager"
+                                                                        data-toggle="collapse" aria-expanded="false"
+                                                                        class="dropdown-toggle"><i
+                                                                                class="fa fa-fw fa-phone-square"></i>
+                                                                        Android Telephony
+                                                                        Manager</a>
+                                                                <ul class="collapse list-unstyled"
+                                                                        id="androidtelephonemanager">
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/phonedetails.html')">Phone
+                                                                                        Details</a></li>
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/readcontacts.html')">Read
+                                                                                        Contacts</a></li>
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/readsms.html')">Read
+                                                                                        SMS</a></li>
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/sendsms.html')">Send
+                                                                                        SMS</a></li>
 
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#androidwifimanager" data-toggle="collapse" aria-expanded="false"
-                                    class="dropdown-toggle"><i class="fa fa-fw fa-wifi"></i> Android Wifi Manager</a>
-                                <ul class="collapse list-unstyled" id="androidwifimanager">
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/changewifistate.html')">Change
-                                            Wifi State</a></li>
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/getwifiinfo.html')">Get Wifi
-                                            Info</a></li>
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/getwifilist.html')">Get Wifi
-                                            List</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#androidtweenanim" data-toggle="collapse" aria-expanded="false"
-                                    class="dropdown-toggle"><i class="fa fa-fw fa-puzzle-piece"></i> Android Tween
-                                    Animations</a>
-                                <ul class="collapse list-unstyled" id="androidtweenanim">
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/fade.html')">Fade</a></li>
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/zoom.html')">Zoom</a></li>
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/rotate.html')">Rotate</a></li>
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/move.html')">Move</a></li>
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/slide.html')">Slide</a></li>
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/bounce.html')">Bounce</a></li>
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/blink.html')">Blink</a></li>
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/sequential.html')">Sequential</a>
-                                    </li>
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/together.html')">Together</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#androiddatastorage" data-toggle="collapse" aria-expanded="false"
-                                    class="dropdown-toggle"><i class="fa fa-fw fa-file"></i> Android DataStorage</a>
-                                <ul class="collapse list-unstyled" id="androiddatastorage">
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/sharedpreference.html')">SharedPreference</a>
-                                    </li>
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/internalstorage.html')">Internal
-                                            Storage</a></li>
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/externalstorage.html')">External
-                                            Storage</a></li>
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/externalstoragepublicdirectory.html')">External
-                                            Storage Public Directory</a></li>
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/cachestorage.html')">Cache
-                                            Storage</a></li>
+                                                                </ul>
+                                                        </li>
+                                                        <li>
+                                                                <a href="#androidwifimanager" data-toggle="collapse"
+                                                                        aria-expanded="false" class="dropdown-toggle"><i
+                                                                                class="fa fa-fw fa-wifi"></i> Android
+                                                                        Wifi Manager</a>
+                                                                <ul class="collapse list-unstyled"
+                                                                        id="androidwifimanager">
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/changewifistate.html')">Change
+                                                                                        Wifi State</a></li>
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/getwifiinfo.html')">Get
+                                                                                        Wifi
+                                                                                        Info</a></li>
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/getwifilist.html')">Get
+                                                                                        Wifi
+                                                                                        List</a></li>
+                                                                </ul>
+                                                        </li>
+                                                        <li>
+                                                                <a href="#androidtweenanim" data-toggle="collapse"
+                                                                        aria-expanded="false" class="dropdown-toggle"><i
+                                                                                class="fa fa-fw fa-puzzle-piece"></i>
+                                                                        Android Tween
+                                                                        Animations</a>
+                                                                <ul class="collapse list-unstyled"
+                                                                        id="androidtweenanim">
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/fade.html')">Fade</a>
+                                                                        </li>
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/zoom.html')">Zoom</a>
+                                                                        </li>
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/rotate.html')">Rotate</a>
+                                                                        </li>
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/move.html')">Move</a>
+                                                                        </li>
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/slide.html')">Slide</a>
+                                                                        </li>
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/bounce.html')">Bounce</a>
+                                                                        </li>
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/blink.html')">Blink</a>
+                                                                        </li>
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/sequential.html')">Sequential</a>
+                                                                        </li>
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/together.html')">Together</a>
+                                                                        </li>
+                                                                </ul>
+                                                        </li>
+                                                        <li>
+                                                                <a href="#androiddatastorage" data-toggle="collapse"
+                                                                        aria-expanded="false" class="dropdown-toggle"><i
+                                                                                class="fa fa-fw fa-file"></i> Android
+                                                                        DataStorage</a>
+                                                                <ul class="collapse list-unstyled"
+                                                                        id="androiddatastorage">
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/sharedpreference.html')">SharedPreference</a>
+                                                                        </li>
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/internalstorage.html')">Internal
+                                                                                        Storage</a></li>
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/externalstorage.html')">External
+                                                                                        Storage</a></li>
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/externalstoragepublicdirectory.html')">External
+                                                                                        Storage Public Directory</a>
+                                                                        </li>
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/cachestorage.html')">Cache
+                                                                                        Storage</a></li>
 
-                                </ul>
-                            </li>
+                                                                </ul>
+                                                        </li>
 
-                            <li>
-                                <a href="#androidsqllite" data-toggle="collapse" aria-expanded="false"
-                                    class="dropdown-toggle"><i class="fa fa-fw fa-database"></i> Android SQLite</a>
-                                <ul class="collapse list-unstyled" id="androidsqllite">
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/sqliteinsert.html')">SQlite
-                                            Insert</a></li>
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/sqliteread.html')">SQlite
-                                            Read</a></li>
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/sqliteupdate.html')">SQLite
-                                            Update</a></li>
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/sqlitedelete.html')">SQLite
-                                            Delete</a></li>
-
-
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#androidnotification" data-toggle="collapse" aria-expanded="false"
-                                    class="dropdown-toggle"><i class="fa fa-fw fa-bell"></i> Android Notification</a>
-                                <ul class="collapse list-unstyled" id="androidnotification">
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/notification.html')">Notification</a>
-                                    </li>
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/inboxstylenotification.html')">InboxStyle
-                                            Notification</a></li>
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/bigtextstylenotification.html')">BigTextStyle
-                                            Notification</a></li>
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/bigpicturestylenotification.html')">BigPictureStyle
-                                            Notification</a></li>
-
-
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#androidxmlandjsonparsing" data-toggle="collapse" aria-expanded="false"
-                                    class="dropdown-toggle"><i class="fa fa-fw fa-server"></i> Android XML And JSON
-                                    Parsing</a>
-                                <ul class="collapse list-unstyled" id="androidxmlandjsonparsing">
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/jsonparsing.html')">JSON
-                                            Parsing</a></li>
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/xmlparsing.html')">XML
-                                            Parsing</a></li>
-
-
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#androidmaterialdesign" data-toggle="collapse" aria-expanded="false"
-                                    class="dropdown-toggle"><i class="fa fa-fw fa-window-maximize"></i> Android Material
-                                    Design</a>
-                                <ul class="collapse list-unstyled" id="androidmaterialdesign">
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/textinputedittext.html')">TextInputEditText</a>
-                                    </li>
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/floatingactionbutton.html')">FloatingActionButton</a>
-                                    </li>
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/snackbars.html')">SnackBars</a>
-                                    </li>
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/bottomnavigation.html')">Bottom
-                                            Navigation</a></li>
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/bottomsheets.html')">Bottom
-                                            Sheets</a></li>
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/navigationdrawer.html')">Navigation
-                                            Drawer</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#androidbluetoothcon" data-toggle="collapse" aria-expanded="false"
-                                    class="dropdown-toggle"><i class="fa fa-fw fa-podcast"></i> Android Bluetooth
-                                    Connection</a>
-                                <ul class="collapse list-unstyled" id="androidbluetoothcon">
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/enablebt.html')">Enable/Disable
-                                            BT</a></li>
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/detectbt.html')">Detect BT
-                                            Current State</a></li>
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/discoverbt.html')">Discover
-                                            Nearby BT Devices</a></li>
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/turnbt.html')">Turn ON Device
-                                            Discover</a></li>
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/pairbt.html')">Pair BT
-                                            Devices</a></li>
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/getpairbt.html')">Get Paired BT
-                                            Devices</a></li>
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/connectbt.html')">Connect BT
-                                            Devices</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#androidwifidirect" data-toggle="collapse" aria-expanded="false"
-                                    class="dropdown-toggle"><i class="fa fa-fw fa-wifi"></i> Android WifiDirect
-                                    Connection</a>
-                                <ul class="collapse list-unstyled" id="androidwifidirect">
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/discoverdevices.html')">Discover
-                                            Nearby Devices</a></li>
-                                    <li class="navitem"><a href="#"
-                                            onclick="switchView('views/AndroidExamples/connectdevices.html')">Connect
-                                            Nearby Devices</a></li>
-
-                                </ul>
-                            </li>
+                                                        <li>
+                                                                <a href="#androidsqllite" data-toggle="collapse"
+                                                                        aria-expanded="false" class="dropdown-toggle"><i
+                                                                                class="fa fa-fw fa-database"></i>
+                                                                        Android SQLite</a>
+                                                                <ul class="collapse list-unstyled" id="androidsqllite">
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/sqliteinsert.html')">SQlite
+                                                                                        Insert</a></li>
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/sqliteread.html')">SQlite
+                                                                                        Read</a></li>
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/sqliteupdate.html')">SQLite
+                                                                                        Update</a></li>
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/sqlitedelete.html')">SQLite
+                                                                                        Delete</a></li>
 
 
-                        </ul>
-                    </div>
-                </nav>
+                                                                </ul>
+                                                        </li>
+                                                        <li>
+                                                                <a href="#androidnotification" data-toggle="collapse"
+                                                                        aria-expanded="false" class="dropdown-toggle"><i
+                                                                                class="fa fa-fw fa-bell"></i> Android
+                                                                        Notification</a>
+                                                                <ul class="collapse list-unstyled"
+                                                                        id="androidnotification">
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/notification.html')">Notification</a>
+                                                                        </li>
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/inboxstylenotification.html')">InboxStyle
+                                                                                        Notification</a></li>
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/bigtextstylenotification.html')">BigTextStyle
+                                                                                        Notification</a></li>
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/bigpicturestylenotification.html')">BigPictureStyle
+                                                                                        Notification</a></li>
 
-                <div id="content">
-                    <div class="container-fluid" id="container">
-                    </div>
+
+                                                                </ul>
+                                                        </li>
+                                                        <li>
+                                                                <a href="#androidxmlandjsonparsing"
+                                                                        data-toggle="collapse" aria-expanded="false"
+                                                                        class="dropdown-toggle"><i
+                                                                                class="fa fa-fw fa-server"></i> Android
+                                                                        XML And JSON
+                                                                        Parsing</a>
+                                                                <ul class="collapse list-unstyled"
+                                                                        id="androidxmlandjsonparsing">
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/jsonparsing.html')">JSON
+                                                                                        Parsing</a></li>
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/xmlparsing.html')">XML
+                                                                                        Parsing</a></li>
+
+
+                                                                </ul>
+                                                        </li>
+                                                        <li>
+                                                                <a href="#androidmaterialdesign" data-toggle="collapse"
+                                                                        aria-expanded="false" class="dropdown-toggle"><i
+                                                                                class="fa fa-fw fa-window-maximize"></i>
+                                                                        Android Material
+                                                                        Design</a>
+                                                                <ul class="collapse list-unstyled"
+                                                                        id="androidmaterialdesign">
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/textinputedittext.html')">TextInputEditText</a>
+                                                                        </li>
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/floatingactionbutton.html')">FloatingActionButton</a>
+                                                                        </li>
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/snackbars.html')">SnackBars</a>
+                                                                        </li>
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/bottomnavigation.html')">Bottom
+                                                                                        Navigation</a></li>
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/bottomsheets.html')">Bottom
+                                                                                        Sheets</a></li>
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/navigationdrawer.html')">Navigation
+                                                                                        Drawer</a></li>
+                                                                </ul>
+                                                        </li>
+                                                        <li>
+                                                                <a href="#androidbluetoothcon" data-toggle="collapse"
+                                                                        aria-expanded="false" class="dropdown-toggle"><i
+                                                                                class="fa fa-fw fa-podcast"></i> Android
+                                                                        Bluetooth
+                                                                        Connection</a>
+                                                                <ul class="collapse list-unstyled"
+                                                                        id="androidbluetoothcon">
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/enablebt.html')">Enable/Disable
+                                                                                        BT</a></li>
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/detectbt.html')">Detect
+                                                                                        BT
+                                                                                        Current State</a></li>
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/discoverbt.html')">Discover
+                                                                                        Nearby BT Devices</a></li>
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/turnbt.html')">Turn
+                                                                                        ON Device
+                                                                                        Discover</a></li>
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/pairbt.html')">Pair
+                                                                                        BT
+                                                                                        Devices</a></li>
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/getpairbt.html')">Get
+                                                                                        Paired BT
+                                                                                        Devices</a></li>
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/connectbt.html')">Connect
+                                                                                        BT
+                                                                                        Devices</a></li>
+                                                                </ul>
+                                                        </li>
+                                                        <li>
+                                                                <a href="#androidwifidirect" data-toggle="collapse"
+                                                                        aria-expanded="false" class="dropdown-toggle"><i
+                                                                                class="fa fa-fw fa-wifi"></i> Android
+                                                                        WifiDirect
+                                                                        Connection</a>
+                                                                <ul class="collapse list-unstyled"
+                                                                        id="androidwifidirect">
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/discoverdevices.html')">Discover
+                                                                                        Nearby Devices</a></li>
+                                                                        <li class="navitem"><a href="#"
+                                                                                        onclick="switchView('views/AndroidExamples/connectdevices.html')">Connect
+                                                                                        Nearby Devices</a></li>
+
+                                                                </ul>
+                                                        </li>
+
+
+                                                </ul>
+                                        </div>
+                                </nav>
+
+                                <div id="content">
+                                        <div class="container-fluid" id="container">
+                                        </div>
+                                </div>
+
+
+                        </div>
+
                 </div>
-
-
-            </div>
-
-        </div>
-        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+                <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script> -->
-        
-        <script type="text/javascript" src="js/script.min.js"></script>
-        <script type="text/javascript" src="js/app.js"></script>
-<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
-    </body>
 
-    </html>
+                <script type="text/javascript" src="js/script.min.js"></script>
+                <script type="text/javascript" src="js/app.js"></script>
+                <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+        </body>
+
+        </html>

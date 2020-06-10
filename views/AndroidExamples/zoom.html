@@ -6,7 +6,7 @@
   <div class="container-fluid">
     <div class="row text-center">
       <div class="col-md-12 text-center" style="background-color: rgb(20,255,0);">
-        <h1 class="text-center text-dark" style="padding-top: 5px;"><strong id="cstitle">Android TextView</strong></h1>
+        <h1 class="text-center text-dark" style="padding-top: 5px;"><strong id="cstitle">Android Zoom Animation</strong></h1>
       </div>
     </div>
     <div class="row" style="padding-top: 5px;">
@@ -15,7 +15,34 @@
         </div>
         <p style="padding-left: 20px;">main_activity.xml</p>
         <pre class="prettyprint">
+&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+xmlns:tools=&quot;http://schemas.android.com/tools&quot;
+android:layout_width=&quot;match_parent&quot;
+android:layout_height=&quot;match_parent&quot;
+android:orientation=&quot;vertical&quot;
+tools:context=&quot;.MainActivity&quot;&gt;
 
+&lt;!-- TODO: Update blank fragment layout --&gt;
+&lt;ImageView
+    android:layout_weight=&quot;4&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot;
+    android:id=&quot;@+id/idImageView&quot;
+    android:src=&quot;@mipmap/ic_launcher&quot;/&gt;
+&lt;Button
+    android:layout_margin=&quot;4dp&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;wrap_content&quot;
+    android:id=&quot;@+id/idbtnZoomIn&quot;
+    android:text=&quot;ZoomIn&quot; /&gt;
+&lt;Button
+    android:layout_margin=&quot;4dp&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;wrap_content&quot;
+    android:id=&quot;@+id/idbtnZoomOut&quot;
+    android:text=&quot;ZoomOut&quot; /&gt;
+
+&lt;/LinearLayout&gt;
 
 
         </pre>
@@ -25,12 +52,95 @@
             class="fab fa-java"></i><span><strong> Java</strong>.</span></div>
         <p style="padding-left: 20px;">MainActivity.java</p>
         <pre class="prettyprint">
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.Button;
+import android.widget.ImageView;
 
+public class MainActivity extends AppCompatActivity {
+    Button btnZoomIn,btnZoomOut;
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        btnZoomIn = (Button) findViewById(R.id.idbtnZoomIn);
+        btnZoomIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ImageView image = (ImageView) findViewById(R.id.idImageView);
+                Animation animation = AnimationUtils.loadAnimation(getApplicationContext(),
+                        R.anim.zoom_in);
+                image.startAnimation(animation);
+            }
+        });
+        btnZoomOut = (Button) findViewById(R.id.idbtnZoomOut);
+        btnZoomOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ImageView image = (ImageView) findViewById(R.id.idImageView);
+                Animation animation = AnimationUtils.loadAnimation(getApplicationContext(),
+                        R.anim.zoom_out);
+                image.startAnimation(animation);
+            }
+        });
 
-
+    }
+}
         </pre>
       </div>
+    </div>
+    <div class="row" style="padding-top: 5px;">
+      <div class="col-md-6">
+        <div class="alert alert-warning" role="alert"><i class="fas fa-code"></i><span><strong> xml</strong></span>
+        </div>
+        <p style="padding-left: 20px;">res/anim/zoom_in.xml</p>
+        <pre class="prettyprint">
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;set xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    android:fillAfter=&quot;true&quot; &gt;
+
+    &lt;scale
+        xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+        android:duration=&quot;1000&quot;
+        android:fromXScale=&quot;1&quot;
+        android:fromYScale=&quot;1&quot;
+        android:pivotX=&quot;50%&quot;
+        android:pivotY=&quot;50%&quot;
+        android:toXScale=&quot;2&quot;
+        android:toYScale=&quot;2&quot; &gt;
+    &lt;/scale&gt;
+
+&lt;/set&gt;
+        </pre>
+      </div>
+      <div class="col-md-6">
+        <div class="alert alert-warning" role="alert"><i class="fas fa-code"></i><span><strong> xml</strong></span>
+        </div>
+        <p style="padding-left: 20px;">res/anim/zoom_out.xml</p>
+        <pre class="prettyprint">
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;set xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    android:fillAfter=&quot;true&quot; &gt;
+
+    &lt;scale
+        xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+        android:duration=&quot;1000&quot;
+        android:fromXScale=&quot;1.0&quot;
+        android:fromYScale=&quot;1.0&quot;
+        android:pivotX=&quot;50%&quot;
+        android:pivotY=&quot;50%&quot;
+        android:toXScale=&quot;0.5&quot;
+        android:toYScale=&quot;0.5&quot; &gt;
+    &lt;/scale&gt;
+
+&lt;/set&gt;
+        </pre>
+      </div>
+     
     </div>
   </div>
 </div>
