@@ -1,39 +1,451 @@
 <script
-    src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?lang=java&amp;skin=default"></script>
+  src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?lang=java&amp;skin=default"></script>
 
 <!-- Start: 2 Rows 1+2 Columns -->
 <div>
-    <div class="container-fluid">
-        <div class="row text-center">
-            <div class="col-md-12 text-center" style="background-color: rgb(20,255,0);">
-                <h1 class="text-center text-dark" style="padding-top: 5px;"><strong id="cstitle">Android
-                        TextView</strong></h1>
-            </div>
-        </div>
-        <div class="row" style="padding-top: 5px;">
-            <div class="col-md-6">
-                <div class="alert alert-warning" role="alert"><i class="fas fa-code"></i><span><strong>
-                            xml</strong></span>
-                </div>
-                <p style="padding-left: 20px;">main_activity.xml</p>
-                <pre class="prettyprint">
-
-
-
-        </pre>
-            </div>
-            <div class="col-md-6">
-                <div class="alert alert-warning" role="alert"><i class="fab fa-java"></i><span><strong>
-                            Java</strong></span></div>
-                <p style="padding-left: 20px;">MainActivity.java</p>
-                <pre class="prettyprint">
-
-
-
-
-        </pre>
-            </div>
-        </div>
+  <div class="container-fluid">
+    <div class="row text-center">
+      <div class="col-md-12 text-center" style="background-color: rgb(20,255,0);">
+        <h1 class="text-center text-dark" style="padding-top: 5px;"><strong id="cstitle">Android Connect Nearby WifiDirect Devices</strong></h1>
+      </div>
     </div>
+    <div class="row" style="padding-top: 5px;">
+      <div class="col-md-6">
+        <div class="alert alert-warning" role="alert"><i class="fas fa-code"></i><span><strong> xml</strong></span>
+        </div>
+        <p style="padding-left: 20px;">main_activity.xml</p>
+        <pre class="prettyprint">
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;
+    xmlns:tools=&quot;http://schemas.android.com/tools&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot;
+    android:orientation=&quot;vertical&quot;
+    tools:context=&quot;.MainActivity&quot;&gt;
+    &lt;android.support.v7.widget.RecyclerView
+        android:id=&quot;@+id/idDeviceList&quot;
+        android:background=&quot;?android:selectableItemBackground&quot;
+        android:scrollbars=&quot;vertical&quot;
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;match_parent&quot;/&gt;
+&lt;/LinearLayout&gt;
+        </pre>
+      </div>
+      <div class="col-md-6">
+        <div class="alert alert-warning" role="alert"><i
+            class="fab fa-java"></i><span><strong> Java</strong></span></div>
+        <p style="padding-left: 20px;">MainActivity.java</p>
+        <pre class="prettyprint">
+package com.example.wifidirect;
+
+import android.Manifest;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.IntentFilter;
+import android.content.pm.PackageManager;
+import android.net.wifi.p2p.WifiP2pDevice;
+import android.net.wifi.p2p.WifiP2pManager;
+import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class MainActivity extends AppCompatActivity {
+    WifiP2pManager.Channel channel;
+    WifiP2pManager manager;
+    IntentFilter intentFilter;
+    BroadcastReceiver receiver;
+
+    PeerListAdapter peerListAdapter;
+    List&lt;WIFIDirectDevice&gt; wifiDirectDeviceList = new ArrayList&lt;&gt;();
+
+    private static final int PERMISSIONS_REQUEST_CODE_ACCESS_COARSE_LOCATION = 1001;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        RecyclerView recyclerView = findViewById(R.id.idDeviceList);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
+        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
+        peerListAdapter = new PeerListAdapter(this, wifiDirectDeviceList);
+        recyclerView.setAdapter(peerListAdapter);
+
+
+        manager = (WifiP2pManager) getSystemService(Context.WIFI_P2P_SERVICE);
+        channel = manager.initialize(this, getMainLooper(), null);
+
+        intentFilter = new IntentFilter();
+        // Indicates a change in the Wi-Fi P2P status.
+        intentFilter.addAction(WifiP2pManager.WIFI_P2P_STATE_CHANGED_ACTION);
+        // Indicates a change in the list of available peers.
+        intentFilter.addAction(WifiP2pManager.WIFI_P2P_PEERS_CHANGED_ACTION);
+        // Indicates the state of Wi-Fi P2P connectivity has changed.
+        intentFilter.addAction(WifiP2pManager.WIFI_P2P_CONNECTION_CHANGED_ACTION);
+        // Indicates this device&apos;s details have changed.
+        intentFilter.addAction(WifiP2pManager.WIFI_P2P_THIS_DEVICE_CHANGED_ACTION);
+
+        //Request for RunTime Permission after Android M
+        ActivityCompat.requestPermissions(MainActivity.this,new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, MainActivity.PERMISSIONS_REQUEST_CODE_ACCESS_COARSE_LOCATION);
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        receiver = new WiFiDirectBroadcastReceiver(manager, channel,wifiDirectDeviceList ,this );
+        registerReceiver(receiver, intentFilter);
+
+        manager.discoverPeers(channel, new WifiP2pManager.ActionListener() {
+
+            @Override
+            public void onSuccess() {
+                // Code for when the discovery initiation is successful goes here.
+                // No services have actually been discovered yet, so this method
+                // can often be left blank. Code for peer discovery goes in the
+                // onReceive method, detailed below.
+                Toast.makeText(getApplicationContext(),&quot;Device discovery started successfully&quot;,Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(int reasonCode) {
+                // Code for when the discovery initiation fails goes here.
+                // Alert the user that something went wrong.
+                Toast.makeText(getApplicationContext(),&quot;Device discovery failed&quot;,Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        unregisterReceiver(receiver);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                                            int[] grantResults) {
+        switch (requestCode) {
+            case PERMISSIONS_REQUEST_CODE_ACCESS_COARSE_LOCATION:
+                if  (grantResults[0] != PackageManager.PERMISSION_GRANTED) {
+                    Toast.makeText(this,&quot;Coarse location permission is not granted!&quot;, Toast.LENGTH_SHORT).show();
+                    finish();
+                }
+                break;
+        }
+    }
+
+
+}
+        </pre>
+      </div>
+    </div>
+    <div class="row" style="padding-top: 5px;">
+      <div class="col-md-6">
+        <div class="alert alert-warning" role="alert"><i class="fas fa-code"></i><span><strong> xml</strong></span>
+        </div>
+        <p style="padding-left: 20px;">Manifest.xml</p>
+        <pre class="prettyprint">
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;manifest xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    package=&quot;tutorials.android.com.wifidirect&quot;&gt;
+    &lt;uses-permission android:name=&quot;android.permission.INTERNET&quot; /&gt;
+    &lt;uses-permission android:name=&quot;android.permission.ACCESS_WIFI_STATE&quot; /&gt;
+    &lt;uses-permission android:name=&quot;android.permission.CHANGE_WIFI_STATE&quot; /&gt;
+    &lt;uses-permission android:name=&quot;android.permission.ACCESS_COARSE_LOCATION&quot; /&gt;
+    &lt;application
+        android:allowBackup=&quot;true&quot;
+        android:icon=&quot;@mipmap/ic_launcher&quot;
+        android:label=&quot;@string/app_name&quot;
+        android:supportsRtl=&quot;true&quot;
+        android:theme=&quot;@style/AppTheme&quot;&gt;
+        &lt;activity android:name=&quot;.MainActivity&quot;&gt;
+            &lt;intent-filter&gt;
+                &lt;action android:name=&quot;android.intent.action.MAIN&quot; /&gt;
+
+                &lt;category android:name=&quot;android.intent.category.LAUNCHER&quot; /&gt;
+            &lt;/intent-filter&gt;
+        &lt;/activity&gt;
+    &lt;/application&gt;
+
+&lt;/manifest&gt;
+        </pre>
+      </div>
+      <div class="col-md-6">
+        <div class="alert alert-warning" role="alert"><i
+            class="fab fa-java"></i><span><strong> Java</strong></span></div>
+        <p style="padding-left: 20px;">WifiDirectDevice.java</p>
+        <pre class="prettyprint">
+package com.example.wifidirect;
+
+public class WIFIDirectDevice {
+    private String deviceName;
+    private String deviceAddress;
+
+    public String getDeviceName() {
+        return deviceName;
+    }
+
+    public void setDeviceName(String deviceName) {
+        this.deviceName = deviceName;
+    }
+
+    public String getDeviceAddress() {
+        return deviceAddress;
+    }
+
+    public void setDeviceAddress(String deviceAddress) {
+        this.deviceAddress = deviceAddress;
+    }
+
+    public WIFIDirectDevice(String deviceName, String deviceAddress ) {
+        this.deviceName = deviceName;
+        this.deviceAddress = deviceAddress;
+    }
+}
+        </pre>
+      </div>
+    </div>
+    <div class="row" style="padding-top: 5px;">
+        <div class="col-md-6">
+            <div class="alert alert-warning" role="alert"><i
+                class="fab fa-java"></i><span><strong> Java</strong></span></div>
+            <p style="padding-left: 20px;">WifiAdapter.java</p>
+            <pre class="prettyprint">
+package com.example.wifidirect;
+
+import android.content.Intent;
+import android.net.wifi.p2p.WifiP2pDevice;
+import android.support.annotation.NonNull;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.TextView;
+
+import java.util.List;
+
+public class PeerListAdapter extends RecyclerView.Adapter&lt;PeerListAdapter.MyViewHolder&gt; {
+    List&lt;WIFIDirectDevice&gt; wifiDirectDeviceList = null;
+    MainActivity mainActivity = null;
+    public PeerListAdapter(MainActivity mainActivity, List&lt;WIFIDirectDevice&gt; wifiDirectDeviceList) {
+        this.wifiDirectDeviceList = wifiDirectDeviceList;
+        this.mainActivity = mainActivity;
+    }
+
+    @NonNull
+    @Override
+    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+        View itemView  = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.peers_list_row,viewGroup,false);
+        return new MyViewHolder(itemView);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int i) {
+        final WIFIDirectDevice wifiDirectDevice = wifiDirectDeviceList.get(i);
+        myViewHolder.btName.setText(wifiDirectDevice.getDeviceName());
+        myViewHolder.btAddress.setText(wifiDirectDevice.getDeviceAddress());
+    }
+
+    @Override
+    public int getItemCount() {
+        return wifiDirectDeviceList.size();
+    }
+
+    public class MyViewHolder extends RecyclerView.ViewHolder {
+        public TextView btName, btAddress;
+
+        public MyViewHolder(@NonNull View itemView) {
+            super(itemView);
+            btName = itemView.findViewById(R.id.name);
+            btAddress = itemView.findViewById(R.id.address);
+        }
+    }
+}
+        </pre>
+      </div>
+      <div class="col-md-6">
+        <div class="alert alert-warning" role="alert"><i
+            class="fab fa-java"></i><span><strong> Java</strong></span></div>
+        <p style="padding-left: 20px;">WifiDirectBroadcastReceiver.java</p>
+        <pre class="prettyprint">
+package com.example.wifidirect;
+
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.net.wifi.p2p.WifiP2pDevice;
+import android.net.wifi.p2p.WifiP2pDeviceList;
+import android.net.wifi.p2p.WifiP2pManager;
+import android.widget.Toast;
+
+import java.util.List;
+
+class WiFiDirectBroadcastReceiver extends BroadcastReceiver {
+    WifiP2pManager manager;
+    WifiP2pManager.Channel channel;
+    MainActivity mainActivity;
+    List&lt;WIFIDirectDevice&gt; wifiDirectDeviceList;
+
+    public WiFiDirectBroadcastReceiver(WifiP2pManager manager, WifiP2pManager.Channel channel, List&lt;WIFIDirectDevice&gt; wifiDirectDeviceList, MainActivity mainActivity) {
+        this.manager = manager;
+        this.channel = channel;
+        this.mainActivity = mainActivity;
+        this.wifiDirectDeviceList = wifiDirectDeviceList;
+    }
+
+    @Override
+    public void onReceive(final Context context, Intent intent) {
+        String action = intent.getAction();
+        if (WifiP2pManager.WIFI_P2P_STATE_CHANGED_ACTION.equals(action)) {
+            // Check if Wifi P2P mode is enabled
+            int state = intent.getIntExtra(WifiP2pManager.EXTRA_WIFI_STATE, -1);
+            if (state == WifiP2pManager.WIFI_P2P_STATE_ENABLED) {
+                // Wifi P2P is enabled
+                Toast.makeText(context,&quot;WIFI P2P is Enabled&quot;,Toast.LENGTH_SHORT).show();
+            } else {
+                // Wi-Fi P2P is not enabled
+                Toast.makeText(context,&quot;WIFI P2P is Disabled&quot;,Toast.LENGTH_SHORT).show();
+            }
+        } else if (WifiP2pManager.WIFI_P2P_PEERS_CHANGED_ACTION.equals(action)) {
+            // The peer list has changed!
+
+        } else if (WifiP2pManager.WIFI_P2P_CONNECTION_CHANGED_ACTION.equals(action)) {
+            // Connection state changed
+            if (manager != null) {
+                manager.requestPeers(channel, new WifiP2pManager.PeerListListener(){
+                    @Override
+                    public void onPeersAvailable(WifiP2pDeviceList peerList) {
+                        // Out with the old, in with the new.
+                        wifiDirectDeviceList.clear();
+                        for (WifiP2pDevice device : peerList.getDeviceList())
+                        {
+                            String deviceName = device.deviceName;
+                            String deviceHardwareAddress = device.deviceAddress; // MAC address
+                            WIFIDirectDevice btDevice = new WIFIDirectDevice(deviceName, deviceHardwareAddress);
+                            wifiDirectDeviceList.add(btDevice);
+                        }
+
+                        if (wifiDirectDeviceList.size() == 0) {
+                            //No Device Found
+                            Toast.makeText(context,&quot;No Device Found&quot;,Toast.LENGTH_SHORT).show();
+                        }
+                        mainActivity.peerListAdapter.notifyDataSetChanged();
+                    }
+                });
+            }
+
+        } else if (WifiP2pManager.WIFI_P2P_THIS_DEVICE_CHANGED_ACTION.equals(action)) {
+            //Wifi state changed
+        }
+    }
+
+}
+        </pre>
+      </div>
+    </div>
+    <div class="row" style="padding-top: 5px;">
+      <div class="col-md-6">
+        <div class="alert alert-warning" role="alert"><i class="fas fa-code"></i><span><strong> xml</strong></span>
+        </div>
+        <p style="padding-left: 20px;">peers_list_row.xml</p>
+        <pre class="prettyprint">
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+
+&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;wrap_content&quot;
+    android:layout_margin=&quot;4dp&quot;
+    android:orientation=&quot;vertical&quot;&gt;
+        &lt;TextView
+            android:text=&quot;NAME&quot;
+            android:id=&quot;@+id/name&quot;
+            android:layout_width=&quot;match_parent&quot;
+            android:layout_height=&quot;wrap_content&quot;
+            android:textSize=&quot;18sp&quot;
+            /&gt;
+
+        &lt;TextView
+            android:text=&quot;ADDRESS&quot;
+            android:id=&quot;@+id/address&quot;
+            android:layout_width=&quot;match_parent&quot;
+            android:layout_height=&quot;wrap_content&quot;
+            android:textSize=&quot;20sp&quot;
+            android:textColor=&quot;#0000FF&quot;
+            /&gt;
+
+&lt;/LinearLayout&gt;
+        </pre>
+      </div>
+      <div class="col-md-6">
+        <div class="alert alert-warning" role="alert"><i
+            class="fab fa-java"></i><span><strong> Java</strong></span></div>
+        <p style="padding-left: 20px;">PeerListAdapter.java</p>
+        <pre class="prettyprint">
+package com.example.wifidirect;
+
+import android.content.Intent;
+import android.net.wifi.p2p.WifiP2pDevice;
+import android.support.annotation.NonNull;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.TextView;
+
+import java.util.List;
+
+public class PeerListAdapter extends RecyclerView.Adapter&lt;PeerListAdapter.MyViewHolder&gt; {
+    List&lt;WIFIDirectDevice&gt; wifiDirectDeviceList = null;
+    MainActivity mainActivity = null;
+    public PeerListAdapter(MainActivity mainActivity, List&lt;WIFIDirectDevice&gt; wifiDirectDeviceList) {
+        this.wifiDirectDeviceList = wifiDirectDeviceList;
+        this.mainActivity = mainActivity;
+    }
+
+    @NonNull
+    @Override
+    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+        View itemView  = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.peers_list_row,viewGroup,false);
+        return new MyViewHolder(itemView);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int i) {
+        final WIFIDirectDevice wifiDirectDevice = wifiDirectDeviceList.get(i);
+        myViewHolder.btName.setText(wifiDirectDevice.getDeviceName());
+        myViewHolder.btAddress.setText(wifiDirectDevice.getDeviceAddress());
+    }
+
+    @Override
+    public int getItemCount() {
+        return wifiDirectDeviceList.size();
+    }
+
+    public class MyViewHolder extends RecyclerView.ViewHolder {
+        public TextView btName, btAddress;
+
+        public MyViewHolder(@NonNull View itemView) {
+            super(itemView);
+            btName = itemView.findViewById(R.id.name);
+            btAddress = itemView.findViewById(R.id.address);
+        }
+    }
+}
+        </pre>
+      </div>
+    </div>
+  </div>
 </div>
 <!-- End: 2 Rows 1+2 Columns -->

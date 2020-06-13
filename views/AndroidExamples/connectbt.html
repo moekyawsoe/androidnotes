@@ -6,7 +6,7 @@
   <div class="container-fluid">
     <div class="row text-center">
       <div class="col-md-12 text-center" style="background-color: rgb(20,255,0);">
-        <h1 class="text-center text-dark" style="padding-top: 5px;"><strong id="cstitle">Android TextView</strong></h1>
+        <h1 class="text-center text-dark" style="padding-top: 5px;"><strong id="cstitle">Android Connect Bluetooth Devices</strong></h1>
       </div>
     </div>
     <div class="row" style="padding-top: 5px;">
@@ -15,9 +15,21 @@
         </div>
         <p style="padding-left: 20px;">main_activity.xml</p>
         <pre class="prettyprint">
-
-
-
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;
+    xmlns:tools=&quot;http://schemas.android.com/tools&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot;
+    android:orientation=&quot;vertical&quot;
+    tools:context=&quot;.MainActivity&quot;&gt;
+    &lt;androidx.recyclerview.widget.RecyclerView
+        android:id=&quot;@+id/idBluetoothList&quot;
+        android:background=&quot;?android:selectableItemBackground&quot;
+        android:scrollbars=&quot;vertical&quot;
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;match_parent&quot;/&gt;
+&lt;/LinearLayout&gt;
         </pre>
       </div>
       <div class="col-md-6">
@@ -25,10 +37,455 @@
             class="fab fa-java"></i><span><strong> Java</strong></span></div>
         <p style="padding-left: 20px;">MainActivity.java</p>
         <pre class="prettyprint">
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
+import android.content.Intent;
+import android.os.Bundle;
+import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+
+public class MainActivity extends AppCompatActivity {
+
+    private static final int REQUEST_ENABLE_BT = 101;
+    BluetoothAdapter bluetoothAdapter;
+
+    BTAdapter btAdapter;
+    List&lt;BTDevice&gt; btDeviceList = new ArrayList&lt;&gt;();
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        _fnInitialize();
+        _fnTurnBluetoothOn();
+    }
+
+    private void _fnInitialize() {
+        bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+
+        RecyclerView recyclerView = findViewById(R.id.idBluetoothList);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
+        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
+
+        btAdapter = new BTAdapter(this);
+        recyclerView.setAdapter(btAdapter);
+    }
+
+
+    private void _fnTurnBluetoothOn() {
+        if (bluetoothAdapter == null) {
+            // Device does not support Bluetooth
+            Toast.makeText(this, &quot;Bluetooth not supported&quot;, Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (!bluetoothAdapter.isEnabled()) {
+            Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+            startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
+        } else {
+            _fnGetPairedDevice();
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_ENABLE_BT) {
+            if (resultCode == RESULT_OK) {
+                //Permission to access Bluetooth Granted
+                _fnGetPairedDevice();
+            } else {
+                //Permission to access Bluetooth Denied
+                Toast.makeText(getApplicationContext(), &quot;Permission to access Bluetooth Denied&quot;, Toast.LENGTH_SHORT).show();
+            }
+
+        }
+    }
+
+    private void _fnGetPairedDevice() {
+        Set&lt;BluetoothDevice&gt; pairedDevices = bluetoothAdapter.getBondedDevices();
+
+        if (pairedDevices.size() &gt; 0) {
+            // There are paired devices. Get the name and address of each paired device.
+            for (BluetoothDevice device : pairedDevices) {
+                String deviceName = device.getName();
+                String deviceHardwareAddress = device.getAddress(); // MAC address
+                BTDevice btDevice = new BTDevice(deviceName, deviceHardwareAddress);
+                btDeviceList.add(btDevice);
+            }
+        }
+        btAdapter.notifyDataSetChanged();
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
+}
+        </pre>
+      </div>
+    </div>
+    <div class="row" style="padding-top: 5px;">
+      <div class="col-md-6">
+        <div class="alert alert-warning" role="alert"><i
+            class="fab fa-java"></i><span><strong> Java</strong></span></div>
+        <p style="padding-left: 20px;">BTDevice.java</p>
+        <pre class="prettyprint">
+public class BTDevice {
+  private String deviceName , deviceAddress;
+
+  public BTDevice(String deviceName, String deviceAddress) {
+      this.deviceName = deviceName;
+      this.deviceAddress = deviceAddress;
+  }
+
+  public String getDeviceName() {
+      return deviceName;
+  }
+
+  public void setDeviceName(String deviceName) {
+      this.deviceName = deviceName;
+  }
+
+  public String getDeviceAddress() {
+      return deviceAddress;
+  }
+
+  public void setDeviceAddress(String deviceAddress) {
+      this.deviceAddress = deviceAddress;
+  }
+}
+        </pre>
+      </div>
+      <div class="col-md-6">
+        <div class="alert alert-warning" role="alert"><i
+            class="fab fa-java"></i><span><strong> Java</strong></span></div>
+        <p style="padding-left: 20px;">BTAdapter.java</p>
+        <pre class="prettyprint">
+import android.bluetooth.BluetoothAdapter;
+import android.content.Intent;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.List;
+
+public class BTAdapter extends RecyclerView.Adapter&lt;BTAdapter.MyViewHolder&gt; {
+    List&lt;BTDevice&gt; btDeviceList;
+    MainActivity mainActivity;
+    BTChatService btChatService;
+
+
+    public BTAdapter(MainActivity mainActivity) {
+        this.mainActivity = mainActivity;
+        btDeviceList = mainActivity.btDeviceList;
+        btChatService = new BTChatService(mainActivity);
+        btChatService.onStart();
+    }
+
+    @NonNull
+    @Override
+    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+        View itemView  = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.bluetooth_list_row,viewGroup,false);
+        return new MyViewHolder(itemView);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, final int i) {
+        final BTDevice btDevice = btDeviceList.get(i);
+        myViewHolder.btName.setText(btDevice.getDeviceName());
+        myViewHolder.btAddress.setText(btDevice.getDeviceAddress());
+        myViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                btChatService.onConnect(mainActivity.bluetoothAdapter.getRemoteDevice(btDevice.getDeviceAddress()));
+            }
+        });
+
+
+
+    }
+
+    @Override
+    public int getItemCount() {
+        return btDeviceList.size();
+    }
 
 
 
 
+    public class MyViewHolder extends RecyclerView.ViewHolder{
+        public TextView btName,btAddress;
+        public ImageButton pairBtn;
+        public MyViewHolder(@NonNull View itemView) {
+            super(itemView);
+            btName = itemView.findViewById(R.id.name);
+            btAddress = itemView.findViewById(R.id.address);
+
+        }
+    }
+}
+        </pre>
+      </div>
+    </div>
+    <div class="row" style="padding-top: 5px;">
+      <div class="col-md-6">
+        <div class="alert alert-warning" role="alert"><i
+            class="fab fa-java"></i><span><strong> Java</strong></span></div>
+        <p style="padding-left: 20px;">BTChatService.java</p>
+        <pre class="prettyprint">
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothServerSocket;
+import android.bluetooth.BluetoothSocket;
+import android.content.Context;
+import android.os.Handler;
+import android.util.Log;
+import android.view.View;
+import android.widget.Toast;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.UUID;
+
+/**
+  * This class does all the work for setting up and managing Bluetooth
+  * connections with other devices. It has a thread that listens for
+  * incoming connections, a thread for connecting with a device, and a
+  * thread for performing data transmissions when connected.
+  */
+public class BTChatService {
+    // Name for the SDP record when creating server socket
+    private static final String NAME_SECURE = "SecureBTChat";
+
+    // Unique UUID for this application
+    private static final UUID MY_UUID_SECURE = UUID.fromString("fa87c0d0-afac-11de-8a39-0800200c9a66");
+
+
+    // Member fields
+    MainActivity mainActivity;
+    BluetoothAdapter bluetoothAdapter;
+
+    private ServerThread serverThread;
+    private ClientThread clientThread;
+
+
+
+    public BTChatService(MainActivity mainActivity) {
+        this.mainActivity = mainActivity;
+        bluetoothAdapter = mainActivity.bluetoothAdapter;
+    }
+
+    public void onStart(){
+        if (serverThread != null) {
+            serverThread.cancel();
+            serverThread = null;
+        }
+
+        if (clientThread != null) {
+            clientThread.cancel();
+            clientThread = null;
+        }
+
+
+
+        serverThread = new ServerThread();
+        serverThread.start();
+
+    }
+
+    void onConnect(BluetoothDevice device){
+
+            if (clientThread != null) {
+                clientThread.cancel();
+                clientThread = null;
+            }
+
+
+
+        clientThread = new ClientThread(device);
+        clientThread.start();
+    }
+
+    private void manageConnection() {
+        if(serverThread != null){
+            serverThread.cancel();
+        }
+
+        mainActivity.runOnUiThread(new Runnable() {
+            public void run() {
+                Toast.makeText(mainActivity, "A connection has been accepted.",
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+
+    public void onStop(){
+        if (serverThread != null) {
+            serverThread.cancel();
+            serverThread = null;
+        }
+        if (clientThread != null) {
+            clientThread.cancel();
+            clientThread = null;
+        }
+    }
+
+
+
+    private class ClientThread extends Thread {
+        private final BluetoothSocket bluetoothSocket;
+        private final BluetoothDevice bluetoothDevice;
+
+        ClientThread(BluetoothDevice device) {
+            BluetoothSocket tmp = null;
+            bluetoothDevice = device;
+
+            try {
+                // Get a BluetoothSocket to connect with the given BluetoothDevice.
+                // MY_UUID is the app's UUID string, also used in the server code.
+                tmp = bluetoothDevice.createRfcommSocketToServiceRecord(MY_UUID_SECURE);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            bluetoothSocket = tmp;
+
+        }
+
+        public void run() {
+            // Cancel discovery because it otherwise slows down the connection.
+            bluetoothAdapter.cancelDiscovery();
+
+            try {
+                // Connect to the remote device through the socket. This call blocks
+                // until it succeeds or throws an exception.
+                bluetoothSocket.connect();
+            } catch (IOException connectException) {
+                // Unable to connect; close the socket and return.
+                connectException.printStackTrace();
+                try {
+                    bluetoothSocket.close();
+                } catch (IOException closeException) {
+                    closeException.printStackTrace();
+                }
+
+            }
+
+            manageConnection();
+        }
+
+        // Closes the client socket and causes the thread to finish.
+        void cancel() {
+            try {
+                bluetoothSocket.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+
+
+    private class ServerThread extends Thread {
+        private final BluetoothServerSocket bluetoothServerSocket;
+
+        ServerThread() {
+            BluetoothServerSocket tmp = null;
+            try {
+                // MY_UUID is the app's UUID string, also used by the client code.
+                tmp = bluetoothAdapter.listenUsingRfcommWithServiceRecord(NAME_SECURE, MY_UUID_SECURE);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            bluetoothServerSocket = tmp;
+        }
+
+        public void run() {
+            BluetoothSocket bluetoothSocket = null;
+            // Keep listening until exception occurs or a bluetoothSocket is returned.
+            while (true) {
+                try {
+                    bluetoothSocket = bluetoothServerSocket.accept();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    break;
+                }
+
+                if (bluetoothSocket != null) {
+                    // A connection was accepted.
+                    manageConnection();
+                    try {
+                        bluetoothServerSocket.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+                }
+            }
+        }
+
+        // Closes the connect socket and causes the thread to finish.
+        void cancel() {
+            try {
+                bluetoothServerSocket.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+}
+        </pre>
+      </div>
+      <div class="col-md-6">
+        <div class="alert alert-warning" role="alert"><i class="fas fa-code"></i><span><strong> xml</strong></span>
+        </div>
+        <p style="padding-left: 20px;">Manifest.xml</p>
+        <pre class="prettyprint">
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;manifest xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    package=&quot;com.example.bluetooth&quot;&gt;
+
+    &lt;uses-permission android:name=&quot;android.permission.BLUETOOTH&quot; /&gt;
+    &lt;uses-permission android:name=&quot;android.permission.BLUETOOTH_ADMIN&quot; /&gt;
+    &lt;uses-permission android:name=&quot;android.permission.ACCESS_COARSE_LOCATION&quot; /&gt;
+
+    &lt;application
+        android:allowBackup=&quot;true&quot;
+        android:icon=&quot;@mipmap/ic_launcher&quot;
+        android:label=&quot;@string/app_name&quot;
+        android:roundIcon=&quot;@mipmap/ic_launcher_round&quot;
+        android:supportsRtl=&quot;true&quot;
+        android:theme=&quot;@style/AppTheme&quot;&gt;
+        &lt;activity android:name=&quot;.ChatActivity&quot;&gt;&lt;/activity&gt;
+        &lt;activity android:name=&quot;.MainActivity&quot;&gt;
+            &lt;intent-filter&gt;
+                &lt;action android:name=&quot;android.intent.action.MAIN&quot; /&gt;
+
+                &lt;category android:name=&quot;android.intent.category.LAUNCHER&quot; /&gt;
+            &lt;/intent-filter&gt;
+        &lt;/activity&gt;
+    &lt;/application&gt;
+
+&lt;/manifest&gt;
         </pre>
       </div>
     </div>
