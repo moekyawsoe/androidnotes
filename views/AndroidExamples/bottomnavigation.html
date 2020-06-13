@@ -6,7 +6,7 @@
   <div class="container-fluid">
     <div class="row text-center">
       <div class="col-md-12 text-center" style="background-color: rgb(20,255,0);">
-        <h1 class="text-center text-dark" style="padding-top: 5px;"><strong id="cstitle">Android TextView</strong></h1>
+        <h1 class="text-center text-dark" style="padding-top: 5px;"><strong id="cstitle">Android BottomNavigation</strong></h1>
       </div>
     </div>
     <div class="row" style="padding-top: 5px;">
@@ -15,20 +15,102 @@
         </div>
         <p style="padding-left: 20px;">main_activity.xml</p>
         <pre class="prettyprint">
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;RelativeLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;
+    xmlns:tools=&quot;http://schemas.android.com/tools&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot;
+    tools:context=&quot;mks.example.com.materialdesign.MainActivity&quot;&gt;
 
+    &lt;TextView
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:text=&quot;Bottom Navigation&quot;
+        android:gravity=&quot;center&quot;
+        android:textSize=&quot;20sp&quot;/&gt;
 
-
+    &lt;android.support.design.widget.BottomNavigationView
+        android:id=&quot;@+id/navigation&quot;
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:layout_alignParentBottom=&quot;true&quot;
+        android:background=&quot;@color/colorPrimary&quot;
+        app:itemIconTint=&quot;#FFFFFF&quot;
+        app:itemTextColor=&quot;#FFFFFF&quot;
+        app:menu=&quot;@menu/bottom_navigation_items&quot;/&gt;
+&lt;/RelativeLayout&gt;
         </pre>
       </div>
       <div class="col-md-6">
         <div class="alert alert-warning" role="alert"><i
-            class="fab fa-java"></i><span><strong> Java</strong>.</span></div>
+            class="fab fa-java"></i><span><strong> Java</strong></span></div>
         <p style="padding-left: 20px;">MainActivity.java</p>
         <pre class="prettyprint">
+import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
+import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
+import android.widget.Toast;
 
+public class MainActivity extends AppCompatActivity {
+    
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        BottomNavigationView bottomNavigationView = (BottomNavigationView)
+                findViewById(R.id.navigation);
 
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.action_item1:
+                        //Write the logic of Item1 Click Here
+                        Toast.makeText(getApplication(),"Item 1 Clicked",Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.action_item2:
+                        //Write the logic of Item1 Click Here
+                        Toast.makeText(getApplication(),"Item 2 Clicked",Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.action_item3:
+                        //Write the logic of Item1 Click Here
+                        Toast.makeText(getApplication(),"Item 3 Clicked",Toast.LENGTH_SHORT).show();
+                        break;
+                }
+                return true;
+            }
+        });
 
+    }
 
+}
+        </pre>
+      </div>
+    </div>
+    <div class="row" style="padding-top: 5px;">
+      <div class="col-md-6">
+        <div class="alert alert-warning" role="alert"><i class="fas fa-code"></i><span><strong> xml</strong></span>
+        </div>
+        <p style="padding-left: 20px;">bottom_navigation_items.xml</p>
+        <pre class="prettyprint">
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;menu xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;&gt;
+    &lt;item
+        android:id=&quot;@+id/action_item1&quot;
+        android:icon=&quot;@drawable/ic_chevron_left_black_24dp&quot;
+        android:title=&quot;item_1&quot;/&gt;
+    &lt;item
+        android:id=&quot;@+id/action_item2&quot;
+        android:icon=&quot;@drawable/ic_lightbulb_outline_black_24dp&quot;
+        android:title=&quot;item_2&quot;/&gt;
+    &lt;item
+        android:id=&quot;@+id/action_item3&quot;
+        android:icon=&quot;@drawable/ic_chevron_right_black_24dp&quot;
+        android:title=&quot;item_3&quot;/&gt;
+&lt;/menu&gt;
         </pre>
       </div>
     </div>

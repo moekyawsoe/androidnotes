@@ -6,7 +6,7 @@
   <div class="container-fluid">
     <div class="row text-center">
       <div class="col-md-12 text-center" style="background-color: rgb(20,255,0);">
-        <h1 class="text-center text-dark" style="padding-top: 5px;"><strong id="cstitle">Android TextView</strong></h1>
+        <h1 class="text-center text-dark" style="padding-top: 5px;"><strong id="cstitle">Android NavigationDrawer</strong></h1>
       </div>
     </div>
     <div class="row" style="padding-top: 5px;">
@@ -15,20 +15,256 @@
         </div>
         <p style="padding-left: 20px;">main_activity.xml</p>
         <pre class="prettyprint">
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;android.support.v4.widget.DrawerLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;
+    xmlns:tools=&quot;http://schemas.android.com/tools&quot;
+    android:id=&quot;@+id/drawer_layout&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot;
+    android:fitsSystemWindows=&quot;true&quot;
+    tools:openDrawer=&quot;start&quot;&gt;
 
+    &lt;include
+        layout=&quot;@layout/swipe_layout&quot;
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;match_parent&quot; /&gt;
 
+    &lt;android.support.design.widget.NavigationView
+        android:id=&quot;@+id/nav_view&quot;
+        android:layout_width=&quot;wrap_content&quot;
+        android:layout_height=&quot;match_parent&quot;
+        android:layout_gravity=&quot;start&quot;
+        android:fitsSystemWindows=&quot;true&quot;
+        app:headerLayout=&quot;@layout/nav_header_main&quot;
+        app:menu=&quot;@menu/activity_menu_drawer&quot; /&gt;
 
+&lt;/android.support.v4.widget.DrawerLayout&gt;
         </pre>
       </div>
       <div class="col-md-6">
         <div class="alert alert-warning" role="alert"><i
-            class="fab fa-java"></i><span><strong> Java</strong>.</span></div>
+            class="fab fa-java"></i><span><strong> Java</strong></span></div>
         <p style="padding-left: 20px;">MainActivity.java</p>
         <pre class="prettyprint">
+import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
+import android.widget.Toast;
+
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+
+    public Toolbar toolbar;
+    public TabLayout tabLayout;
+    public ViewPager viewPager;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(true);
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+    }
 
 
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
 
+        if (id == R.id.idItem1) {
+            //Write Your Logic Here
+            Toast.makeText(this, item.getTitle(), Toast.LENGTH_SHORT).show();
+        } else if (id == R.id.idItem2) {
+            //Write Your Logic Here
+            Toast.makeText(this, item.getTitle(), Toast.LENGTH_SHORT).show();
 
+        } else if (id == R.id.idItem3) {
+            //Write Your Logic Here
+            Toast.makeText(this, item.getTitle(), Toast.LENGTH_SHORT).show();
+        } else if (id == R.id.idItem4) {
+            //Write Your Logic Here
+            Toast.makeText(this, item.getTitle(), Toast.LENGTH_SHORT).show();
+        } else if (id == R.id.idItem5) {
+            //Write Your Logic Here
+            Toast.makeText(this, item.getTitle(), Toast.LENGTH_SHORT).show();
+        } else if (id == R.id.idItem6) {
+            //Write Your Logic Here
+            Toast.makeText(this, item.getTitle(), Toast.LENGTH_SHORT).show();
+        } else if (id == R.id.idItem7) {
+            //Write Your Logic Here
+            Toast.makeText(this, item.getTitle(), Toast.LENGTH_SHORT).show();
+        }
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
+}
+        </pre>
+      </div>
+    </div>
+    <div class="row" style="padding-top: 5px;">
+      <div class="col-md-6">
+        <div class="alert alert-warning" role="alert"><i class="fas fa-code"></i><span><strong> xml</strong></span>
+        </div>
+        <p style="padding-left: 20px;">nav_header_main.xml</p>
+        <pre class="prettyprint">
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;wrap_content&quot;
+    android:background=&quot;@color/colorAccent&quot;
+    android:gravity=&quot;bottom&quot;
+    android:orientation=&quot;vertical&quot;
+    android:padding=&quot;16dp&quot;
+    android:theme=&quot;@style/ThemeOverlay.AppCompat.Dark&quot;&gt;
+
+    &lt;ImageView
+        android:id=&quot;@+id/imageView&quot;
+        android:layout_width=&quot;wrap_content&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:paddingTop=&quot;16dp&quot;
+        android:src=&quot;@mipmap/ic_launcher&quot; /&gt;
+
+    &lt;TextView
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:paddingTop=&quot;16dp&quot;
+        android:text=&quot;Android Tutorials&quot;
+        android:textColor=&quot;#000000&quot;
+        android:textAppearance=&quot;@style/TextAppearance.AppCompat.Body1&quot; /&gt;
+
+    &lt;TextView
+        android:id=&quot;@+id/textView&quot;
+        android:layout_width=&quot;wrap_content&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:textColor=&quot;#000000&quot;
+        android:text=&quot;mks.toshniwal@gmail.com&quot; /&gt;
+
+&lt;/LinearLayout&gt;
+        </pre>
+      </div>
+      <div class="col-md-6">
+        <div class="alert alert-warning" role="alert"><i class="fas fa-code"></i><span><strong> xml</strong></span>
+        </div>
+        <p style="padding-left: 20px;">swipe_layout.xml</p>
+        <pre class="prettyprint">
+&lt;android.support.design.widget.CoordinatorLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;
+android:layout_width=&quot;match_parent&quot;
+android:layout_height=&quot;match_parent&quot;&gt;
+
+&lt;LinearLayout
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot;
+    android:orientation=&quot;vertical&quot;&gt;
+
+    &lt;android.support.design.widget.AppBarLayout
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:background=&quot;?attr/colorAccent&quot;&gt;
+
+        &lt;android.support.v7.widget.Toolbar
+            android:id=&quot;@+id/toolbar&quot;
+            android:layout_width=&quot;match_parent&quot;
+            android:layout_height=&quot;?attr/actionBarSize&quot;
+            android:background=&quot;?attr/colorAccent&quot;
+            app:layout_scrollFlags=&quot;scroll|enterAlways&quot; /&gt;
+
+    &lt;/android.support.design.widget.AppBarLayout&gt;
+
+    &lt;LinearLayout
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;match_parent&quot;&gt;
+
+        &lt;TextView
+            android:layout_width=&quot;match_parent&quot;
+            android:layout_height=&quot;wrap_content&quot;
+            android:gravity=&quot;center&quot;
+            android:text=&quot;Example of Navigation Drawer&quot;
+            android:textSize=&quot;20sp&quot; /&gt;
+    &lt;/LinearLayout&gt;
+
+&lt;/LinearLayout&gt;
+
+&lt;/android.support.design.widget.CoordinatorLayout&gt;
+        </pre>
+      </div>
+    </div>
+    <div class="row" style="padding-top: 5px;">
+      <div class="col-md-6">
+        <div class="alert alert-warning" role="alert"><i class="fas fa-code"></i><span><strong> xml</strong></span>
+        </div>
+        <p style="padding-left: 20px;">activity_menu_drawer.xml</p>
+        <pre class="prettyprint">
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;menu xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;&gt;
+
+    &lt;group android:checkableBehavior=&quot;single&quot;&gt;
+        &lt;item
+            android:id=&quot;@+id/idItem1&quot;
+            android:icon=&quot;@drawable/ic_android_black_24dp&quot;
+            android:title=&quot;Item1&quot; /&gt;
+        &lt;item
+            android:id=&quot;@+id/idItem2&quot;
+            android:icon=&quot;@drawable/ic_stars_black_24dp&quot;
+            android:title=&quot;Item2&quot; /&gt;
+        &lt;item
+            android:id=&quot;@+id/idItem3&quot;
+            android:icon=&quot;@drawable/ic_monetization_on_white_24px&quot;
+            android:title=&quot;Item3&quot; /&gt;
+
+        &lt;item
+            android:id=&quot;@+id/idItem4&quot;
+            android:icon=&quot;@drawable/ic_feedback_black_24dp&quot;
+            android:title=&quot;Item4&quot; /&gt;
+        &lt;item
+            android:id=&quot;@+id/idItem5&quot;
+            android:icon=&quot;@drawable/ic_dashboard_black_24dp&quot;
+            android:title=&quot;Item5&quot; /&gt;
+
+    &lt;/group&gt;
+
+    &lt;item android:title=&quot;Section2&quot;&gt;
+        &lt;menu&gt;
+
+            &lt;item
+                android:id=&quot;@+id/idItem6&quot;
+                android:icon=&quot;@drawable/ic_menu_send&quot;
+                android:title=&quot;Item6&quot; /&gt;
+        &lt;/menu&gt;
+    &lt;/item&gt;
+
+    &lt;item android:title=&quot;Section3&quot;&gt;
+        &lt;menu&gt;
+            &lt;item
+                android:id=&quot;@+id/idItem7&quot;
+                android:icon=&quot;@drawable/ic_help_black_24px&quot;
+                android:title=&quot;Item7&quot; /&gt;
+        &lt;/menu&gt;
+    &lt;/item&gt;
+
+&lt;/menu&gt;
         </pre>
       </div>
     </div>

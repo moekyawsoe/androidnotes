@@ -6,7 +6,7 @@
   <div class="container-fluid">
     <div class="row text-center">
       <div class="col-md-12 text-center" style="background-color: rgb(20,255,0);">
-        <h1 class="text-center text-dark" style="padding-top: 5px;"><strong id="cstitle">Android OptionMenu</strong></h1>
+        <h1 class="text-center text-dark" style="padding-top: 5px;"><strong id="cstitle">Android Bounce Animation</strong></h1>
       </div>
     </div>
     <div class="row" style="padding-top: 5px;">
@@ -18,17 +18,27 @@
 &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
     xmlns:tools=&quot;http://schemas.android.com/tools&quot;
+    android:id=&quot;@+id/activity_main&quot;
     android:layout_width=&quot;match_parent&quot;
     android:layout_height=&quot;match_parent&quot;
     android:orientation=&quot;vertical&quot;
-    android:padding=&quot;2dp&quot;&gt;
+    tools:context=&quot;.MainActivity&quot;&gt;
 
-    &lt;TextView
-        android:text=&quot;Click the three dots appearing above in ActionBar&quot;
+    &lt;!-- TODO: Update blank fragment layout --&gt;
+    &lt;ImageView
+        android:layout_weight=&quot;4&quot;
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;match_parent&quot;
+        android:id=&quot;@+id/idImageView&quot;
+        android:src=&quot;@mipmap/ic_launcher&quot;/&gt;
+
+    &lt;Button
+        android:layout_margin=&quot;4dp&quot;
         android:layout_width=&quot;match_parent&quot;
         android:layout_height=&quot;wrap_content&quot;
-        android:id=&quot;@+id/textView&quot;
-        style=&quot;@android:style/TextAppearance.DeviceDefault.Large&quot;/&gt;
+        android:id=&quot;@+id/idbtnBounce&quot;
+        android:text=&quot;Bounce&quot; /&gt;
+
 &lt;/LinearLayout&gt;
         </pre>
       </div>
@@ -37,54 +47,33 @@
             class="fab fa-java"></i><span><strong> Java</strong></span></div>
         <p style="padding-left: 20px;">MainActivity.java</p>
         <pre class="prettyprint">
-import android.Manifest;
-import android.content.Context;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.net.Uri;
-import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.Toast;
-
+import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.Button;
+import android.widget.ImageView;
 
 public class MainActivity extends AppCompatActivity {
-    Button btn;
-    EditText numTxt;
-    String sNum;
+    Button btnBounce;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-    }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main,menu);
-        return true;
-    }
+        btnBounce = (Button) findViewById(R.id.idbtnBounce);
+        btnBounce.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ImageView image = (ImageView) findViewById(R.id.idImageView);
+                Animation animation = AnimationUtils.loadAnimation(getApplicationContext(),
+                        R.anim.bounce);
+                image.startAnimation(animation);
+            }
+        });
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.item1:
-                Toast.makeText(this, "Item 1 is Selected", Toast.LENGTH_SHORT).show();
-                return true;
-
-            case R.id.item2:
-                Toast.makeText(this,"Item 2 is Selected",Toast.LENGTH_SHORT).show();
-                return true;
-
-            case R.id.item3:
-                Toast.makeText(this,"Item 3 is Selected",Toast.LENGTH_SHORT).show();
-                return true;
-
-            default:
-                return super.onOptionsItemSelected(item);
-        }
     }
 }
         </pre>
@@ -94,16 +83,24 @@ public class MainActivity extends AppCompatActivity {
       <div class="col-md-6">
         <div class="alert alert-warning" role="alert"><i class="fas fa-code"></i><span><strong> xml</strong></span>
         </div>
-        <p style="padding-left: 20px;">menu_main.xml</p>
+        <p style="padding-left: 20px;">res/anim/bounce.xml</p>
         <pre class="prettyprint">
-&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
-&lt;menu xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;&gt;
-    &lt;item android:id=&quot;@+id/item1&quot; android:title=&quot;Item1&quot;/&gt;
-    &lt;item android:id=&quot;@+id/item2&quot; android:title=&quot;Item2&quot;/&gt;
-    &lt;item android:id=&quot;@+id/item3&quot; android:title=&quot;Item3&quot;/&gt;
-&lt;/menu&gt;
+&lt;set xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+android:fillAfter=&quot;true&quot;
+android:interpolator=&quot;@android:anim/bounce_interpolator&quot;&gt;
+
+&lt;scale
+    android:duration=&quot;1000&quot;
+    android:fromXScale=&quot;1.0&quot;
+    android:fromYScale=&quot;0.0&quot;
+    android:toXScale=&quot;1.0&quot;
+    android:toYScale=&quot;1.0&quot; /&gt;
+
+&lt;/set&gt;
         </pre>
       </div>
+    
+     
     </div>
   </div>
 </div>

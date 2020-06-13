@@ -8,7 +8,7 @@
         style="background-color: rgb(20, 255, 0);"
       >
         <h1 class="text-center text-dark" style="padding-top: 5px;">
-          <strong id="cstitle">Android Together Animation</strong>
+          <strong id="cstitle">Android Sequential Animation</strong>
         </h1>
       </div>
     </div>
@@ -40,8 +40,8 @@
         android:layout_margin=&quot;4dp&quot;
         android:layout_width=&quot;match_parent&quot;
         android:layout_height=&quot;wrap_content&quot;
-        android:id=&quot;@+id/idbtnTogether&quot;
-        android:text=&quot;Together&quot; /&gt;
+        android:id=&quot;@+id/idbtnSequential&quot;
+        android:text=&quot;Sequential&quot; /&gt;
 
 &lt;/LinearLayout&gt;
         </pre>
@@ -61,20 +61,20 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 public class MainActivity extends AppCompatActivity {
-    Button btnTogether;
+    Button btnSequential;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        btnTogether = (Button) findViewById(R.id.idbtnTogether);
-        btnTogether.setOnClickListener(new View.OnClickListener() {
+        btnSequential = (Button) findViewById(R.id.idbtnSequential);
+        btnSequential.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ImageView image = (ImageView) findViewById(R.id.idImageView);
                 Animation animation = AnimationUtils.loadAnimation(getApplicationContext(),
-                        R.anim.together);
+                        R.anim.sequential);
                 image.startAnimation(animation);
             }
         });
@@ -97,39 +97,41 @@ android:interpolator=&quot;@android:anim/linear_interpolator&quot; &gt;
 
 
 &lt;!-- Move --&gt;
-&lt;scale
-    xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
-    android:duration=&quot;4000&quot;
-    android:fromXScale=&quot;1&quot;
-    android:fromYScale=&quot;1&quot;
-    android:pivotX=&quot;50%&quot;
-    android:pivotY=&quot;50%&quot;
-    android:toXScale=&quot;4&quot;
-    android:toYScale=&quot;4&quot; &gt;
-&lt;/scale&gt;
+&lt;translate
+    android:duration=&quot;1000&quot;
+    android:fillAfter=&quot;true&quot;
+    android:fromXDelta=&quot;0%p&quot;
+    android:toXDelta=&quot;25%p&quot; /&gt;
+&lt;translate
+    android:duration=&quot;1000&quot;
+    android:fillAfter=&quot;true&quot;
+    android:fromYDelta=&quot;0%p&quot;
+    android:startOffset=&quot;2000&quot;
+    android:toYDelta=&quot;25%p&quot; /&gt;
+&lt;translate
+    android:duration=&quot;1000&quot;
+    android:fillAfter=&quot;true&quot;
+    android:fromXDelta=&quot;0%p&quot;
+    android:startOffset=&quot;3000&quot;
+    android:toXDelta=&quot;-25%p&quot; /&gt;
 
-&lt;!-- Rotate 180 degrees --&gt;
+&lt;translate
+    android:duration=&quot;1000&quot;
+    android:fillAfter=&quot;true&quot;
+    android:fromYDelta=&quot;0%p&quot;
+    android:startOffset=&quot;4700&quot;
+    android:toYDelta=&quot;-25%p&quot; /&gt;
+&lt;!-- Rotate 360 degrees --&gt;
 &lt;rotate
-    android:duration=&quot;500&quot;
+    android:duration=&quot;1000&quot;
     android:fromDegrees=&quot;0&quot;
+    android:interpolator=&quot;@android:anim/cycle_interpolator&quot;
     android:pivotX=&quot;50%&quot;
     android:pivotY=&quot;50%&quot;
+    android:startOffset=&quot;5000&quot;
     android:repeatCount=&quot;infinite&quot;
     android:repeatMode=&quot;restart&quot;
     android:toDegrees=&quot;360&quot; /&gt;
-
-&lt;!-- Move --&gt;
-&lt;scale
-    xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
-    android:startOffset=&quot;4000&quot;
-    android:duration=&quot;4000&quot;
-    android:fromXScale=&quot;1&quot;
-    android:fromYScale=&quot;1&quot;
-    android:pivotX=&quot;50%&quot;
-    android:pivotY=&quot;50%&quot;
-    android:toXScale=&quot;0.125&quot;
-    android:toYScale=&quot;0.125&quot; &gt;
-&lt;/scale&gt;
 &lt;/set&gt;
         </pre>
       </div>

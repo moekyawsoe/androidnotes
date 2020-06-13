@@ -8,7 +8,7 @@
         style="background-color: rgb(20, 255, 0);"
       >
         <h1 class="text-center text-dark" style="padding-top: 5px;">
-          <strong id="cstitle">Android Together Animation</strong>
+          <strong id="cstitle">Android Blink Animation</strong>
         </h1>
       </div>
     </div>
@@ -19,29 +19,28 @@
         </div>
         <p style="padding-left: 20px;">main_activity.xml</p>
         <pre class="prettyprint">
-&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
-    xmlns:tools=&quot;http://schemas.android.com/tools&quot;
-    android:id=&quot;@+id/activity_main&quot;
+xmlns:tools=&quot;http://schemas.android.com/tools&quot;
+android:id=&quot;@+id/activity_main&quot;
+android:layout_width=&quot;match_parent&quot;
+android:layout_height=&quot;match_parent&quot;
+android:orientation=&quot;vertical&quot;
+tools:context=&quot;.MainActivity&quot;&gt;
+
+&lt;!-- TODO: Update blank fragment layout --&gt;
+&lt;ImageView
+    android:layout_weight=&quot;4&quot;
     android:layout_width=&quot;match_parent&quot;
     android:layout_height=&quot;match_parent&quot;
-    android:orientation=&quot;vertical&quot;
-    tools:context=&quot;.MainActivity&quot;&gt;
+    android:id=&quot;@+id/idImageView&quot;
+    android:src=&quot;@mipmap/ic_launcher&quot;/&gt;
 
-    &lt;!-- TODO: Update blank fragment layout --&gt;
-    &lt;ImageView
-        android:layout_weight=&quot;4&quot;
-        android:layout_width=&quot;match_parent&quot;
-        android:layout_height=&quot;match_parent&quot;
-        android:id=&quot;@+id/idImageView&quot;
-        android:src=&quot;@mipmap/ic_launcher&quot;/&gt;
-
-    &lt;Button
-        android:layout_margin=&quot;4dp&quot;
-        android:layout_width=&quot;match_parent&quot;
-        android:layout_height=&quot;wrap_content&quot;
-        android:id=&quot;@+id/idbtnTogether&quot;
-        android:text=&quot;Together&quot; /&gt;
+&lt;Button
+    android:layout_margin=&quot;4dp&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;wrap_content&quot;
+    android:id=&quot;@+id/idbtnBlink&quot;
+    android:text=&quot;Blink&quot; /&gt;
 
 &lt;/LinearLayout&gt;
         </pre>
@@ -61,20 +60,20 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 public class MainActivity extends AppCompatActivity {
-    Button btnTogether;
+    Button btnBlink;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        btnTogether = (Button) findViewById(R.id.idbtnTogether);
-        btnTogether.setOnClickListener(new View.OnClickListener() {
+        btnBlink = (Button) findViewById(R.id.idbtnBlink);
+        btnBlink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ImageView image = (ImageView) findViewById(R.id.idImageView);
                 Animation animation = AnimationUtils.loadAnimation(getApplicationContext(),
-                        R.anim.together);
+                        R.anim.blink);
                 image.startAnimation(animation);
             }
         });
@@ -91,45 +90,13 @@ public class MainActivity extends AppCompatActivity {
         </div>
         <p style="padding-left: 20px;">res/anim/blink.xml</p>
         <pre class="prettyprint">
-&lt;set xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
-android:fillAfter=&quot;true&quot;
-android:interpolator=&quot;@android:anim/linear_interpolator&quot; &gt;
-
-
-&lt;!-- Move --&gt;
-&lt;scale
-    xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
-    android:duration=&quot;4000&quot;
-    android:fromXScale=&quot;1&quot;
-    android:fromYScale=&quot;1&quot;
-    android:pivotX=&quot;50%&quot;
-    android:pivotY=&quot;50%&quot;
-    android:toXScale=&quot;4&quot;
-    android:toYScale=&quot;4&quot; &gt;
-&lt;/scale&gt;
-
-&lt;!-- Rotate 180 degrees --&gt;
-&lt;rotate
+&lt;set xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;&gt;
+&lt;alpha android:fromAlpha=&quot;0.0&quot;
+    android:toAlpha=&quot;1.0&quot;
+    android:interpolator=&quot;@android:anim/accelerate_interpolator&quot;
     android:duration=&quot;500&quot;
-    android:fromDegrees=&quot;0&quot;
-    android:pivotX=&quot;50%&quot;
-    android:pivotY=&quot;50%&quot;
-    android:repeatCount=&quot;infinite&quot;
-    android:repeatMode=&quot;restart&quot;
-    android:toDegrees=&quot;360&quot; /&gt;
-
-&lt;!-- Move --&gt;
-&lt;scale
-    xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
-    android:startOffset=&quot;4000&quot;
-    android:duration=&quot;4000&quot;
-    android:fromXScale=&quot;1&quot;
-    android:fromYScale=&quot;1&quot;
-    android:pivotX=&quot;50%&quot;
-    android:pivotY=&quot;50%&quot;
-    android:toXScale=&quot;0.125&quot;
-    android:toYScale=&quot;0.125&quot; &gt;
-&lt;/scale&gt;
+    android:repeatMode=&quot;reverse&quot;
+    android:repeatCount=&quot;infinite&quot;/&gt;
 &lt;/set&gt;
         </pre>
       </div>

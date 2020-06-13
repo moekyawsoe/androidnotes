@@ -1,17 +1,21 @@
-<script
-  src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?lang=java&amp;skin=default"></script>
+<script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?lang=java&amp;skin=default"></script>
 
-<!-- Start: 2 Rows 1+2 Columns -->
 <div>
   <div class="container-fluid">
     <div class="row text-center">
-      <div class="col-md-12 text-center" style="background-color: rgb(20,255,0);">
-        <h1 class="text-center text-dark" style="padding-top: 5px;"><strong id="cstitle">Android Move Animation</strong></h1>
+      <div
+        class="col-md-12 text-center"
+        style="background-color: rgb(20, 255, 0);"
+      >
+        <h1 class="text-center text-dark" style="padding-top: 5px;">
+          <strong id="cstitle">Android Slide Animation</strong>
+        </h1>
       </div>
     </div>
     <div class="row" style="padding-top: 5px;">
       <div class="col-md-6">
-        <div class="alert alert-warning" role="alert"><i class="fas fa-code"></i><span><strong> xml</strong></span>
+        <div class="alert alert-warning" role="alert">
+          <i class="fas fa-code"></i><span><strong> xml</strong></span>
         </div>
         <p style="padding-left: 20px;">main_activity.xml</p>
         <pre class="prettyprint">
@@ -35,33 +39,34 @@
         android:layout_margin=&quot;4dp&quot;
         android:layout_width=&quot;match_parent&quot;
         android:layout_height=&quot;wrap_content&quot;
-        android:id=&quot;@+id/idbtnMoveLeft&quot;
-        android:text=&quot;MoveLeft&quot; /&gt;
+        android:id=&quot;@+id/idbtnSlideLeft&quot;
+        android:text=&quot;SlideLeft&quot; /&gt;
     &lt;Button
         android:layout_margin=&quot;4dp&quot;
         android:layout_width=&quot;match_parent&quot;
         android:layout_height=&quot;wrap_content&quot;
-        android:id=&quot;@+id/idbtnMoveRight&quot;
-        android:text=&quot;MoveRight&quot; /&gt;
+        android:id=&quot;@+id/idbtnSlideRight&quot;
+        android:text=&quot;SlideRight&quot; /&gt;
     &lt;Button
         android:layout_margin=&quot;4dp&quot;
         android:layout_width=&quot;match_parent&quot;
         android:layout_height=&quot;wrap_content&quot;
-        android:id=&quot;@+id/idbtnMoveUp&quot;
-        android:text=&quot;MoveUp&quot; /&gt;
+        android:id=&quot;@+id/idbtnSlideUp&quot;
+        android:text=&quot;SlideUp&quot; /&gt;
     &lt;Button
         android:layout_margin=&quot;4dp&quot;
         android:layout_width=&quot;match_parent&quot;
         android:layout_height=&quot;wrap_content&quot;
-        android:id=&quot;@+id/idbtnMoveDown&quot;
-        android:text=&quot;MoveDown&quot; /&gt;
+        android:id=&quot;@+id/idbtnSlideDown&quot;
+        android:text=&quot;SlideDown&quot; /&gt;
 
 &lt;/LinearLayout&gt;
         </pre>
       </div>
       <div class="col-md-6">
-        <div class="alert alert-warning" role="alert"><i
-            class="fab fa-java"></i><span><strong> Java</strong></span></div>
+        <div class="alert alert-warning" role="alert">
+          <i class="fab fa-java"></i><span><strong> Java</strong></span>
+        </div>
         <p style="padding-left: 20px;">MainActivity.java</p>
         <pre class="prettyprint">
 import android.support.v7.app.AppCompatActivity;
@@ -73,49 +78,49 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 public class MainActivity extends AppCompatActivity {
-    Button btnMoveUp,btnMoveDown,btnMoveLeft,btnMoveRight;
+    Button btnSlideUp,btnSlideDown,btnSlideLeft,btnSlideRight;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        btnMoveLeft = (Button) findViewById(R.id.idbtnMoveLeft);
-        btnMoveLeft.setOnClickListener(new View.OnClickListener() {
+        btnSlideLeft = (Button) findViewById(R.id.idbtnSlideLeft);
+        btnSlideLeft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ImageView image = (ImageView) findViewById(R.id.idImageView);
                 Animation animation = AnimationUtils.loadAnimation(getApplicationContext(),
-                        R.anim.move_left);
+                        R.anim.slide_left);
                 image.startAnimation(animation);
             }
         });
-        btnMoveRight = (Button) findViewById(R.id.idbtnMoveRight);
-        btnMoveRight.setOnClickListener(new View.OnClickListener() {
+        btnSlideRight = (Button) findViewById(R.id.idbtnSlideRight);
+        btnSlideRight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ImageView image = (ImageView) findViewById(R.id.idImageView);
                 Animation animation = AnimationUtils.loadAnimation(getApplicationContext(),
-                        R.anim.move_right);
+                        R.anim.slide_right);
                 image.startAnimation(animation);
             }
         });
-        btnMoveUp = (Button) findViewById(R.id.idbtnMoveUp);
-        btnMoveUp.setOnClickListener(new View.OnClickListener() {
+        btnSlideUp = (Button) findViewById(R.id.idbtnSlideUp);
+        btnSlideUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ImageView image = (ImageView) findViewById(R.id.idImageView);
                 Animation animation = AnimationUtils.loadAnimation(getApplicationContext(),
-                        R.anim.move_top);
+                        R.anim.slide_top);
                 image.startAnimation(animation);
             }
         });
-        btnMoveDown = (Button) findViewById(R.id.idbtnMoveDown);
-        btnMoveDown.setOnClickListener(new View.OnClickListener() {
+        btnSlideDown = (Button) findViewById(R.id.idbtnSlideDown);
+        btnSlideDown.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ImageView image = (ImageView) findViewById(R.id.idImageView);
                 Animation animation = AnimationUtils.loadAnimation(getApplicationContext(),
-                        R.anim.move_bottom);
+                        R.anim.slide_bottom);
                 image.startAnimation(animation);
             }
         });
@@ -127,82 +132,86 @@ public class MainActivity extends AppCompatActivity {
     </div>
     <div class="row" style="padding-top: 5px;">
       <div class="col-md-6">
-        <div class="alert alert-warning" role="alert"><i class="fas fa-code"></i><span><strong> xml</strong></span>
+        <div class="alert alert-warning" role="alert">
+          <i class="fas fa-code"></i><span><strong> xml</strong></span>
         </div>
-        <p style="padding-left: 20px;">res/anim/move_left.xml</p>
+        <p style="padding-left: 20px;">res/anim/slide_left.xml</p>
         <pre class="prettyprint">
-&lt;set
-xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
-android:interpolator=&quot;@android:anim/linear_interpolator&quot;
+&lt;set xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
 android:fillAfter=&quot;true&quot;&gt;
 
-&lt;translate
-    android:fromXDelta=&quot;100%p&quot;
-    android:toXDelta=&quot;0%p&quot;
-    android:duration=&quot;3000&quot; /&gt;
+&lt;scale
+    android:duration=&quot;2000&quot;
+    android:fromXScale=&quot;1.0&quot;
+    android:fromYScale=&quot;1.0&quot;
+    android:toXScale=&quot;0.0&quot;
+    android:toYScale=&quot;1.0&quot; /&gt;
 
 &lt;/set&gt;
         </pre>
       </div>
       <div class="col-md-6">
-        <div class="alert alert-warning" role="alert"><i class="fas fa-code"></i><span><strong> xml</strong></span>
+        <div class="alert alert-warning" role="alert">
+          <i class="fas fa-code"></i><span><strong> xml</strong></span>
         </div>
-        <p style="padding-left: 20px;">res/anim/move_right.xml</p>
+        <p style="padding-left: 20px;">res/anim/slide_right.xml</p>
         <pre class="prettyprint">
-&lt;set
-xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
-android:interpolator=&quot;@android:anim/linear_interpolator&quot;
+&lt;set xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
 android:fillAfter=&quot;true&quot;&gt;
 
-&lt;translate
-    android:fromXDelta=&quot;0%p&quot;
-    android:toXDelta=&quot;100%p&quot;
-    android:duration=&quot;3000&quot; /&gt;
+&lt;scale
+    android:duration=&quot;2000&quot;
+    android:fromXScale=&quot;0&quot;
+    android:fromYScale=&quot;1.0&quot;
+    android:toXScale=&quot;1.0&quot;
+    android:toYScale=&quot;1.0&quot; /&gt;
 
 &lt;/set&gt;
         </pre>
       </div>
-     
     </div>
     <div class="row" style="padding-top: 5px;">
       <div class="col-md-6">
-        <div class="alert alert-warning" role="alert"><i class="fas fa-code"></i><span><strong> xml</strong></span>
+        <div class="alert alert-warning" role="alert">
+          <i class="fas fa-code"></i><span><strong> xml</strong></span>
         </div>
-        <p style="padding-left: 20px;">res/anim/move_top.xml</p>
+        <p style="padding-left: 20px;">res/anim/slide_top.xml</p>
         <pre class="prettyprint">
-&lt;set
-xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
-android:interpolator=&quot;@android:anim/linear_interpolator&quot;
-android:fillAfter=&quot;true&quot;&gt;
+&lt;set xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+android:fillAfter=&quot;true&quot; &gt;
 
-&lt;translate
-    android:fromYDelta=&quot;100%p&quot;
-    android:toYDelta=&quot;0%p&quot;
-    android:duration=&quot;3000&quot; /&gt;
+&lt;scale
+    android:duration=&quot;2000&quot;
+    android:fromXScale=&quot;1.0&quot;
+    android:fromYScale=&quot;1.0&quot;
+    android:interpolator=&quot;@android:anim/linear_interpolator&quot;
+    android:toXScale=&quot;1.0&quot;
+    android:toYScale=&quot;0.0&quot; /&gt;
 
 &lt;/set&gt;
         </pre>
       </div>
       <div class="col-md-6">
-        <div class="alert alert-warning" role="alert"><i class="fas fa-code"></i><span><strong> xml</strong></span>
+        <div class="alert alert-warning" role="alert">
+          <i class="fas fa-code"></i><span><strong> xml</strong></span>
         </div>
-        <p style="padding-left: 20px;">res/anim/move_bottom.xml</p>
+        <p style="padding-left: 20px;">res/anim/slide_bottom.xml</p>
         <pre class="prettyprint">
-&lt;set
-xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
-android:interpolator=&quot;@android:anim/linear_interpolator&quot;
+&lt;set xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
 android:fillAfter=&quot;true&quot;&gt;
 
-&lt;translate
-    android:fromYDelta=&quot;0%p&quot;
-    android:toYDelta=&quot;100%p&quot;
-    android:duration=&quot;3000&quot; /&gt;
+&lt;scale
+    android:duration=&quot;2000&quot;
+    android:fromXScale=&quot;1.0&quot;
+    android:fromYScale=&quot;0.0&quot;
+    android:toXScale=&quot;1.0&quot;
+    android:toYScale=&quot;1.0&quot; /&gt;
 
 &lt;/set&gt;
+
         </pre>
       </div>
-     
     </div>
   </div>
 </div>
-<!-- End: 2 Rows 1+2 Columns -->
+

@@ -6,7 +6,7 @@
   <div class="container-fluid">
     <div class="row text-center">
       <div class="col-md-12 text-center" style="background-color: rgb(20,255,0);">
-        <h1 class="text-center text-dark" style="padding-top: 5px;"><strong id="cstitle">Android TextView</strong></h1>
+        <h1 class="text-center text-dark" style="padding-top: 5px;"><strong id="cstitle">Android XMLParsing</strong></h1>
       </div>
     </div>
     <div class="row" style="padding-top: 5px;">
@@ -15,20 +15,220 @@
         </div>
         <p style="padding-left: 20px;">main_activity.xml</p>
         <pre class="prettyprint">
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;
+    xmlns:tools=&quot;http://schemas.android.com/tools&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot;
+    tools:context=&quot;html.tutorial.com.parsing.MainActivity&quot;
+    android:orientation=&quot;vertical&quot;&gt;
 
+    &lt;Button
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:id=&quot;@+id/idBtnParseXML&quot;
+        android:text=&quot;Parse XML&quot;
+          /&gt;
 
+    &lt;ListView
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;match_parent&quot;
+        android:id=&quot;@+id/idLvJson&quot;&gt;&lt;/ListView&gt;
 
+&lt;/LinearLayout&gt;
         </pre>
       </div>
       <div class="col-md-6">
         <div class="alert alert-warning" role="alert"><i
-            class="fab fa-java"></i><span><strong> Java</strong>.</span></div>
+            class="fab fa-java"></i><span><strong> Java</strong></span></div>
         <p style="padding-left: 20px;">MainActivity.java</p>
         <pre class="prettyprint">
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+import android.widget.SimpleAdapter;
+import android.widget.Toast;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 
 
+public class MainActivity extends AppCompatActivity {
+    ArrayList&lt;HashMap&lt;String, String&gt;&gt; contactList;
+    Button btnParseJson;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        contactList = new ArrayList&lt;&gt;();
+        btnParseJson = (Button) findViewById(R.id.idBtnParseXML);
+        btnParseJson.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                beginXMLParsing();
+            }
+        });
+    }
 
+    private void beginXMLParsing() {
+        InputStream is = null;
+        try {
+            is = getAssets().open(&quot;parsingData/data.xml&quot;);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
+        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder dBuilder = null;
+        try {
+            dBuilder = dbFactory.newDocumentBuilder();
+        } catch (ParserConfigurationException e) {
+            e.printStackTrace();
+        }
+        Document doc = null;
+        try {
+            doc = dBuilder.parse(is);
+        } catch (SAXException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        Element element=doc.getDocumentElement();
+        element.normalize();
+
+        NodeList nList = doc.getElementsByTagName(&quot;rootnode&quot;);
+
+        for (int i=0; i&lt; nList.getLength(); i++) {
+
+            Node node = nList.item(i);
+            if (node.getNodeType() == Node.ELEMENT_NODE) {
+                Element element2 = (Element) node;
+                String id = element2.getElementsByTagName(&quot;Id&quot;).item(0).getTextContent();
+                String name = element2.getElementsByTagName(&quot;Name&quot;).item(0).getTextContent();
+                String surname = element2.getElementsByTagName(&quot;Surname&quot;).item(0).getTextContent();
+                String age = element2.getElementsByTagName(&quot;Age&quot;).item(0).getTextContent();
+                addingValuesToHasMap(id,name,surname,age);
+                Toast.makeText(this,&quot;Data: &quot;+element2.getElementsByTagName(&quot;Id&quot;).item(0).getTextContent(),Toast.LENGTH_SHORT).show();
+            }
+        }
+        ListView lv = (ListView) findViewById(R.id.idLvJson);
+        ListAdapter adapter = new SimpleAdapter(MainActivity.this, contactList,
+                R.layout.list_item, new String[]{ &quot;Id&quot;,&quot;Name&quot;,&quot;Surname&quot;,&quot;Age&quot;},
+                new int[]{R.id.idSNO,R.id.idName, R.id.idSurname,R.id.idAge});
+        lv.setAdapter(adapter);
+    }
+
+    private void addingValuesToHasMap(String id, String name, String surname, String age) {
+        // tmp hash map for single contact
+        HashMap&lt;String, String&gt; contact = new HashMap&lt;&gt;();
+
+        // adding each child node to HashMap key =&gt; value
+        contact.put(&quot;Id&quot;, id);
+        contact.put(&quot;Name&quot;, name);
+        contact.put(&quot;Surname&quot;, surname);
+        contact.put(&quot;Age&quot;, age);
+        // adding contact to contact list
+        contactList.add(contact);
+    }
+}
+        </pre>
+      </div>
+    </div>
+    <div class="row" style="padding-top: 5px;">
+      <div class="col-md-6">
+        <div class="alert alert-warning" role="alert"><i class="fas fa-code"></i><span><strong> xml</strong></span>
+        </div>
+        <p style="padding-left: 20px;">list_item.xml</p>
+        <pre class="prettyprint">
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    android:orientation=&quot;horizontal&quot; android:layout_width=&quot;match_parent&quot;
+    android:padding=&quot;16dp&quot;
+    android:layout_height=&quot;match_parent&quot;&gt;
+    &lt;TextView
+        android:id=&quot;@+id/idSNO&quot;
+        android:layout_width=&quot;32dp&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:text=&quot;1&quot;
+        android:textColor=&quot;@color/colorAccent&quot; /&gt;
+
+    &lt;TextView
+        android:id=&quot;@+id/idName&quot;
+        android:layout_weight=&quot;1&quot;
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:textColor=&quot;#5d5d5d&quot;
+        android:text=&quot;mks&quot;
+        android:textStyle=&quot;bold&quot; /&gt;
+
+    &lt;TextView
+        android:id=&quot;@+id/idSurname&quot;
+        android:layout_weight=&quot;1&quot;
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:textColor=&quot;#5d5d5d&quot;
+        android:text=&quot;Toshniwal&quot;
+        android:textStyle=&quot;bold&quot; /&gt;
+
+    &lt;TextView
+        android:id=&quot;@+id/idAge&quot;
+        android:layout_width=&quot;24dp&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:textColor=&quot;#5d5d5d&quot;
+        android:text=&quot;28&quot;
+        android:textStyle=&quot;bold&quot; /&gt;
+&lt;/LinearLayout&gt;
+        </pre>
+      </div>
+      <div class="col-md-6">
+        <div class="alert alert-warning" role="alert"><i
+            class="fas fa-server"></i><span><strong> XMLData</strong></span></div>
+        <p style="padding-left: 20px;">data.xml</p>
+        <pre class="prettyprint">
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;
+&lt;root&gt;
+    &lt;rootnode&gt;
+        &lt;Id&gt;1&lt;/Id&gt;
+        &lt;Name&gt;mks&lt;/Name&gt;
+        &lt;Surname&gt;Toshniwal&lt;/Surname&gt;
+        &lt;Age&gt;25&lt;/Age&gt;
+    &lt;/rootnode&gt;
+    &lt;rootnode&gt;
+        &lt;Id&gt;2&lt;/Id&gt;
+        &lt;Name&gt;Anuradha&lt;/Name&gt;
+        &lt;Surname&gt;Awale&lt;/Surname&gt;
+        &lt;Age&gt;24&lt;/Age&gt;
+    &lt;/rootnode&gt;
+    &lt;rootnode&gt;
+        &lt;Id&gt;3&lt;/Id&gt;
+        &lt;Name&gt;Ankit&lt;/Name&gt;
+        &lt;Surname&gt;Toshniwal&lt;/Surname&gt;
+        &lt;Age&gt;21&lt;/Age&gt;
+    &lt;/rootnode&gt;
+    &lt;rootnode&gt;
+        &lt;Id&gt;4&lt;/Id&gt;
+        &lt;Name&gt;Ganesh&lt;/Name&gt;
+        &lt;Surname&gt;Mudkhede&lt;/Surname&gt;
+        &lt;Age&gt;26&lt;/Age&gt;
+    &lt;/rootnode&gt;
+&lt;/root&gt;
         </pre>
       </div>
     </div>
