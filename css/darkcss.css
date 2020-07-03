@@ -20,7 +20,7 @@
 
 body {
   font-family: tharlonregular;
-  background: #333333;
+  background-color: #333333;
   color: white;
 }
 #showdata{
@@ -194,6 +194,7 @@ a.article:hover {
   height: 681px;
   padding: 0px 0px;
   transition: all 0.3s;
+  background-color: #333333;
 }
 
 #code{
