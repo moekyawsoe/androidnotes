@@ -23,6 +23,9 @@ body {
   background: #333333;
   color: white;
 }
+#showdata{
+  background-color: #333333;
+}
 p {
   font-family: tharlonregular;
 }
