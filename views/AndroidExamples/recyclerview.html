@@ -1,0 +1,344 @@
+<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+<!-- Start: 2 Rows 1+2 Columns -->
+<div id="showdata">
+  <div class="container-fluid">
+    <div class="row text-center">
+      <div class="col-md-12 text-center" style="background-color: rgb(20,255,0);">
+          <h1 class="text-center text-dark" style="padding-top: 5px;"><strong id="cstitle">Android RecyclerView</strong></h1>
+      </div>
+    </div>
+    <div class="row" style="padding-top: 5px;">
+      <div class="col-md-6">
+        <div class="alert alert-warning" role="alert"><i class="fas fa-code"></i><span><strong> xml</strong></span>
+        </div>
+        <p style="padding-left: 20px;">main_activity.xml</p>
+        <pre class="prettyprint">
+
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;androidx.constraintlayout.widget.ConstraintLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;
+    xmlns:tools=&quot;http://schemas.android.com/tools&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot;
+    tools:context=&quot;.MainActivity&quot;&gt;
+
+    &lt;androidx.recyclerview.widget.RecyclerView
+        android:id=&quot;@+id/recyclerview&quot;
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;match_parent&quot;
+        app:layout_constraintBottom_toBottomOf=&quot;parent&quot;
+        app:layout_constraintLeft_toLeftOf=&quot;parent&quot;
+        app:layout_constraintRight_toRightOf=&quot;parent&quot;
+        app:layout_constraintTop_toTopOf=&quot;parent&quot; /&gt;
+
+&lt;/androidx.constraintlayout.widget.ConstraintLayout&gt;
+
+        </pre>
+      </div>
+      <div class="col-md-6">
+        <div class="alert alert-warning" role="alert"><i
+            class="fab fa-java"></i><span><strong> Java</strong></span></div>
+        <p style="padding-left: 20px;">MainActivity.java</p>
+        <pre class="prettyprint">
+
+package dev.mks.recyclerview;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import android.os.Bundle;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class MainActivity extends AppCompatActivity {
+    RecyclerView recyclerView;
+    LinearLayoutManager linearLayoutManager;
+    MovieRecyclerAdapter movieRecyclerAdapter;
+
+    List&lt;MovieListModel&gt; movieListModels = new ArrayList&lt;&gt;();
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        recyclerView = findViewById(R.id.recyclerview);
+        linearLayoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        prepareMovieData();
+        movieRecyclerAdapter = new MovieRecyclerAdapter(movieListModels,this);
+        recyclerView.setAdapter(movieRecyclerAdapter);
+
+    }
+    private void prepareMovieData() {
+        MovieListModel movie = new MovieListModel(&quot;Mad Max: Fury Road&quot;, &quot;Action &amp; Adventure&quot;, &quot;2015&quot;);
+        movieListModels.add(movie);
+
+        movie = new MovieListModel(&quot;Inside Out&quot;, &quot;Animation, Kids &amp; Family&quot;, &quot;2015&quot;);
+        movieListModels.add(movie);
+
+        movie = new MovieListModel(&quot;Star Wars: Episode VII - The Force Awakens&quot;, &quot;Action&quot;, &quot;2015&quot;);
+        movieListModels.add(movie);
+
+        movie = new MovieListModel(&quot;Shaun the Sheep&quot;, &quot;Animation&quot;, &quot;2015&quot;);
+        movieListModels.add(movie);
+
+        movie = new MovieListModel(&quot;The Martian&quot;, &quot;Science Fiction &amp; Fantasy&quot;, &quot;2015&quot;);
+        movieListModels.add(movie);
+
+        movie = new MovieListModel(&quot;Mission: Impossible Rogue Nation&quot;, &quot;Action&quot;, &quot;2015&quot;);
+        movieListModels.add(movie);
+
+        movie = new MovieListModel(&quot;Up&quot;, &quot;Animation&quot;, &quot;2009&quot;);
+        movieListModels.add(movie);
+
+        movie = new MovieListModel(&quot;Star Trek&quot;, &quot;Science Fiction&quot;, &quot;2009&quot;);
+        movieListModels.add(movie);
+
+        movie = new MovieListModel(&quot;The LEGO Movie&quot;, &quot;Animation&quot;, &quot;2014&quot;);
+        movieListModels.add(movie);
+
+        movie = new MovieListModel(&quot;Iron Man&quot;, &quot;Action &amp; Adventure&quot;, &quot;2008&quot;);
+        movieListModels.add(movie);
+
+        movie = new MovieListModel(&quot;Aliens&quot;, &quot;Science Fiction&quot;, &quot;1986&quot;);
+        movieListModels.add(movie);
+
+        movie = new MovieListModel(&quot;Chicken Run&quot;, &quot;Animation&quot;, &quot;2000&quot;);
+        movieListModels.add(movie);
+
+        movie = new MovieListModel(&quot;Back to the Future&quot;, &quot;Science Fiction&quot;, &quot;1985&quot;);
+        movieListModels.add(movie);
+
+        movie = new MovieListModel(&quot;Raiders of the Lost Ark&quot;, &quot;Action &amp; Adventure&quot;, &quot;1981&quot;);
+        movieListModels.add(movie);
+
+        movie = new MovieListModel(&quot;Goldfinger&quot;, &quot;Action &amp; Adventure&quot;, &quot;1965&quot;);
+        movieListModels.add(movie);
+
+        movie = new MovieListModel(&quot;Guardians of the Galaxy&quot;, &quot;Science Fiction &amp; Fantasy&quot;, &quot;2014&quot;);
+        movieListModels.add(movie);
+
+    }
+}
+
+        </pre>
+      </div>
+    </div>
+    <div class="row" style="padding-top: 5px;">
+      <div class="col-md-6">
+        <div class="alert alert-warning" role="alert"><i class="fas fa-code"></i><span><strong> xml</strong></span>
+        </div>
+        <p style="padding-left: 20px;">recycler_item.xml</p>
+        <pre class="prettyprint">
+
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;androidx.cardview.widget.CardView
+    android:id=&quot;@+id/recycler_item_view&quot;
+    xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;
+    xmlns:tools=&quot;http://schemas.android.com/tools&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_margin=&quot;5dp&quot;
+    app:cardCornerRadius=&quot;10dp&quot;
+    android:elevation=&quot;8dp&quot;
+    android:orientation=&quot;vertical&quot;
+    android:layout_height=&quot;wrap_content&quot;&gt;
+
+    &lt;RelativeLayout
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:background=&quot;?android:attr/selectableItemBackground&quot;
+        android:clickable=&quot;true&quot;
+        android:focusable=&quot;true&quot;
+        android:orientation=&quot;vertical&quot;
+        android:paddingBottom=&quot;@dimen/row_padding_vertical&quot;
+        android:paddingLeft=&quot;@dimen/activity_horizontal_margin&quot;
+        android:paddingRight=&quot;@dimen/activity_horizontal_margin&quot;
+        android:paddingTop=&quot;@dimen/row_padding_vertical&quot;&gt;
+
+        &lt;TextView
+            android:id=&quot;@+id/title&quot;
+            android:layout_width=&quot;match_parent&quot;
+            android:layout_height=&quot;wrap_content&quot;
+            android:layout_alignParentTop=&quot;true&quot;
+            android:text=&quot;Title&quot;
+            android:textSize=&quot;16dp&quot;
+            android:textStyle=&quot;bold&quot; /&gt;
+
+        &lt;TextView
+            android:id=&quot;@+id/genre&quot;
+            android:layout_width=&quot;match_parent&quot;
+            android:layout_height=&quot;wrap_content&quot;
+            android:layout_below=&quot;@id/title&quot;
+            android:text=&quot;Genre&quot; /&gt;
+
+        &lt;TextView
+            android:id=&quot;@+id/year&quot;
+            android:layout_width=&quot;wrap_content&quot;
+            android:layout_height=&quot;wrap_content&quot;
+            android:layout_alignParentRight=&quot;true&quot;
+            android:text=&quot;Year&quot; /&gt;
+
+    &lt;/RelativeLayout&gt;
+
+&lt;/androidx.cardview.widget.CardView&gt;
+
+        </pre>
+      </div>
+      <div class="col-md-6">
+        <div class="alert alert-warning" role="alert"><i
+            class="fab fa-java"></i><span><strong> Java</strong></span></div>
+        <p style="padding-left: 20px;">MovieListModel.java</p>
+        <pre class="prettyprint">
+
+package dev.mks.recyclerview;
+
+public class MovieListModel {
+    private String title, genre, year;
+
+    public MovieListModel(String title, String genre, String year) {
+        this.title = title;
+        this.genre = genre;
+        this.year = year;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
+    }
+
+    public String getYear() {
+        return year;
+    }
+
+    public void setYear(String year) {
+        this.year = year;
+    }
+}
+          
+
+        </pre>
+      </div>
+    </div>
+    <div class="row" style="padding-top: 5px;">
+      <div class="col-md-6">
+        <div class="alert alert-warning" role="alert"><i
+            class="fab fa-java"></i><span><strong> Java</strong></span></div>
+        <p style="padding-left: 20px;">MovieRecyclerAdapter.java</p>
+        <pre class="prettyprint">
+
+package dev.mks.recyclerview;
+
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class MovieRecyclerAdapter extends RecyclerView.Adapter&lt;MovieRecyclerAdapter.MyViewHolder&gt; {
+
+    List&lt;MovieListModel&gt; movieListModels;
+    Context context;
+
+    public MovieRecyclerAdapter(List&lt;MovieListModel&gt; movieListModels, Context context) {
+        this.movieListModels = movieListModels;
+        this.context = context;
+    }
+
+    @NonNull
+    @Override
+    //Linking MyViewHolder and ViewGroup
+    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_item,parent,false);
+        return new MyViewHolder(v);
+    }
+
+    @Override
+    //Data Linker
+    public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
+        MovieListModel listModel = movieListModels.get(position);
+        holder.tvTitle.setText(listModel.getTitle());
+        holder.tvGenre.setText(listModel.getGenre());
+        holder.tvYear.setText(listModel.getYear());
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context,&quot;You clicked : &quot;+ movieListModels.get(position),Toast.LENGTH_LONG).show();
+            }
+        });
+
+    }
+
+    @Override
+    public int getItemCount() {
+        return movieListModels.size();
+    }
+
+
+    public class MyViewHolder extends RecyclerView.ViewHolder{
+
+        TextView tvTitle,tvGenre,tvYear;
+        CardView cardView;
+        public MyViewHolder(@NonNull View itemView) {
+            super(itemView);
+
+            tvTitle = itemView.findViewById(R.id.title);
+            tvGenre = itemView.findViewById(R.id.genre);
+            tvYear = itemView.findViewById(R.id.year);
+            cardView = itemView.findViewById(R.id.recycler_item_view);
+        }
+    }
+
+
+
+}
+          
+
+        </pre>
+      </div>
+    </div>
+    <div class="row" style="padding-top: 5px;">
+      <div class="col-md-6">
+        <div class="alert alert-info" role="alert"><i class="fas fa-mobile-alt"></i><span><strong> Output</strong></span>
+        </div>
+        
+          <img class="img-fluid img-thumbnail" src="img/output/recyclerhorview.png">
+        
+        
+      </div>
+      <div class="col-md-6">
+        <div class="alert alert-info" role="alert"><i class="fas fa-mobile-alt"></i><span><strong> Output</strong></span>
+        </div>
+        
+         
+        
+      </div>
+    </div>
+   
+  </div>
+</div>
+<!-- End: 2 Rows 1+2 Columns -->
