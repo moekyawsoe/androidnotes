@@ -15,22 +15,24 @@
         <pre class="prettyprint">
 
 &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
-&lt;RelativeLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
-xmlns:tools=&quot;http://schemas.android.com/tools&quot;
-android:layout_width=&quot;match_parent&quot;
-android:layout_height=&quot;match_parent&quot;
-android:paddingBottom=&quot;@dimen/activity_vertical_margin&quot;
-android:paddingLeft=&quot;@dimen/activity_horizontal_margin&quot;
-android:paddingRight=&quot;@dimen/activity_horizontal_margin&quot;
-android:paddingTop=&quot;@dimen/activity_vertical_margin&quot;
-tools:context=&quot;tutorials.android.com.textview.MainActivity&quot;&gt;
+&lt;androidx.constraintlayout.widget.ConstraintLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;
+    xmlns:tools=&quot;http://schemas.android.com/tools&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot;
+    tools:context=&quot;.MainActivity&quot;&gt;
 
-&lt;TextView
-android:layout_width=&quot;wrap_content&quot;
-android:layout_height=&quot;wrap_content&quot;
-android:text=&quot;Hello World!&quot; /&gt;
-android:id=&quot;@+id/idtxt&quot;
-&lt;/RelativeLayout&gt;
+
+    &lt;TextView
+        android:id=&quot;@+id/txtView&quot;
+        android:layout_width=&quot;wrap_content&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:text=&quot;This is textView.&quot;
+        app:layout_constraintBottom_toBottomOf=&quot;parent&quot;
+        app:layout_constraintEnd_toEndOf=&quot;parent&quot;
+        app:layout_constraintStart_toStartOf=&quot;parent&quot;
+        app:layout_constraintTop_toTopOf=&quot;parent&quot; /&gt;
+&lt;/androidx.constraintlayout.widget.ConstraintLayout&gt;
 
         </pre>
       </div>
@@ -41,26 +43,46 @@ android:id=&quot;@+id/idtxt&quot;
         <pre class="prettyprint">
 
 
+package dev.mks.demoplayground;
+
+import android.os.Bundle;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+
 public class MainActivity extends AppCompatActivity {
-TextView textView;
+
+    TextView tv;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-            textView = (TextView) findViewById(R.id.idtxt);
-        textView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String myvar = textView.getText().toString();
-                Toast.makeText(getActivity(),myvar,Toast.LENGTH_SHORT).show();
-            }
-        });
+
+        tv = findViewById(R.id.txtView);
+        String str = tv.getText().toString();
+        Toast.makeText(getApplicationContext(),str,Toast.LENGTH_LONG).show();
     }
 }
 
         </pre>
       </div>
     </div>
+    <div class="row" style="padding-top: 5px;">
+      <div class="col-md-12">
+        <div class="alert alert-info" role="alert"><i class="fas fa-mobile-alt"></i><span><strong> Output</strong></span>
+        </div>
+        </div>
+    </div>
+    <div class="row" style="padding-top: 5px;">
+        <div class="col-md-3">
+          
+          <img class="img-fluid img-thumbnail" src="img/output/textView.png">
+          
+          
+        </div>
+      </div>
   </div>
 </div>
 <!-- End: 2 Rows 1+2 Columns -->
