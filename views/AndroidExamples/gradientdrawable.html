@@ -1,0 +1,139 @@
+<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+<!-- Start: 2 Rows 1+2 Columns -->
+<div id="showdata">
+  <div class="container-fluid">
+    <div class="row text-center">
+        <div class="col-md-12 text-center" style="background-color: rgb(20,255,0);">
+          <h1 class="text-center text-dark" style="padding-top: 5px;"><strong id="cstitle">Gradient Drawable</strong></h1>
+      </div>
+    </div>
+    <div class="row" style="padding-top: 5px;">
+      <div class="col-md-6">
+        <div class="alert alert-warning" role="alert"><i class="fas fa-code"></i><span><strong> xml</strong></span>
+        </div>
+        <p style="padding-left: 20px;">main_activity.xml</p>
+        <pre class="prettyprint">
+
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;androidx.constraintlayout.widget.ConstraintLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;
+    xmlns:tools=&quot;http://schemas.android.com/tools&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot;
+    tools:context=&quot;.GradientDrawableActivity&quot;&gt;
+
+    &lt;Button
+        android:id=&quot;@+id/btn_gradiant&quot;
+        android:layout_width=&quot;0dp&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:layout_marginStart=&quot;8dp&quot;
+        android:layout_marginEnd=&quot;8dp&quot;
+        android:background=&quot;@drawable/rectangle_drawable&quot;
+        android:text=&quot;Button&quot;
+        app:layout_constraintBottom_toBottomOf=&quot;parent&quot;
+        app:layout_constraintEnd_toEndOf=&quot;parent&quot;
+        app:layout_constraintStart_toStartOf=&quot;parent&quot;
+        app:layout_constraintTop_toTopOf=&quot;parent&quot; /&gt;
+    
+
+    &lt;Button
+        android:id=&quot;@+id/button&quot;
+        android:layout_width=&quot;150dp&quot;
+        android:layout_height=&quot;150dp&quot;
+        android:layout_marginTop=&quot;16dp&quot;
+        android:background=&quot;@drawable/oval_drawable&quot;
+        android:text=&quot;Button&quot;
+        app:layout_constraintEnd_toEndOf=&quot;parent&quot;
+        app:layout_constraintStart_toStartOf=&quot;parent&quot;
+        app:layout_constraintTop_toBottomOf=&quot;@+id/btn_gradiant&quot; /&gt;
+
+&lt;/androidx.constraintlayout.widget.ConstraintLayout&gt;
+
+        </pre>
+      </div>
+      <div class="col-md-6">
+        <div class="alert alert-warning" role="alert"><i
+            class="fab fa-java"></i><span><strong> Java</strong></span></div>
+        <p style="padding-left: 20px;">MainActivity.java</p>
+        <pre class="prettyprint">
+
+package dev.mks.codeplay;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.graphics.drawable.TransitionDrawable;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
+
+public class GradientDrawableActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_gradient_drawable);
+
+
+    }
+}
+
+        </pre>
+      </div>
+    </div>
+    <div class="row" style="padding-top: 5px;">
+      <div class="col-md-6">
+        <div class="alert alert-warning" role="alert"><i class="fas fa-code"></i><span><strong> xml</strong></span>
+        </div>
+        <p style="padding-left: 20px;">rectangle_drawable.xml</p>
+        <pre class="prettyprint">
+
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;shape android:shape=&quot;rectangle&quot;
+    xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot; &gt;
+    &lt;gradient
+        android:startColor=&quot;@color/colorPrimaryDark&quot;
+        android:endColor=&quot;@color/colorAccent&quot;
+        android:angle=&quot;45&quot;/&gt;
+    &lt;corners android:radius=&quot;8dp&quot;/&gt;
+&lt;/shape&gt;
+
+        </pre>
+      </div>
+      <div class="col-md-6">
+        <div class="alert alert-warning" role="alert"><i class="fas fa-code"></i><span><strong> xml</strong></span>
+        </div>
+        <p style="padding-left: 20px;">oval_drawable.xml</p>
+        <pre class="prettyprint">
+
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;shape android:shape=&quot;oval&quot;
+    xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot; &gt;
+    &lt;gradient
+        android:startColor=&quot;@color/colorPrimaryDark&quot;
+        android:endColor=&quot;@color/colorAccent&quot;
+        android:angle=&quot;45&quot;/&gt;
+    &lt;corners android:radius=&quot;50dp&quot;/&gt;
+&lt;/shape&gt;
+
+        </pre>
+      </div>
+      
+    </div>
+    <div class="row" style="padding-top: 5px;">
+      <div class="col-md-12">
+        <div class="alert alert-info" role="alert"><i class="fas fa-mobile-alt"></i><span><strong> Output</strong></span>
+        </div>
+        </div>
+    </div>
+    <div class="row" style="padding-top: 5px;">
+        <div class="col-md-3">
+          
+          <img class="img-fluid img-thumbnail" src="img/output/drawable.png">
+          
+          
+        </div>
+      </div>
+  </div>
+</div>
+<!-- End: 2 Rows 1+2 Columns -->
