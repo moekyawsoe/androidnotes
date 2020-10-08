@@ -4,4 +4,4 @@ android အခြေခံကုဒ်များနှင့်ရေးထု
 
 
 
-[Go to Page](https://moekyawsoe.github.io/kuu_rayypar/)
+[Go to Page](https://moekyawsoe.github.io/androidnotes/)
