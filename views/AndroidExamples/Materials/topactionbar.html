@@ -4,7 +4,7 @@
   <div class="container-fluid">
     <div class="row text-center">
         <div class="col-md-12 text-center" style="background-color: rgb(20,255,0);">
-          <h1 class="text-center text-dark" style="padding-top: 5px;"><strong id="cstitle">Android TextView</strong></h1>
+          <h1 class="text-center text-dark" style="padding-top: 5px;"><strong id="cstitle">Android Material TopActionBar</strong></h1>
       </div>
     </div>
     <div class="row" style="padding-top: 5px;">
@@ -43,26 +43,27 @@
         <pre class="prettyprint">
 
 
-package dev.mks.demoplayground;
-
-import android.os.Bundle;
-import android.widget.TextView;
-import android.widget.Toast;
+package com.example.hello;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class MainActivity extends AppCompatActivity {
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Toast;
 
-    TextView tv;
+public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        initToolbar();
 
-        tv = findViewById(R.id.txtView);
-        String str = tv.getText().toString();
-        Toast.makeText(getApplicationContext(),str,Toast.LENGTH_LONG).show();
+    }
+
+    public void initToolbar(){
+        getSupportActionBar().setTitle(&quot;Simple Toolbar&quot;);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 }
 
@@ -78,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
     <div class="row" style="padding-top: 5px;">
         <div class="col-md-3">
           
-          <img class="img-fluid img-thumbnail" src="img/output/textView.png">
+          <img class="img-fluid img-thumbnail" src="img/materialoutput/topactionbar.png">
           
           
         </div>
